@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+<script src="js/BigInteger.min.js"></script>
+<script src="js/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="js/aes.js"></script>
 <script>
-
 	function u32(x) {
 		return bigInt(x).and(0xFFFFFFFF)
 	}
@@ -126,10 +125,11 @@
 	var aesCbc = new aesjs.ModeOfOperation.cbc(AESKey, IV);
 	var decryptedBytes = aesCbc.decrypt(body);
 	console.log(readInt32(decryptedBytes,0x00025788 - 0x10)) // My Money
+	$('#editor').html('Should be 1642280: ' + readInt32(decryptedBytes,0x00025788 - 0x10))
 
   } 
-  var myarr = [0xFF, 0x99, 0x28, 0x0F, 0x19, 0x00, 0x98]
-	function JSPack()
+
+  function JSPack()
 	{
 		// Module-level (private) variables
 		var el,  bBE = false, m = this;
@@ -381,20 +381,9 @@
 
 <input type="file" id="fileinput"/>
 <input type='button' id='btnLoad' value='Load' onclick='handleFileSelect();'>
+<br>
 <div id="editor"></div>
 
-
-
-	<font face="arial" size = "8">
-	<div>The</div>
-	<div>quick</div>
-	<div>brown</div>
-	<div>fox</div>
-	<div>jumps</div>
-	<div>over</div>
-	<div>the</div>
-	<div>lazy</div>
-	<div>dog</div>
 	
 	
 </body>
