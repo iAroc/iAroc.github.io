@@ -8,7 +8,14 @@
 		<script src="js/aes.js"></script>
 		<script src="js/jspack.js"></script>
 		<script src="bootstrap/bootstrap.min.js"></script>
+		<script src="rollups/aes.js"></script>
+		<script type="text/javascript" src="lib/cryptojs-aes.min.js"></script>
+		<script type="text/javascript" src="build/cmac.js"></script>
 		<script>
+			function d2h(d) {
+				return (d / 256 + 1 / 512).toString(16).substring(2, 4);
+			}
+		
 			function u32(x) {
 				return bigInt(x).and(0xFFFFFFFF)
 			}
@@ -110,6 +117,23 @@
 				var decryptedBytes = aesCbc.decrypt(body);
 				console.log(readInt32(decryptedBytes,0x00025788 - 0x10)) // My Money
 				$('#editor').html('Should be 1642280: ' + readInt32(decryptedBytes,0x00025788 - 0x10))
+				
+				HexDecryptedBytes = ""
+				for(var i = 0; i < decryptedBytes.length; i++) {
+					HexDecryptedBytes += d2h(decryptedBytes[i])
+				}
+		
+				HexMacKey = ""
+				for(var i = 0; i < 16; i++) {
+					HexMacKey += d2h(MACKey[i])
+				}
+
+				var key = CryptoJS.enc.Hex.parse(HexMacKey);
+				// This parse is so slow...
+				var message = CryptoJS.enc.Hex.parse(HexDecryptedBytes);
+
+				var mac = CryptoJS.CMAC(key, message);
+				console.log(mac.toString());
 			}
 		</script>
 	</head>
