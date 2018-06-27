@@ -7,12 +7,15 @@
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/aes.js"></script>
 		<script src="js/jspack.js"></script>
+		<script src="js/crc.min.js"></script>
 		<script src="bootstrap/bootstrap.min.js"></script>
 		<script src="rollups/aes.js"></script>
 		<script type="text/javascript" src="lib/cryptojs-aes.min.js"></script>
 		<script type="text/javascript" src="build/cmac.js"></script>
-		<script src="components/lib-typedarrays.js"></script>
 		<script>
+			var DecryptedFile = []
+			console.log(DecryptedFile.bla)
+		
 			function d2h(d) {
 				return (d / 256 + 1 / 512).toString(16).substring(2, 4);
 			}
@@ -81,16 +84,53 @@
 				}
 				return result;
 			};
+			
+			function writeInt32(array, startPos, val) {
+				val &= 0xFFFFFFFF;
+				var hex = val.toString(16).toUpperCase();
+				var endValue = ("00000000" + hex).slice(-8)
+				var Values = parseHexString(endValue)
+				console.log(Values)
+				array[startPos] = Values[3]
+				array[startPos+1] = Values[2]
+				array[startPos+2] = Values[1]
+				array[startPos+3] = Values[0]
+			}
 
+			function calcCMAC() {
+				HexDecryptedBytes = ""
+				for(var i = 0; i < DecryptedFile.DecryptedBody.length; i++) {
+					HexDecryptedBytes += d2h(DecryptedFile.DecryptedBody[i])
+				}
+	
+				HexMacKey = ""
+				for(var i = 0; i < 16; i++) {
+					HexMacKey += d2h(DecryptedFile.MACKey[i])
+				}
+
+				var key = CryptoJS.enc.Hex.parse(HexMacKey);
+				var message = CryptoJS.enc.Hex.parse(HexDecryptedBytes);
+				
+				// Takes Years to load
+				DecryptedFile.CalcedMac = CryptoJS.CMAC(key, message).toString();
+			}
+			
+			function calcCRC() {
+				var curCRC = crc32(DecryptedFile.DecryptedBody)
+				var curCRCAray = parseHexString(curCRC)
+				DecryptedFile.CRC = [curCRCAray[3],curCRCAray[2],curCRCAray[1],curCRCAray[0]]
+			}
+			
 			function receivedText() {
 				var JSstruct = new JSPack();
 				var Uint8File = new Uint8Array(fr.result);
-				var MAC = getArray(Uint8File,0x000088D80, 0x10);
-				var KeySeed = getArray(Uint8File,0x000088D70, 0x10);
-				var IV = getArray(Uint8File,0x000088D60, 0x10);
-				var body = Uint8File.slice(0x10, Uint8File.length - 0x30);
-			
-				rnd = new sead_rand(JSstruct.Unpack("<IIII",KeySeed,0));
+				DecryptedFile.MAC = getArray(Uint8File,0x000088D80, 0x10);
+				DecryptedFile.KeySeed = getArray(Uint8File,0x000088D70, 0x10);
+				DecryptedFile.IV = getArray(Uint8File,0x000088D60, 0x10);
+				DecryptedFile.EncryptedBody = Uint8File.slice(0x10, Uint8File.length - 0x30);
+				DecryptedFile.Header = getArray(Uint8File,0x0, 0x10);
+				console.log(DecryptedFile.Header)
+				rnd = new sead_rand(JSstruct.Unpack("<IIII",DecryptedFile.KeySeed,0));
 			
 				crypt_tab = [0xDFD0A132,  0x1537D7E5,  0xC8B0F6D5,  0x6C31FED3,  0xB7A1221A,  0x9B9DC40C,  0x44315579,  0xF239E05A,  0x87E4D9AF,  0x59EF5961,  0xF5AF2DC9,  0xD1521C02,  0x68405262,  0x9864C589,  0x98F5F8BE,  0x0C90FE24,  0x9B3FC02A,  0x31E4FD02,  0xEC747B2D,  0x5FC1C04E,  0x80D6B732,  0x32BA6CB7,  0x961A5683,  0x33025098,  0xD5676789,  0xAB622A5A,  0xF651F93A,  0x130D6D68,  0xEFFEDA48,  0x24E2C2D3,  0xEA89C5DD,  0xF04AFA58,  0x767D3A19,  0xBF67B888,  0x54218F00,  0x6F461AFF,  0x9A216E37,  0x5861AAD0,  0x3B44CEAE,  0xCD6C9A42,  0x0610ECD2,  0x2A894F76,  0x23D72BE9,  0x63FA2D93,  0x2ADC8A10,  0xFB0E9F6A,  0x3BE0CE91,  0x80BB93A1,  0xDB8D8FF3,  0x72E21DC7,  0x93B0C670,  0x2907C541,  0x3DBF1C6D,  0x62D8924F,  0x3205E36F,  0x041C44D5,  0xDACB2490,  0x01D905A9,  0x6C8C579B,  0xE3C54DC2,  0xF4583808,  0x76459488,  0x1E5F7C61,  0x2876F360]
 			
@@ -111,19 +151,65 @@
 					key[a] = k
 				}
 				
-				var AESKey = JSstruct.Pack('<IIII', [key[0], key[1], key[2], key[3]])
-				var MACKey = JSstruct.Pack('<IIII', [key[4], key[5], key[6], key[7]])
+				DecryptedFile.AESKey = JSstruct.Pack('<IIII', [key[0], key[1], key[2], key[3]])
+				DecryptedFile.MACKey = JSstruct.Pack('<IIII', [key[4], key[5], key[6], key[7]])
 			
-				var aesCbc = new aesjs.ModeOfOperation.cbc(AESKey, IV);
-				var decryptedBytes = aesCbc.decrypt(body);
-				console.log(readInt32(decryptedBytes,0x00025788 - 0x10)) // My Money
-				$('#editor').html('Should be 1642280: ' + readInt32(decryptedBytes,0x00025788 - 0x10))
-					
-				// This parse is so slow...
-				var wordArray = CryptoJS.lib.WordArray.create(decryptedBytes);
+				var aesCbc = new aesjs.ModeOfOperation.cbc(DecryptedFile.AESKey, DecryptedFile.IV);
+				DecryptedFile.DecryptedBody = aesCbc.decrypt(DecryptedFile.EncryptedBody);
+				console.log(readInt32(DecryptedFile.DecryptedBody,0x00025788 - 0x10)) // My Money
+				$('#editor').html('Should be 1642280: ' + readInt32(DecryptedFile.DecryptedBody,0x00025788 - 0x10))
+				
+				MACString = ""
+				for(var i = 0; i < DecryptedFile.MAC.length; i++) {
+					MACString += d2h(DecryptedFile.MAC[i])
+				}
+				
+				calcCMAC()
+				if(DecryptedFile.CalcedMac != MACString) {
+					alert('Error in Compare CMAC, the File might be corrupted')
+				}
+				
+				writeInt32(DecryptedFile.DecryptedBody,0x00025788 - 0x10,'2642280')
+			}
 			
-				var mac = CryptoJS.CMAC(CryptoJS.lib.WordArray.create(MACKey), wordArray);
-				console.log(mac.toString());
+			function parseHexString(str) { 
+				var result = [];
+				while (str.length >= 2) { 
+					result.push(parseInt(str.substring(0, 2), 16));
+					str = str.substring(2, str.length);
+				}
+				return result;
+			}
+			
+			function EncryptFile() {
+				calcCMAC()
+				calcCRC();
+				
+				var aesCbc = new aesjs.ModeOfOperation.cbc(DecryptedFile.AESKey, DecryptedFile.IV);
+				DecryptedFile.EncryptedBody = []
+				DecryptedFile.EncryptedBody = aesCbc.encrypt(DecryptedFile.DecryptedBody);
+				
+				DecryptedFile.Header[8] = DecryptedFile.CRC[0]
+				DecryptedFile.Header[9] = DecryptedFile.CRC[1]
+				DecryptedFile.Header[10] = DecryptedFile.CRC[2]
+				DecryptedFile.Header[11] = DecryptedFile.CRC[3]
+				
+				var FileArray = $.merge([], DecryptedFile.Header);
+				var FileArray = $.merge(FileArray, DecryptedFile.EncryptedBody);
+				var FileArray = $.merge(FileArray, DecryptedFile.IV);
+				var FileArray = $.merge(FileArray, DecryptedFile.KeySeed);
+				var FileArray = $.merge(FileArray, parseHexString(DecryptedFile.CalcedMac));
+				DownloadFile(FileArray)
+			}
+			
+			function DownloadFile(FileArray) {
+				var file = new Blob([new Uint8Array(FileArray)], {type: 'application/octet-stream'});
+				var downloadUrl = URL.createObjectURL(file);
+				var a = document.createElement("a");
+				a.href = downloadUrl;
+				a.download = "save.dat";
+				document.body.appendChild(a);
+				a.click();
 			}
 		</script>
 	</head>
@@ -143,6 +229,7 @@
 									<br>
 									<br>
 									<input type="submit" class="btn btn-primary" value="Load" style="width:100px;margin:auto;" name="go" onclick='handleFileSelect();'>
+									<input type="submit" class="btn btn-primary" value="Save" style="width:100px;margin:auto;" name="go" onclick='EncryptFile();'>
 								</div>
 							</div>
 						</div>
