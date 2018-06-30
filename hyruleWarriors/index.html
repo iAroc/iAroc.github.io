@@ -9,7 +9,40 @@
 			var DecryptedFile = []
 			DecryptedFile.MaterialNames = ['Metal Plate','Monster Tooth','Old Rag','Soldier\'s Uniform','Rock','Aeralfos Leather','Fiery Aeralfos Leather','Gibdo Bandage','ReDead Bandage','Lizalfos Scale','Dinolfos Fang','Moblin Flank','Shield-Moblin Helmet','Piece of Darknut Armor','Stalmaster Wrist Bone','Big Poe Necklace','Essence of Icy Big Poe','Hylian Captain Gauntlet','Goron Armor Breastplate','Ganon\'s Mane','King Dodongo\'s Claws','Gohma\'s Acid','Manhandla\'s Toxic Dust','Argorok\'s Embers','The Imprisoned\'s Scales','Cia\'s Bracelet','Volga\'s Helmet','Wizzro\'s Robe','Link\'s Boots','Lana\'s Hair Clip','Zelda\'s Brooch','Impa\'s Hair Band','Ganondorf\'s Gauntlet','Sheik\'s Kunai','Darunia\'s Spikes','Ruto\'s Earrings','Agitha\'s Basket','Midna\'s Hair','Fi\'s Heels','Ghirahim\'s Sash','Zant\'s Magic Gem','Round Aeralfos Shield','Fiery Aeralfos Wing','Heavy Gibdo Sword','ReDead Knight Ashes','Lizalfos Gauntlet','Dinolfos Arm Guard','Moblin Spear','Metal Moblin Shield','Large Darknut Sword','Stalmaster\'s Skull','Big Poe\'s Lantern','Icy Big Poe\'s Talisman','Holy Hylian Shield','Thick Goron Helmet','Ganon\'s Fang','King Dodongo\'s Crystal','Gohma\'s Lens','Manhandla\'s Sapling','Argorok\'s Stone','The Imprisoned\'s Pillar','Cia\'s Staff','Volga\'s Dragon Spear','Wizzro\'s Ring','Link\'s Scarf','Lana\'s Cloak','Zelda\'s Tiara','Impa\'s Breastplate','Ganondorf\'s Jewel','Sheik\'s Turban','Darunia\'s Bracelet','Ruto\'s Scale','Agitha\'s Pendant','Midna\'s Fused Shadow','Fi\'s Crystal','Ghirahim\'s Cape','Zant\'s Helmet']
 			DecryptedFile.HasMaterialAdded = false
-			
+			DecryptedFile.CharacterNamesAndOffsets = [ 
+				[0x003308C,'Link'],
+				[0x00330BC,'Zelda'],
+				[0x00330EC,'Shiek'],
+				[0x003311C,'Impa'],
+				[0x003314C,'Ganondorf'],
+				[0x003317C,'Darunia'],
+				[0x00331AC,'Ruto'],
+				[0x00331DC,'Agitha'],
+				[0x003320C,'Midna'],
+				[0x003323C,'Fi'],
+				[0x003326C,'Ghirahim'],
+				[0x003329C,'Zant'],
+				[0x00332CC,'Lana'],
+				[0x00332FC,'Cia'],
+				[0x003332C,'Volga'],
+				[0x003335C,'Wizzro'],
+				[0x003338C,'Twilight Midna'],
+				[0x00333BC,'Young Link'],
+				[0x00333EC,'Tingle'],
+				[0x003341C,'Ganon'],
+				[0x003344C,'Cucco'],
+				[0x003347C,'Linkle'],
+				[0x00334AC,'Skull Kid'],
+				[0x00334DC,'Toon Link'],
+				[0x003350C,'Tetra'],
+				[0x003353C,'King Daphnes'],
+				[0x003356C,'Medli'],
+				[0x003359C,'Marin'],
+				[0x00335CC,'Toon Zelda'],
+				[0x00335FC,'Ravio'],
+				[0x003362C,'Yuga']
+			]
+
 			function handleFileSelect() {               
 				if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
 					alert('The File APIs are not fully supported in this browser.');
@@ -61,7 +94,6 @@
 				var hex = val.toString(16).toUpperCase();
 				var endValue = ("00000000" + hex).slice(-8)
 				var Values = parseHexString(endValue)
-				console.log(Values)
 				array[startPos] = Values[3]
 				array[startPos+1] = Values[2]
 				array[startPos+2] = Values[1]
@@ -88,6 +120,13 @@
 					Material_Panel_Body(i,readInt16(DecryptedFile.saveGame,0x00001AFE + (i * 2)))
 				}
 				$('#Rupees').val(readInt32(DecryptedFile.saveGame,0x000002B8))
+				
+				for(let i = 0;i < DecryptedFile.CharacterNamesAndOffsets.length;i++){
+					$('#Character_Edit_Select').append('<option value="' + i + '">' + DecryptedFile.CharacterNamesAndOffsets[i][1] + '</option>')
+				}
+				LoadCharacterEdit()
+				
+				$('#MainEditContainer').css('display','block');
 			}
 			
 			function EncryptFile() {
@@ -126,8 +165,6 @@
 				NewMaterial += '</div>'
 				
 				$('#Material_Panel_Body').append(NewMaterial);
-				
-				$('#MainEditContainer').css('display','block');
 			}
 			
 			function VerifyMaterialInput(input) {
@@ -142,12 +179,46 @@
 					}
 				}
 			}
-			function VerifyRupeeInput(input) {
+			function VerifyInput(input, maxValue) {
 				var newValue = input.val().replace(/\D/g,'');
-				if(newValue > 9999999) {
-					newValue = 9999999
+				if(newValue > maxValue) {
+					newValue = maxValue
 				}
 				input.val(newValue)
+			}
+			
+			function SetCharacterInfos(CharacterID) {
+				DecryptedFile.saveGame[DecryptedFile.CharacterNamesAndOffsets[CharacterID][0]+8] = $('#CharacterEdit_Level_' + CharacterID).val() - 1
+				writeInt32(DecryptedFile.saveGame, DecryptedFile.CharacterNamesAndOffsets[CharacterID][0],$('#CharacterEdit_Exp_' + CharacterID).val())
+				writeInt16(DecryptedFile.saveGame, DecryptedFile.CharacterNamesAndOffsets[CharacterID][0]-6,$('#CharacterEdit_Attack_' + CharacterID).val())
+			}
+			
+			function LoadCharacterEdit() {
+				var CharacterID = $('#Character_Edit_Select').val()
+				var CharacterEditHTML = "";
+				CharacterEditHTML += '<div class="row">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Experience</span>'
+				CharacterEditHTML += '<input value="' + readInt32(DecryptedFile.saveGame, DecryptedFile.CharacterNamesAndOffsets[CharacterID][0]) + '" type="text" id="CharacterEdit_Exp_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),12842457);SetCharacterInfos(' + CharacterID + ');" onkeyup="VerifyInput($(this),12842457);SetCharacterInfos(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+				
+				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Level</span>'
+				CharacterEditHTML += '<input value="' + Number(Number(DecryptedFile.saveGame[DecryptedFile.CharacterNamesAndOffsets[CharacterID][0]+8])+1) + '" type="text" id="CharacterEdit_Level_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this), 255);SetCharacterInfos(' + CharacterID + ');" onkeyup="VerifyInput($(this), 255);SetCharacterInfos(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+				
+				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Attack</span>'
+				CharacterEditHTML += '<input value="' + readInt16(DecryptedFile.saveGame, DecryptedFile.CharacterNamesAndOffsets[CharacterID][0]-6) + '" type="text" id="CharacterEdit_Attack_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),9999);SetCharacterInfos(' + CharacterID + ');" onkeyup="VerifyInput($(this),9999);SetCharacterInfos(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+				
+				
+				$('#Character_Panel_Body').html(CharacterEditHTML);
 			}
 		</script>
 	</head>
@@ -190,14 +261,32 @@
 					<div class="panel-body" id="Material_Panel_Body">
 					</div>
 				</div>
-				<div class="panel panel-primary" style="width: 49%;display: inline-block;vertical-align: top;">
-					<div class="panel-heading">
-						<h3 class="panel-title">General Edits</h3>
+				<div style="width: 49%;display: inline-block;vertical-align: top;">
+					<div class="panel panel-primary" style="vertical-align: top;">
+						<div class="panel-heading">
+							<h3 class="panel-title">General Edits</h3>
+						</div>
+						<div class="panel-body">
+							<div>
+								<span style="margin-left: 15px;line-height: 34px;">Rupees</span>
+								<input value="" type="text" id="Rupees" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyRupeeInput($(this), 9999999);" onkeyup="VerifyRupeeInput($(this), 9999999);">
+							</div>
+						</div>
 					</div>
-					<div class="panel-body">
-						<div>
-							<span style="margin-left: 15px;line-height: 34px;">Rupees</span>
-							<input value="" type="text" id="Rupees" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyRupeeInput($(this));" onkeyup="VerifyRupeeInput($(this));">
+					<div class="panel panel-primary" style="vertical-align: top;">
+						<div class="panel-heading">
+							<h3 class="panel-title">Character Edit
+								<div class="form-group" style="display: inline-block;float: right;margin-top: -7px;">
+								  <select class="form-control" id="Character_Edit_Select" style="height: 31px;" onchange="LoadCharacterEdit()";>
+									
+								  </select>
+								</div>
+							</h3>
+						</div>
+						<div class="panel-body" id="Character_Panel_Body">
+							<div>
+								<span style="margin-left: 15px;line-height: 34px;">Please Select a Character to Edit</span>
+							</div>
 						</div>
 					</div>
 				</div>
