@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="bootstrap/bootstrap-theme.min.css">
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="bootstrap/bootstrap.min.js"></script>
+		<script>
+			var DecryptedFile = []
+			DecryptedFile.MaterialNames = ['Metal Plate','Monster Tooth','Old Rag','Soldier\'s Uniform','Rock','Aeralfos Leather','Fiery Aeralfos Leather','Gibdo Bandage','ReDead Bandage','Lizalfos Scale','Dinolfos Fang','Moblin Flank','Shield-Moblin Helmet','Piece of Darknut Armor','Stalmaster Wrist Bone','Big Poe Necklace','Essence of Icy Big Poe','Hylian Captain Gauntlet','Goron Armor Breastplate','Ganon\'s Mane','King Dodongo\'s Claws','Gohma\'s Acid','Manhandla\'s Toxic Dust','Argorok\'s Embers','The Imprisoned\'s Scales','Cia\'s Bracelet','Volga\'s Helmet','Wizzro\'s Robe','Link\'s Boots','Lana\'s Hair Clip','Zelda\'s Brooch','Impa\'s Hair Band','Ganondorf\'s Gauntlet','Sheik\'s Kunai','Darunia\'s Spikes','Ruto\'s Earrings','Agitha\'s Basket','Midna\'s Hair','Fi\'s Heels','Ghirahim\'s Sash','Zant\'s Magic Gem','Round Aeralfos Shield','Fiery Aeralfos Wing','Heavy Gibdo Sword','ReDead Knight Ashes','Lizalfos Gauntlet','Dinolfos Arm Guard','Moblin Spear','Metal Moblin Shield','Large Darknut Sword','Stalmaster\'s Skull','Big Poe\'s Lantern','Icy Big Poe\'s Talisman','Holy Hylian Shield','Thick Goron Helmet','Ganon\'s Fang','King Dodongo\'s Crystal','Gohma\'s Lens','Manhandla\'s Sapling','Argorok\'s Stone','The Imprisoned\'s Pillar','Cia\'s Staff','Volga\'s Dragon Spear','Wizzro\'s Ring','Link\'s Scarf','Lana\'s Cloak','Zelda\'s Tiara','Impa\'s Breastplate','Ganondorf\'s Jewel','Sheik\'s Turban','Darunia\'s Bracelet','Ruto\'s Scale','Agitha\'s Pendant','Midna\'s Fused Shadow','Fi\'s Crystal','Ghirahim\'s Cape','Zant\'s Helmet']
+			DecryptedFile.HasMaterialAdded = false
+			
+			function handleFileSelect() {               
+				if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+					alert('The File APIs are not fully supported in this browser.');
+					return;
+				}   
+
+				input = document.getElementById('fileinput');
+				if (!input) {
+					alert("Um, couldn't find the fileinput element.");
+				}
+				else if (!input.files) {
+					alert("This browser doesn't seem to support the `files` property of file inputs.");
+				}
+				else if (!input.files[0]) {
+					alert("Please select a file before clicking 'Load'");               
+				}
+				else {
+					file = input.files[0];
+					fr = new FileReader();
+					fr.onload = receivedText;
+					fr.readAsArrayBuffer(file);
+				}
+			}
+		  
+			function d2h(d) {
+				return (d / 256 + 1 / 512).toString(16).substring(2, 4);
+			}
+		
+			function parseHexString(str) { 
+				var result = [];
+				while (str.length >= 2) { 
+					result.push(parseInt(str.substring(0, 2), 16));
+					str = str.substring(2, str.length);
+				}
+				return result;
+			}
+			
+			function readInt32(array, startPos) {
+				var newArr = [array[startPos + 3],array[startPos + 2],array[startPos + 1],array[startPos]]
+				var result=0;
+				for (let i=3;i>=0;i--) {
+					result+=newArr[3-i]<<(8*i);
+				}
+				return result;
+			};
+			
+			function writeInt32(array, startPos, val) {
+				val &= 0xFFFFFFFF;
+				var hex = val.toString(16).toUpperCase();
+				var endValue = ("00000000" + hex).slice(-8)
+				var Values = parseHexString(endValue)
+				console.log(Values)
+				array[startPos] = Values[3]
+				array[startPos+1] = Values[2]
+				array[startPos+2] = Values[1]
+				array[startPos+3] = Values[0]
+			}
+	
+			function readInt16(array, startPos) {
+				var HexNr = d2h(array[startPos + 1]) + d2h(array[startPos])
+				return parseInt(HexNr,16)
+			};
+			
+			function writeInt16(array, startPos, val) {
+				val &= 0xFFFFFFFF;
+				var hex = val.toString(16).toUpperCase();
+				var endValue = ("00000000" + hex).slice(-4)
+				var Values = parseHexString(endValue)
+				array[startPos+1] = Values[0]
+				array[startPos] = Values[1]
+			}
+			
+			function receivedText() {
+				DecryptedFile.saveGame = new Uint8Array(fr.result);
+				for (let i = 0;i < DecryptedFile.MaterialNames.length; i++){
+					Material_Panel_Body(i,readInt16(DecryptedFile.saveGame,0x00001AFE + (i * 2)))
+				}
+				$('#Rupees').val(readInt32(DecryptedFile.saveGame,0x000002B8))
+			}
+			
+			function EncryptFile() {
+				for (let i = 0;i < DecryptedFile.MaterialNames.length; i++){
+					writeInt16(DecryptedFile.saveGame,0x00001AFE + (i * 2), $('#Material_' + i).val())
+				}
+				
+				writeInt32(DecryptedFile.saveGame,0x000002B8,$('#Rupees').val())
+			
+				var FileArray = $.merge([], DecryptedFile.saveGame);
+				DownloadFile(FileArray)
+			}
+			
+			function DownloadFile(FileArray) {
+				var file = new Blob([new Uint8Array(FileArray)], {type: 'application/octet-stream'});
+				var downloadUrl = URL.createObjectURL(file);
+				var a = document.createElement("a");
+				a.href = downloadUrl;
+				a.download = "zmha.bin";
+				document.body.appendChild(a);
+				a.click();
+			}
+			
+			function Material_Panel_Body(materialID, currentValue) {
+				var NewMaterial = "";
+				if(!DecryptedFile.HasMaterialAdded){
+					DecryptedFile.HasMaterialAdded = true
+					NewMaterial += '<div class="row">'
+				}else{
+					NewMaterial += '<div class="row" style="margin-top: 10px;">'
+				}
+				NewMaterial += '<div>'
+				NewMaterial += '<span style="margin-left: 15px;line-height: 34px;">' + DecryptedFile.MaterialNames[materialID] + '</span>'
+				NewMaterial += '<input value="' + currentValue + '" type="text" id="Material_' + materialID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyMaterialInput($(this));" onkeyup="VerifyMaterialInput($(this));">'
+				NewMaterial += '</div>'
+				NewMaterial += '</div>'
+				
+				$('#Material_Panel_Body').append(NewMaterial);
+				
+				$('#MainEditContainer').css('display','block');
+			}
+			
+			function VerifyMaterialInput(input) {
+				var newValue = input.val().replace(/\D/g,'');
+				if(newValue > 999) {
+					newValue = 999
+				}
+				input.val(newValue)
+				if ($('#Material_Bulk_Edit').is(':checked')) {
+					for(let i = 0; i<DecryptedFile.MaterialNames.length;i++){
+						$('#Material_' + i).val(newValue);
+					}
+				}
+			}
+			function VerifyRupeeInput(input) {
+				var newValue = input.val().replace(/\D/g,'');
+				if(newValue > 9999999) {
+					newValue = 9999999
+				}
+				input.val(newValue)
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-sm-12 col-md-6" style="float: unset;margin-left: auto;margin-right: auto;">
+					<br>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Load Hyrule Warriors Definite Edition SaveFile</h3>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div>
+									<input type="file" id="fileinput" class='form-control-file' style='display: inline-block;'>
+									<br>
+									<br>
+									<input type="submit" class="btn btn-primary" value="Load" style="width:100px;margin:auto;" name="go" onclick='handleFileSelect();'>
+									<input type="submit" class="btn btn-primary" value="Save" style="width:100px;margin:auto;" name="go" onclick='EncryptFile();'>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="col-sm-12 col-md-12 col-md-offset-0" id="MainEditContainer" style="display:none";>
+				<br>
+				<div class="panel panel-primary" style="width: 49%;display: inline-block;">
+					<div class="panel-heading">
+						<h3 class="panel-title">Material Edits 
+							<span style="float:right">
+								<input type="checkbox" class="form-check-input" id="Material_Bulk_Edit">
+								<label class="form-check-label" for="Material_Bulk_Edit">Bulk Edit</label>
+							</span>
+						</h3>
+					</div>
+					<div class="panel-body" id="Material_Panel_Body">
+					</div>
+				</div>
+				<div class="panel panel-primary" style="width: 49%;display: inline-block;vertical-align: top;">
+					<div class="panel-heading">
+						<h3 class="panel-title">General Edits</h3>
+					</div>
+					<div class="panel-body">
+						<div>
+							<span style="margin-left: 15px;line-height: 34px;">Rupees</span>
+							<input value="" type="text" id="Rupees" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyRupeeInput($(this));" onkeyup="VerifyRupeeInput($(this));">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
