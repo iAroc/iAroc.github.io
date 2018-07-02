@@ -7,7 +7,6 @@
 		<script src="bootstrap/bootstrap.min.js"></script>
 		<script>
 			var DecryptedFile = []
-			DecryptedFile.MaterialNames = ['Metal Plate','Monster Tooth','Old Rag','Soldier\'s Uniform','Rock','Aeralfos Leather','Fiery Aeralfos Leather','Gibdo Bandage','ReDead Bandage','Lizalfos Scale','Dinolfos Fang','Moblin Flank','Shield-Moblin Helmet','Piece of Darknut Armor','Stalmaster Wrist Bone','Big Poe Necklace','Essence of Icy Big Poe','Hylian Captain Gauntlet','Goron Armor Breastplate','Ganon\'s Mane','King Dodongo\'s Claws','Gohma\'s Acid','Manhandla\'s Toxic Dust','Argorok\'s Embers','The Imprisoned\'s Scales','Cia\'s Bracelet','Volga\'s Helmet','Wizzro\'s Robe','Link\'s Boots','Lana\'s Hair Clip','Zelda\'s Brooch','Impa\'s Hair Band','Ganondorf\'s Gauntlet','Sheik\'s Kunai','Darunia\'s Spikes','Ruto\'s Earrings','Agitha\'s Basket','Midna\'s Hair','Fi\'s Heels','Ghirahim\'s Sash','Zant\'s Magic Gem','Round Aeralfos Shield','Fiery Aeralfos Wing','Heavy Gibdo Sword','ReDead Knight Ashes','Lizalfos Gauntlet','Dinolfos Arm Guard','Moblin Spear','Metal Moblin Shield','Large Darknut Sword','Stalmaster\'s Skull','Big Poe\'s Lantern','Icy Big Poe\'s Talisman','Holy Hylian Shield','Thick Goron Helmet','Ganon\'s Fang','King Dodongo\'s Crystal','Gohma\'s Lens','Manhandla\'s Sapling','Argorok\'s Stone','The Imprisoned\'s Pillar','Cia\'s Staff','Volga\'s Dragon Spear','Wizzro\'s Ring','Link\'s Scarf','Lana\'s Cloak','Zelda\'s Tiara','Impa\'s Breastplate','Ganondorf\'s Jewel','Sheik\'s Turban','Darunia\'s Bracelet','Ruto\'s Scale','Agitha\'s Pendant','Midna\'s Fused Shadow','Fi\'s Crystal','Ghirahim\'s Cape','Zant\'s Helmet', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????', '?????????']
 			DecryptedFile.HasMaterialAdded = false
 			DecryptedFile.CharacterNamesAndOffsets = [ 
 				[0x003308C,'Link'],
@@ -104,6 +103,116 @@
 					[0x7,32]				
 				]
 			};
+			DecryptedFile.Material = {
+				Bronze: [
+					[0,'Metal Plate'],
+					[1,'Monster Tooth'],
+					[2,'Old Rag'],
+					[3,'Soldier\'s Uniform'],
+					[4,'Rock'],
+					[5,'Aeralfos Leather'],
+					[6,'Fiery Aeralfos Leather'],
+					[7,'Gibdo Bandage'],
+					[8,'ReDead Bandage'],
+					[9,'Lizalfos Scale'],
+					[10,'Dinolfos Fang'],
+					[11,'Moblin Flank'],
+					[12,'Shield-Moblin Helmet'],
+					[13,'Piece of Darknut Armor'],
+					[14,'Stalmaster Wrist Bone'],
+					[15,'Big Poe Necklace'],
+					[16,'Essence of Icy Big Poe'],
+					[17,'Hylian Captain Gauntlet'],
+					[18,'Goron Armor Breastplate'],
+					[77,'Big Blin Hide'],
+					[78,'Stone Blin Buckler'],
+					[79,'Monster Horn']
+				],
+				Silver: [
+					[19,'Ganon\'s Mane'],
+					[20,'King Dodongo\'s Claws'],
+					[21,'Gohma\'s Acid'],
+					[22,'Manhandla\'s Toxic Dust'],
+					[23,'Argorok\'s Embers'],
+					[24,'The Imprisoned\'s Scales'],
+					[25,'Cia\'s Bracelet'],
+					[26,'Volga\'s Helmet'],
+					[27,'Wizzro\'s Robe'],
+					[28,'Link\'s Boots'],
+					[29,'Lana\'s Hair Clip'],
+					[30,'Zelda\'s Brooch'],
+					[31,'Impa\'s Hair Band'],
+					[32,'Ganondorf\'s Gauntlet'],
+					[33,'Sheik\'s Kunai'],
+					[34,'Darunia\'s Spikes'],
+					[35,'Ruto\'s Earrings'],
+					[36,'Agitha\'s Basket'],
+					[37,'Midna\'s Hair'],
+					[38,'Fi\'s Heels'],
+					[39,'Ghirahim\'s Sash'],
+					[40,'Zant\'s Magic Gem'],
+					[41,'Round Aeralfos Shield'],
+					[42,'Fiery Aeralfos Wing'],
+					[43,'Heavy Gibdo Sword'],
+					[44,'ReDead Knight Ashes'],
+					[45,'Lizalfos Gauntlet'],
+					[46,'Dinolfos Arm Guard'],
+					[47,'Moblin Spear'],
+					[48,'Metal Moblin Shield'],
+					[49,'Large Darknut Sword'],
+					[50,'Stalmaster\'s Skull'],
+					[51,'Big Poe\'s Lantern'],
+					[52,'Icy Big Poe\'s Talisman'],
+					[53,'Holy Hylian Shield'],
+					[54,'Thick Goron Helmet'],
+					[80,'Big Blin Club'],
+					[81,'Stone Blin Helmet'],
+					[82,'Helmarcc Plume'],
+					[83,'Panthom Ganon\'s Cape'],
+					[84,'Twili Midna\'s Hairpin'],
+					[85,'Young Link\s Belzz'],
+					[86,'Tingle\s Map'],
+					[87,'Linke\s Boots'],
+					[88,'Skull Kid\'s Hat'],
+					[89,'Pirate\'s Charm'],
+					[90,'Tetra\'s Sandals'],
+					[91,'King Daphnes\'s Robe']
+				],
+				Gold: [
+					[55,'Ganon\'s Fang'],
+					[56,'King Dodongo\'s Crystal'],
+					[57,'Gohma\'s Lens'],
+					[58,'Manhandla\'s Sapling'],
+					[59,'Argorok\'s Stone'],
+					[60,'The Imprisoned\'s Pillar'],
+					[61,'Cia\'s Staff'],
+					[62,'Volga\'s Dragon Spear'],
+					[63,'Wizzro\'s Ring'],
+					[64,'Link\'s Scarf'],
+					[65,'Lana\'s Cloak'],
+					[66,'Zelda\'s Tiara'],
+					[67,'Impa\'s Breastplate'],
+					[68,'Ganondorf\'s Jewel'],
+					[69,'Sheik\'s Turban'],
+					[70,'Darunia\'s Bracelet'],
+					[71,'Ruto\'s Scale'],
+					[72,'Agitha\'s Pendant'],
+					[73,'Midna\'s Fused Shadow'],
+					[74,'Fi\'s Crystal'],
+					[75,'Ghirahim\'s Cape'],
+					[76,'Zant\'s Helmet'],
+					[92,'Helmaroc King\'s Mask'],
+					[93,'Phantom Ganon\'s Sword'],
+					[94,'Twili Midna\'s Robe'],
+					[95,'Keaton Mask'],
+					[96,'Tingle\'s Watch'],
+					[97,'Linkle\'s Compass'],
+					[98,'Majora\'s Mask'],
+					[99,'Island Outfit'],
+					[100,'Tetra\'s Bandana'],
+					[101,'King Daphnes\'s Crown'],
+				]
+			}
 
 			function handleFileSelect() {               
 				if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
@@ -178,9 +287,12 @@
 			
 			function receivedText() {
 				DecryptedFile.saveGame = new Uint8Array(fr.result);
-				for (let i = 0;i < DecryptedFile.MaterialNames.length; i++){
-					Material_Panel_Body(i,readInt16(DecryptedFile.saveGame,0x00001AFE + (i * 2)))
-				}
+				
+				
+				LoadMaterial('Bronze')
+				LoadMaterial('Silver')
+				LoadMaterial('Gold')
+				
 				$('#Rupees').val(readInt32(DecryptedFile.saveGame,0x000002B8))
 				
 				for(let i = 0;i < DecryptedFile.CharacterNamesAndOffsets.length;i++){
@@ -192,9 +304,9 @@
 			}
 			
 			function EncryptFile() {
-				for (let i = 0;i < DecryptedFile.MaterialNames.length; i++){
-					writeInt16(DecryptedFile.saveGame,0x00001AFE + (i * 2), $('#Material_' + i).val())
-				}
+				SaveMaterial('Bronze')
+				SaveMaterial('Silver')
+				SaveMaterial('Gold')
 				
 				writeInt32(DecryptedFile.saveGame,0x000002B8,$('#Rupees').val())
 			
@@ -258,7 +370,19 @@
 				$('#Badges_Modal').modal('show');
 			}
 		
-			function Material_Panel_Body(materialID, currentValue) {
+			function LoadMaterial(rarity) {
+				for (let i = 0;i < DecryptedFile.Material[rarity].length; i++){
+					Material_Panel_Body(i,readInt16(DecryptedFile.saveGame,0x00001AFE + (DecryptedFile.Material[rarity][i][0] * 2)),rarity)
+				}
+			}
+			
+			function SaveMaterial(rarity) {
+				for (let i = 0;i < DecryptedFile.Material[rarity].length; i++){
+					writeInt16(DecryptedFile.saveGame,0x00001AFE + (DecryptedFile.Material[rarity][i][0] * 2), $('#Material_' + rarity + '_' + i).val())
+				}
+			}
+			
+			function Material_Panel_Body(materialID, currentValue, rarity) {
 				var NewMaterial = "";
 				if(!DecryptedFile.HasMaterialAdded){
 					DecryptedFile.HasMaterialAdded = true
@@ -267,23 +391,23 @@
 					NewMaterial += '<div class="row" style="margin-top: 10px;">'
 				}
 				NewMaterial += '<div>'
-				NewMaterial += '<span style="margin-left: 15px;line-height: 34px;">' + DecryptedFile.MaterialNames[materialID] + '</span>'
-				NewMaterial += '<input value="' + currentValue + '" type="text" id="Material_' + materialID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyMaterialInput($(this));" onkeyup="VerifyMaterialInput($(this));">'
+				NewMaterial += '<span style="margin-left: 15px;line-height: 34px;">' + DecryptedFile.Material[rarity][materialID][1] + '</span>'
+				NewMaterial += '<input value="' + currentValue + '" type="text" id="Material_' + rarity + '_' + materialID + '" class="form-control" style="display: inline-block;width: 30%;float: right;margin-right: 15px;" onchange="VerifyMaterialInput($(this),\'' + rarity + '\');" onkeyup="VerifyMaterialInput($(this),\'' + rarity + '\');">'
 				NewMaterial += '</div>'
 				NewMaterial += '</div>'
 				
-				$('#Material_Panel_Body').append(NewMaterial);
+				$('#Material_Panel_Body_' + rarity).append(NewMaterial);
 			}
 			
-			function VerifyMaterialInput(input) {
+			function VerifyMaterialInput(input, rarity) {
 				var newValue = input.val().replace(/\D/g,'');
 				if(newValue > 999) {
 					newValue = 999
 				}
 				input.val(newValue)
-				if ($('#Material_Bulk_Edit').is(':checked')) {
-					for(let i = 0; i<DecryptedFile.MaterialNames.length;i++){
-						$('#Material_' + i).val(newValue);
+				if ($('#Material_Bulk_Edit_' + rarity).is(':checked')) {
+					for(let i = 0;i < DecryptedFile.Material[rarity].length; i++){
+						$('#Material_' + rarity + '_' + i).val(newValue);
 					}
 				}
 			}
@@ -403,19 +527,35 @@
 			(function($){
 				$.fn.disableSelection = function() {
 					return this
-							 .attr('unselectable', 'on')
-							 .css('user-select', 'none')
-							 .on('selectstart', false);
+						 .attr('unselectable', 'on')
+						 .css('user-select', 'none')
+						 .on('selectstart', false);
 				};
 			})(jQuery);
 			
 			$(function() {
 				$('#Badges_Modal').disableSelection()
 			});
+			
+			function bla(){
+				var body = $('body');
+				var normalwidth = 0;
+				var scrollwidth = 0;
+				if(body.prop('scrollHeight')>body.height()){
+					normalwidth = window.innerWidth;
+					scrollwidth = normalwidth - body.width();
+					$('#main').css({marginRight:'-'+scrollwidth+'px'});
+				}
+			};
 		</script>
+		<style>
+			html {
+				overflow-y: scroll; 
+			}		
+		</style>
 	</head>
 	<body>
-		<div class="container text-center">
+		<div class="container text-center" id="main">
 			<div class="row">
 				<div class="col-sm-12 col-md-6" style="float: unset;margin-left: auto;margin-right: auto;">
 					<br>
@@ -440,48 +580,98 @@
 		</div>
 		<div class="container">
 			<div class="col-sm-12 col-md-12 col-md-offset-0" id="MainEditContainer" style="display:none";>
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#GeneralEdit">General & Character Edit</a></li>
+					<li><a data-toggle="tab" href="#MaterialEdit">Material Edit</a></li>
+				    <!--<li><a data-toggle="tab" href="#WeaponEdit">Weapon Edit</a></li>-->
+				</ul>
 				<br>
-				<div class="panel panel-primary" style="width: 49%;display: inline-block;">
-					<div class="panel-heading">
-						<h3 class="panel-title">Material Edits 
-							<span style="float:right">
-								<input type="checkbox" class="form-check-input" id="Material_Bulk_Edit">
-								<label class="form-check-label" for="Material_Bulk_Edit">Bulk Edit</label>
-							</span>
-						</h3>
-					</div>
-					<div class="panel-body" id="Material_Panel_Body">
-					</div>
-				</div>
-				<div style="width: 49%;display: inline-block;vertical-align: top;">
-					<div class="panel panel-primary" style="vertical-align: top;">
-						<div class="panel-heading">
-							<h3 class="panel-title">General Edits</h3>
-						</div>
-						<div class="panel-body">
-							<div>
-								<span style="margin-left: 15px;line-height: 34px;">Rupees</span>
-								<input value="" type="text" id="Rupees" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyRupeeInput($(this), 9999999);" onkeyup="VerifyRupeeInput($(this), 9999999);">
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-primary" style="vertical-align: top;">
-						<div class="panel-heading">
-							<h3 class="panel-title">Character Edit
-								<div class="form-group" style="display: inline-block;float: right;margin-top: -7px;">
-								  <select class="form-control" id="Character_Edit_Select" style="height: 31px;" onchange="LoadCharacterEdit()";>
-									
-								  </select>
+				<div class="tab-content">
+					<div id="GeneralEdit" class="tab-pane fade in active">
+						<div style="width: 49%;display: inline-block;vertical-align: top;">
+							<div class="panel panel-primary" style="vertical-align: top;">
+								<div class="panel-heading">
+									<h3 class="panel-title">General Edits</h3>
 								</div>
-							</h3>
+								<div class="panel-body">
+									<div>
+										<span style="margin-left: 15px;line-height: 34px;">Rupees</span>
+										<input value="" type="text" id="Rupees" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyRupeeInput($(this), 9999999);" onkeyup="VerifyRupeeInput($(this), 9999999);">
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="panel-body" id="Character_Panel_Body">
-							<div>
-								<span style="margin-left: 15px;line-height: 34px;">Please Select a Character to Edit</span>
+						<div style="width: 49%;display: inline-block;vertical-align: top;float:right;">
+							<div class="panel panel-primary" style="vertical-align: top;">
+								<div class="panel-heading">
+									<h3 class="panel-title">Character Edit
+										<div class="form-group" style="display: inline-block;float: right;margin-top: -7px;">
+										  <select class="form-control" id="Character_Edit_Select" style="height: 31px;" onchange="LoadCharacterEdit()";>
+											
+										  </select>
+										</div>
+									</h3>
+								</div>
+								<div class="panel-body" id="Character_Panel_Body">
+									<div>
+										<span style="margin-left: 15px;line-height: 34px;">Please Select a Character to Edit</span>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+					<div id="MaterialEdit" class="tab-pane fade in">
+						<div class="panel panel-primary" style="width: 33%;display: inline-block;vertical-align: top;float:left;">
+							<div class="panel-heading">
+								<h3 class="panel-title">Bronze Material 
+									<span style="float:right">
+										<input type="checkbox" class="form-check-input" id="Material_Bulk_Edit_Bronze">
+										<label class="form-check-label" for="Material_Bulk_Edit_Bronze">Bulk Edit</label>
+									</span>
+								</h3>
+							</div>
+							<div class="panel-body" id="Material_Panel_Body_Bronze">
+							</div>
+						</div>
+						<div class="panel panel-primary" style="width: 33%;display: inline-block;vertical-align: top;margin-left: 5px;">
+							<div class="panel-heading">
+								<h3 class="panel-title">Silver Material  
+									<span style="float:right">
+										<input type="checkbox" class="form-check-input" id="Material_Bulk_Edit_Silver">
+										<label class="form-check-label" for="Material_Bulk_Edit_Silver">Bulk Edit</label>
+									</span>
+								</h3>
+							</div>
+							<div class="panel-body" id="Material_Panel_Body_Silver">
+							</div>
+						</div>
+						<div class="panel panel-primary" style="width: 33%;display: inline-block;vertical-align: top;float:right;">
+							<div class="panel-heading">
+								<h3 class="panel-title">Gold Material  
+									<span style="float:right">
+										<input type="checkbox" class="form-check-input" id="Material_Bulk_Edit_Gold">
+										<label class="form-check-label" for="Material_Bulk_Edit_Gold">Bulk Edit</label>
+									</span>
+								</h3>
+							</div>
+							<div class="panel-body" id="Material_Panel_Body_Gold">
+							</div>
+						</div>
+					</div>
+					<div id="WeaponEdit" class="tab-pane fade in">
+						<div class="panel panel-primary" style="width: 49%;display: inline-block;">
+							<div class="panel-heading">
+								<h3 class="panel-title">Masdfasdf
+									<span style="float:right">
+										<input type="checkbox" class="form-check-input" id="Material_Bulddk_Edit">
+										<label class="form-check-label" for="Materiald_Bulk_Edit">asdfsdt</label>
+									</span>
+								</h3>
+							</div>
+							<div class="panel-body" id="Material_Panel_trhhtBody">
+							</div>
+						</div>
+					</div>
 			</div>
 		</div>
 		<div class="modal" tabindex="-1" role="dialog" id="Badges_Modal">
