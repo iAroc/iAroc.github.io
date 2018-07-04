@@ -198,8 +198,8 @@
 				['Tingle','Balloon','Love-Filled Balloon','Level 2'],
 				['Tingle','Balloon','Mr. Fairy Balloon','Level 3'],
 				
-				['Unknown','Unknown6C','Unknown6C','Level 1'], // 6C
-				['Unknown','Unknown6D','Unknown6D','Level 2'], // 6D
+				['Ganon','Unknown6C','Unknown6C','Level 1'],
+				['Giant Cucco','Unknown6D','Unknown6D','Level 1'],
 				
 				['Ganondorf','Trident','Thief\'s Trident','Level 1'],
 				['Ganondorf','Trident','King of Evil Trident','Level 2'],
@@ -855,24 +855,29 @@
 						maxWeapons = 0
 					}else{
 						if(WeaponObj.WeaponID != 65535) {
-							var TableRow = '<tr id="WeaponEditRow_' + i +'">'
-							TableRow += '<td>' + DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][0] + '</td>' // Character
-							TableRow += '<td>' + DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][1] + '</td>' // WeaponType
-							TableRow += '<td>' + DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][2] + '</td>' // WeaponName
-							TableRow += '<td>' + WeaponObj.WeaponPower + '</td>'
-							TableRow += '<td>' + WeaponObj.WeaponStars + '</td>'
-							TableRow += '<td>' + GetSkillName(WeaponObj.Skill_1) + '</td>'
-							TableRow += '<td>' + GetSkillName(WeaponObj.Skill_2) + '</td>'
-							TableRow += '<td>' + GetSkillName(WeaponObj.Skill_3) + '</td>'
-							TableRow += '<td>' + GetSkillName(WeaponObj.Skill_4) + '</td>'
-							TableRow += '<td>' + GetSkillName(WeaponObj.Skill_5) + '</td>'
-							TableRow += '<td>' + GetSkillName(WeaponObj.Skill_6) + '</td>'
-							TableRow += '<td>' + GetSkillName(WeaponObj.Skill_7) + '</td>'
-							TableRow += '<td>' + GetSkillName(WeaponObj.Skill_8) + '</td>'
-							TableRow += '<td><button type="button" class="btn btn-success" onclick="LoadWeaponEdit(CreateWeaponObj(' + (currentOffset - 0x28) + ', '+ i +'));">Edit Weapon</button></td>'
-							TableRow += '</tr>'
+							if(WeaponObj.WeaponID > DecryptedFile.WeaponNameAndChars.length) {
+								AddErrorLog('Unknown Weapon ID:' + WeaponObj.WeaponID)							
+							}else{
 							
-							$('#Weapons_Table > tbody').append(TableRow)
+								var TableRow = '<tr id="WeaponEditRow_' + i +'">'
+								TableRow += '<td>' + DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][0] + '</td>' // Character
+								TableRow += '<td>' + DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][1] + '</td>' // WeaponType
+								TableRow += '<td>' + DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][2] + '</td>' // WeaponName
+								TableRow += '<td>' + WeaponObj.WeaponPower + '</td>'
+								TableRow += '<td>' + WeaponObj.WeaponStars + '</td>'
+								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_1) + '</td>'
+								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_2) + '</td>'
+								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_3) + '</td>'
+								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_4) + '</td>'
+								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_5) + '</td>'
+								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_6) + '</td>'
+								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_7) + '</td>'
+								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_8) + '</td>'
+								TableRow += '<td><button type="button" class="btn btn-success" onclick="LoadWeaponEdit(CreateWeaponObj(' + (currentOffset - 0x28) + ', '+ i +'));">Edit Weapon</button></td>'
+								TableRow += '</tr>'
+								
+								$('#Weapons_Table > tbody').append(TableRow)
+							}
 						}
 					}
 				}
@@ -1025,6 +1030,10 @@
 			function onlyUnique(value, index, self) { 
 				return self.indexOf(value) === index;
 			}
+			
+			function AddErrorLog(Msg) {
+				$('#ErrorLog').append(Msg + '<br>');
+			}
 
 			$(function() {
 				$('#Badges_Modal').disableSelection()
@@ -1040,7 +1049,7 @@
 	<body>
 		<div class="container text-center" id="main">
 			<div class="row">
-				<div class="col-sm-12 col-md-6" style="float: unset;margin-left: auto;margin-right: auto;">
+				<div class="col-sm-12 col-md-6" style="margin-left: auto;margin-right: auto;">
 					<br>
 					<div class="panel panel-primary">
 						<div class="panel-heading">
@@ -1056,6 +1065,17 @@
 									<input type="submit" class="btn btn-primary" value="Save" style="width:100px;margin:auto;" name="go" onclick='EncryptFile();'>
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-6" style="margin-left: auto;margin-right: auto;">
+					<br>
+					<div class="panel panel-primary" style="height: 146px;">
+						<div class="panel-body" style="padding: 0px;text-align: left; padding-left: 5px;">
+							Error Log:
+						</div>
+						<div id="ErrorLog" class="panel-body" style="padding: 0px;text-align: left;padding-left: 5px;max-height: 122px;overflow-y: scroll;">
+							
 						</div>
 					</div>
 				</div>
