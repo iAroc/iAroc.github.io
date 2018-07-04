@@ -152,13 +152,13 @@
 				['Impa','Giant Blade','Unknown','Level 4'],
 				['Impa','Naginata','Unknown','Level 4'],
 
-				['Ganondorf','Naginata','Unknown','Level 4'],
+				['Ganondorf','Great Swords','Unknown','Level 4'],
 				['Sheik','Harp','Unknown','Level 4'],
 				['Darunia','Hammer','Unknown','Level 4'],
 				['Ruto','Zora Scale','Unknown','Level 4'],
 				['Agitha','Parasol','Unknown','Level 4'],
 				['Midna','Shackle','Unknown','Level 4'],
-				['Fi','Goddess','Unknown','Level 4'],
+				['Fi','Goddess Blade','Unknown','Level 4'],
 				['Ghirahim','Demon Blade','Unknown','Level 4'],
 				['Zant','Scimitars','Unknown','Level 4'],
 
@@ -225,9 +225,9 @@
 				['King Daphnes','Sail','Swift Sail','Level 2'],
 				['King Daphnes','Sail','Sail of Red Lions','Level 3'],
 				
-				['Cia ','Scepter','Unknown','Level 4'],
+				['Cia','Scepter','Unknown','Level 4'],
 				['Volga','Dragon Spear','Unknown','Level 4'],
-				['Wizzro','Epona','Unknown','Level 4'],
+				['Wizzro','Ring','Unknown','Level 4'],
 				['Link','Horse','Unknown','Level 4'],
 				['Twili Midna','Mirror','Unknown','Level 4'],
 				['Link','Spinner','Unknown','Level 4'],
@@ -989,6 +989,20 @@
 				$('#Weapons_Table').dataTable().fnUpdate(rowData,rowIndex,undefined,false);
 			}
 			
+			function MaxoutWeapon() {
+				$('#WeaponEditAttack').val(600)
+				$('#WeaponEditStars').val(5)
+				$('#WeaponEditSkill_1').val(48)
+				$('#WeaponEditSkill_2').val(34)
+				$('#WeaponEditSkill_3').val(54)
+				$('#WeaponEditSkill_4').val(37)
+				$('#WeaponEditSkill_5').val(18)
+				$('#WeaponEditSkill_6').val(19)
+				$('#WeaponEditSkill_7').val(20)
+				$('#WeaponEditSkill_8').val(44)
+				ChangedWeapon()
+			}
+			
 			function ChangeLockedKills(SkillID) {
 				var isChecked = $('#CheckboxWeaponEdit_' + SkillID).is(':checked')
 				if(isChecked){
@@ -1477,6 +1491,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="MaxoutWeapon();">Maxout Weapon</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>
