@@ -198,8 +198,8 @@
 				['Tingle','Balloon','Love-Filled Balloon','Level 2'],
 				['Tingle','Balloon','Mr. Fairy Balloon','Level 3'],
 				
-				['Ganon','Unknown6C','Unknown6C','Level 1'],
-				['Giant Cucco','Unknown6D','Unknown6D','Level 1'],
+				['Ganon','Ganon','Ganon\'s Rage ','Level 1'],
+				['Giant Cucco','Giant Cucco','Cucco\'s Spirit ','Level 1'],
 				
 				['Ganondorf','Trident','Thief\'s Trident','Level 1'],
 				['Ganondorf','Trident','King of Evil Trident','Level 2'],
@@ -254,10 +254,67 @@
 				['Linkle','Boots','Winged Boots','Level 1'],
 				['Linkle','Boots','Roc Boots','Level 2'],
 				['Linkle','Boots','Pegasus Boots','Level 3'],
-				['Linkle','Boots','Pegasus Boots +','Level 4'],
-				
-			]
+				['Linkle','Boots','Pegasus Boots +','Level 4'], // 9A
 
+				['Link','Gauntlets','Burning Gloves','Level 4+'],
+				['Shiek','Harp','Shining Harp','Level 4+'],
+				['Lana','Summoning Gate','Gate of Tides','Level 4+'],
+				['Darunia','Hammer','Darkfire Hammer','Level 4+'],
+				['Ruto','Zora Scale','Sun Dragon Scale','Level 4+'],
+				['Agitha','Parasol','Incandescent Parasol','Level 4+'],
+				['Midna','Shackle','Thunderhead Shackle','Level 4+'],
+				['Fi','Goddess Blade','Liquid Goddess Blade','Level 4+'],
+				['Young Link','Mask','Inflamed Deity\'s Mask','Level 4+'],
+				['Skull Kid','Ocarina','Crackling Ocarina','Level 4+'],
+				['Tetra','Cutlass','Cutlass of Light','Level 4+'],
+				['King Daphnes','Sail','Supercharged Sail','Level 4+'],
+				['Toon Zelda','Phantom Arms','Protector Sword','Level 1'],
+				['Toon Zelda','Phantom Arms','Warp Sword','Level 2'],
+				['Toon Zelda','Phantom Arms','Wrecker Sword','Level 3'],
+				['Toon Zelda','Phantom Arms','Wrecker Sword +','Level 4'],
+				['Toon Link','Sand Wand','Sand Wand','Level 1'],
+				['Toon Link','Sand Wand','Jeweled Sand Wand','Level 2'],
+				['Toon Link','Sand Wand','Nice Sand Wand','Level 3'],
+				['Toon Link','Sand Wand','Nice Sand Wand +','Level 4'],
+				['Link','Magic Rod','Crackling Rod','Level 4+'],
+				['Impa','Naginata','Crackling Naginata','Level 4+'],
+				['Lana','Spear','Sun Faron Spear','Level 4+'],
+				['Zelda','Baton','Liquid Glorious Baton','Level 4+'],
+				['Ganondorf','Trident','Burning Trident','Level 4+'],
+				['Zant','Scimitars','Darkwater Scimitars','Level 4+'],
+				['Ghirahim','Demon Blade','Darkfire Demon Blade','Level 4+'],
+				['Cia','Scepter','Crackling Scepter','Level 4+'],
+				['Volga','Dragon Spear','Darkfire Fang','Level 4+'],
+				['Wizzro','Ring','Darkwater Ring','Level 4+'],
+				['Twili Midna','Mirror','Darklight Mirror','Level 4+'],
+				['Tingle','Balloon','Liquid Fire Balloon','Level 4+'],
+				['Ravio','Rental Hammer','Wooden Hammer','Level 1'],
+				['Ravio','Rental Hammer','White Bunny Hammer','Level 2'],
+				['Ravio','Rental Hammer','Nice Hammer','Level 3'],
+				['Ravio','Rental Hammer','Nice Hammer +','Level 4'],
+				['Yuga','Picture Frame','Wooden Frame','Level 1'],
+				['Yuga','Picture Frame','Frame of Sealing','Level 2'],
+				['Yuga','Picture Frame','Demon King\'s Frame','Level 3'],
+				['Yuga','Picture Frame','Demon King\'s Frame +','Level 4'],
+				['Link','Hylian Sword','Darkmagic Sword','Level 4+'],
+				['Link','Great Fairy','Great Fairy of Tempests','Level 4+'],
+				['Lana','Book of Sorcery','Tome of the Night','Level 4+'],
+				['Zelda','Rapier','Gloomy Rapier','Level 4+'],
+				['Impa','Giant Blade','Biggoron\'s Sunblade','Level 4+'],
+				['Ganondorf','Great Swords','Swords of Renewal','Level 4+'],
+				['Link','Horse','Stormy-Eyed Epona','Level 4+'],
+				['Link','Spinner','Hydro-Spinner','Level 4+'],
+				['Zelda','Dominion Rod','Volcanic Dominion Rod','Level 4+'],
+				['Linkle','Crossbows','Luminous Crossbows','Level 4+'],
+				['Toon Link','Light Sword','Lokomo Sword of Oceans','Level 4+'],
+				['Medli','Rito Harp','Din\'s Harp of Oceans','Level 4+'],
+				['Marin','Bell','Awakening Sunbell','Level 4+'],
+				['Linkle','Boots','Gleambolt Pegasus Boots','Level 4+'],
+				['Toon Zelda','Phantom Arms','Flaming Wrecker Sword','Level 4+'],
+				['Toon Link','Sand Wand','Darkfire Nice Sand Wand','Level 4+'],
+				['Ravio','Rental Hammer','Crackling Nice Hammer','Level 4+'],
+				['Yuga','Picture Frame','Burning Frame','Level 4+']
+			]
 			DecryptedFile.SkillNames[255] = 'No Slot'
 			DecryptedFile.LoadedCharacterOffset = 0x0
 			DecryptedFile.Badges = {
@@ -818,7 +875,7 @@
 				return 'Unknown(' + SkillID + ')'
 			}
 			
-			function CreateWeaponObj(currentOffset, rowID) {
+			function CreateWeaponObj(currentOffset, rowID) { // 21 // Level 4+
 				DecryptedFile.WeaponObj = {}
 				DecryptedFile.WeaponObj.KillsToUnlockSkill_1 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x00)
 				DecryptedFile.WeaponObj.KillsToUnlockSkill_2 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x02)
@@ -855,10 +912,9 @@
 						maxWeapons = 0
 					}else{
 						if(WeaponObj.WeaponID != 65535) {
-							if(WeaponObj.WeaponID > DecryptedFile.WeaponNameAndChars.length) {
+							if(WeaponObj.WeaponID >= DecryptedFile.WeaponNameAndChars.length) {
 								AddErrorLog('Unknown Weapon ID:' + WeaponObj.WeaponID)							
 							}else{
-							
 								var TableRow = '<tr id="WeaponEditRow_' + i +'">'
 								TableRow += '<td>' + DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][0] + '</td>' // Character
 								TableRow += '<td>' + DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][1] + '</td>' // WeaponType
