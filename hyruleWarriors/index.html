@@ -15,7 +15,10 @@
 		<!--<script src="yadcf-0.9.3/shBrushJScript.js"></script>-->
 		<script src="yadcf-0.9.3/shCore.js"></script>
 		
+		
 		<script>
+			
+			
 			var DecryptedFile = []
 			DecryptedFile.WeaponObj = {}
 			DecryptedFile.HasMaterialAdded = false
@@ -315,6 +318,62 @@
 				['Ravio','Rental Hammer','Crackling Nice Hammer','Level 4+'],
 				['Yuga','Picture Frame','Burning Frame','Level 4+']
 			]
+			
+			/*
+			var SaveData = {
+				Weapons: {
+				},
+			}
+			SaveData.Weapons = loadJson('WeaponData.json')
+			
+			$.getJSON( "WeaponData.json", function( json ) {
+  console.log( "JSON Data: " + json.users[ 3 ].name );
+ });
+			console.log(SaveData.Weapons)
+			
+			*/
+			
+			/*
+			for(let i = 0; i < 1;i++) { // DecryptedFile.CharacterNamesAndOffsets.length
+				console.log('\t\t\t\t\t' + DecryptedFile.CharacterNamesAndOffsets[i][1] + ': {')
+				var AllClassNames = []
+				for(let z = 0; z < DecryptedFile.WeaponNameAndChars.length;z++) {
+					if(DecryptedFile.WeaponNameAndChars[z][0] == DecryptedFile.CharacterNamesAndOffsets[i][1]) {
+						AllClassNames.push(DecryptedFile.WeaponNameAndChars[z][1])
+					}
+				}
+				var AllClassNamesUnique = AllClassNames.filter( onlyUnique );
+				
+				for(let h = 0; h < AllClassNamesUnique.length;h++) {
+					console.log('\t\t\t\t\t\t' + h + ': {')
+					console.log('\t\t\t\t\t\t\tClassName: {')
+					console.log('\t\t\t\t\t\t\t\tEN: \'' + AllClassNamesUnique[h].replace('\'','\\\'') + '\',')
+					console.log('\t\t\t\t\t\t\t\tDE: \'' + AllClassNamesUnique[h].replace('\'','\\\'') + '\',')
+					console.log('\t\t\t\t\t\t\t\tFR: \'' + AllClassNamesUnique[h].replace('\'','\\\'') + '\',')
+					console.log('\t\t\t\t\t\t\t\tES: \'' + AllClassNamesUnique[h].replace('\'','\\\'') + '\'')
+					console.log('\t\t\t\t\t\t\t},')
+					console.log('\t\t\t\t\t\t\tWeapons: {')
+					var WeaponNr = 0
+					for(let z = 0; z < DecryptedFile.WeaponNameAndChars.length;z++) { // DecryptedFile.WeaponNameAndChars.length
+						if(DecryptedFile.WeaponNameAndChars[z][0] == DecryptedFile.CharacterNamesAndOffsets[i][1] && DecryptedFile.WeaponNameAndChars[z][1] == AllClassNamesUnique[h]) {
+							console.log('\t\t\t\t\t\t\t\t' + WeaponNr + ': {')
+							console.log('\t\t\t\t\t\t\t\t\tName: {')
+							console.log('\t\t\t\t\t\t\t\t\t\tEN: \'' + DecryptedFile.WeaponNameAndChars[z][2].replace('\'','\\\'') + '\',')
+							console.log('\t\t\t\t\t\t\t\t\t\tDE: \'' + DecryptedFile.WeaponNameAndChars[z][2].replace('\'','\\\'') + '\',')
+							console.log('\t\t\t\t\t\t\t\t\t\tFR: \'' + DecryptedFile.WeaponNameAndChars[z][2].replace('\'','\\\'') + '\',')
+							console.log('\t\t\t\t\t\t\t\t\t\tES: \'' + DecryptedFile.WeaponNameAndChars[z][2].replace('\'','\\\'') + '\'')
+							console.log('\t\t\t\t\t\t\t\t\t},')
+							console.log('\t\t\t\t\t\t\t\t},')
+							WeaponNr += 1
+						}
+					}
+					console.log('\t\t\t\t\t\t\t},')
+					console.log('\t\t\t\t\t\t},')
+				}
+				console.log('\t\t\t\t\t},')
+			}
+			*/
+			
 			DecryptedFile.SkillNames[255] = 'No Slot'
 			DecryptedFile.LoadedCharacterOffset = 0x0
 			DecryptedFile.Badges = {
@@ -511,6 +570,18 @@
 					fr.onload = receivedText;
 					fr.readAsArrayBuffer(file);
 				}
+			}
+			
+			function loadJson(fileName) {
+				var json = null;
+				$.ajax({
+					'url': fileName,
+					'dataType': "json",
+					'success': function (data) {
+						json = data;
+					}
+				});
+				return json;
 			}
 		  
 			function d2h(d) {
@@ -875,7 +946,7 @@
 				return 'Unknown(' + SkillID + ')'
 			}
 			
-			function CreateWeaponObj(currentOffset, rowID) { // 21 // Level 4+
+			function CreateWeaponObj(currentOffset, rowID) {
 				DecryptedFile.WeaponObj = {}
 				DecryptedFile.WeaponObj.KillsToUnlockSkill_1 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x00)
 				DecryptedFile.WeaponObj.KillsToUnlockSkill_2 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x02)
