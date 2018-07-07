@@ -5,7 +5,8 @@ function LoadCharacters() {
 				EN: 'Link',
 				DE: 'Link',
 				FR: 'Link',
-				ES: 'Link'
+				ES: 'Link',
+				IT: 'Link'
 			},
 			Offset: 0x0
 		},
@@ -14,16 +15,18 @@ function LoadCharacters() {
 				EN: 'Zelda',
 				DE: 'Zelda',
 				FR: 'Zelda',
-				ES: 'Zelda'
+				ES: 'Zelda',
+				IT: 'Zelda'
 			},
 			Offset: 0x30
 		},
 		{
 			Name: {
-				EN: 'Shiek',
+				EN: 'Sheik',
 				DE: 'Shiek',
-				FR: 'Shiek',
-				ES: 'Shiek'
+				FR: 'Sheik',
+				ES: 'Sheik',
+				IT: 'Sheik'
 			},
 			Offset: 0x60
 		},
@@ -32,7 +35,8 @@ function LoadCharacters() {
 				EN: 'Impa',
 				DE: 'Impa',
 				FR: 'Impa',
-				ES: 'Impa'
+				ES: 'Impa',
+				IT: 'Impa'
 			},
 			Offset: 0x90
 		},
@@ -41,7 +45,8 @@ function LoadCharacters() {
 				EN: 'Ganondorf',
 				DE: 'Ganondorf',
 				FR: 'Ganondorf',
-				ES: 'Ganondorf'
+				ES: 'Ganondorf',
+				IT: 'Ganondorf'
 			},
 			Offset: 0xC0
 		},
@@ -50,7 +55,8 @@ function LoadCharacters() {
 				EN: 'Darunia',
 				DE: 'Darunia',
 				FR: 'Darunia',
-				ES: 'Darunia'
+				ES: 'Darunia',
+				IT: 'Darunia'
 			},
 			Offset: 0xF0
 		},
@@ -59,16 +65,18 @@ function LoadCharacters() {
 				EN: 'Ruto',
 				DE: 'Ruto',
 				FR: 'Ruto',
-				ES: 'Ruto'
+				ES: 'Ruto',
+				IT: 'Ruto'
 			},
 			Offset: 0x120
 		},
 		{
 			Name: {
 				EN: 'Agitha',
-				DE: 'Agitha',
-				FR: 'Agitha',
-				ES: 'Agitha'
+				DE: 'Agnetha',
+				FR: 'Machaon',
+				ES: 'Maripola',
+				IT: 'Xenia'
 			},
 			Offset: 0x150
 		},
@@ -76,17 +84,19 @@ function LoadCharacters() {
 			Name: {
 				EN: 'Midna',
 				DE: 'Midna',
-				FR: 'Midna',
-				ES: 'Midna'
+				FR: 'Midona',
+				ES: 'Midna',
+				IT: 'Midna'
 			},
 			Offset: 0x180
 		},
 		{
 			Name: {
 				EN: 'Fi',
-				DE: 'Fi',
-				FR: 'Fi',
-				ES: 'Fi'
+				DE: 'Phai',
+				FR: 'Fay',
+				ES: 'Fay',
+				IT: 'Faih'
 			},
 			Offset: 0x1B0
 		},
@@ -95,16 +105,18 @@ function LoadCharacters() {
 				EN: 'Ghirahim',
 				DE: 'Ghirahim',
 				FR: 'Ghirahim',
-				ES: 'Ghirahim'
+				ES: 'Grahim',
+				IT: 'Ghiraim'
 			},
 			Offset: 0x1E0
 		},
 		{
 			Name: {
 				EN: 'Zant',
-				DE: 'Zant',
-				FR: 'Zant',
-				ES: 'Zant'
+				DE: 'Zanto',
+				FR: 'Xanto',
+				ES: 'Zant',
+				IT: 'Zant'
 			},
 			Offset: 0x210
 		},
@@ -113,7 +125,8 @@ function LoadCharacters() {
 				EN: 'Lana',
 				DE: 'Lana',
 				FR: 'Lana',
-				ES: 'Lana'
+				ES: 'Lana',
+				IT: 'Lana'
 			},
 			Offset: 0x240
 		},
@@ -121,8 +134,9 @@ function LoadCharacters() {
 			Name: {
 				EN: 'Cia',
 				DE: 'Cia',
-				FR: 'Cia',
-				ES: 'Cia'
+				FR: 'Cya',
+				ES: 'Cya',
+				IT: 'Cia'
 			},
 			Offset: 0x270
 		},
@@ -131,34 +145,38 @@ function LoadCharacters() {
 				EN: 'Volga',
 				DE: 'Volga',
 				FR: 'Volga',
-				ES: 'Volga'
+				ES: 'Volga',
+				IT: 'Volga'
 			},
 			Offset: 0x2A0
 		},
 		{
 			Name: {
 				EN: 'Wizzro',
-				DE: 'Wizzro',
-				FR: 'Wizzro',
-				ES: 'Wizzro'
+				DE: 'Pyroma',
+				FR: 'Iscerro',
+				ES: 'Invocante',
+				IT: 'Sciaman'
 			},
 			Offset: 0x2D0
 		},
 		{
 			Name: {
 				EN: 'Twili Midna',
-				DE: 'Twili Midna',
-				FR: 'Twili Midna',
-				ES: 'Twili Midna'
+				DE: 'Midna',
+				FR: 'Midona',
+				ES: 'Midna real',
+				IT: 'Midna'
 			},
 			Offset: 0x300
 		},
 		{
 			Name: {
 				EN: 'Young Link',
-				DE: 'Young Link',
-				FR: 'Young Link',
-				ES: 'Young Link'
+				DE: 'Link',
+				FR: 'Link',
+				ES: 'Link niño',
+				IT: 'Link'
 			},
 			Offset: 0x330
 		},
@@ -167,7 +185,8 @@ function LoadCharacters() {
 				EN: 'Tingle',
 				DE: 'Tingle',
 				FR: 'Tingle',
-				ES: 'Tingle'
+				ES: 'Tingle',
+				IT: 'Tingle'
 			},
 			Offset: 0x360
 		},
@@ -176,7 +195,8 @@ function LoadCharacters() {
 				EN: 'Ganon',
 				DE: 'Ganon',
 				FR: 'Ganon',
-				ES: 'Ganon'
+				ES: 'Ganon',
+				IT: 'Ganon'
 			},
 			Offset: 0x390
 		},
@@ -185,7 +205,8 @@ function LoadCharacters() {
 				EN: 'Cucco',
 				DE: 'Cucco',
 				FR: 'Cucco',
-				ES: 'Cucco'
+				ES: 'Cucco',
+				IT: 'Cucco'
 			},
 			Offset: 0x3C0
 		},
@@ -194,25 +215,28 @@ function LoadCharacters() {
 				EN: 'Linkle',
 				DE: 'Linkle',
 				FR: 'Linkle',
-				ES: 'Linkle'
+				ES: 'Linkle',
+				IT: 'Linkle'
 			},
 			Offset: 0x3F0
 		},
 		{
 			Name: {
 				EN: 'Skull Kid',
-				DE: 'Skull Kid',
+				DE: 'Horror Kid',
 				FR: 'Skull Kid',
-				ES: 'Skull Kid'
+				ES: 'Skull Kid',
+				IT: 'Skull Kid'
 			},
 			Offset: 0x420
 		},
 		{
 			Name: {
 				EN: 'Toon Link',
-				DE: 'Toon Link',
-				FR: 'Toon Link',
-				ES: 'Toon Link'
+				DE: 'Link',
+				FR: 'Link',
+				ES: 'Toon Link',
+				IT: 'Link'
 			},
 			Offset: 0x450
 		},
@@ -221,25 +245,28 @@ function LoadCharacters() {
 				EN: 'Tetra',
 				DE: 'Tetra',
 				FR: 'Tetra',
-				ES: 'Tetra'
+				ES: 'Tetra',
+				IT: 'Dazel'
 			},
 			Offset: 0x480
 		},
 		{
 			Name: {
 				EN: 'King Daphnes',
-				DE: 'King Daphnes',
-				FR: 'King Daphnes',
-				ES: 'King Daphnes'
+				DE: 'König Daphnos',
+				FR: 'Roi d\'Hyrule',
+				ES: 'Rey de Hyrule',
+				IT: 'Re Dafnes'
 			},
 			Offset: 0x4B0
 		},
 		{
 			Name: {
 				EN: 'Medli',
-				DE: 'Medli',
-				FR: 'Medli',
-				ES: 'Medli'
+				DE: 'Medolie',
+				FR: 'Médolie',
+				ES: 'Medli',
+				IT: 'Famirè'
 			},
 			Offset: 0x4E0
 		},
@@ -247,17 +274,19 @@ function LoadCharacters() {
 			Name: {
 				EN: 'Marin',
 				DE: 'Marin',
-				FR: 'Marin',
-				ES: 'Marin'
+				FR: 'Marine',
+				ES: 'Marin',
+				IT: 'Marin'
 			},
 			Offset: 0x510
 		},
 		{
 			Name: {
 				EN: 'Toon Zelda',
-				DE: 'Toon Zelda',
-				FR: 'Toon Zelda',
-				ES: 'Toon Zelda'
+				DE: 'Zelda',
+				FR: 'Zelda',
+				ES: 'Toon Zelda',
+				IT: 'Zelda'
 			},
 			Offset: 0x540
 		},
@@ -265,8 +294,9 @@ function LoadCharacters() {
 			Name: {
 				EN: 'Ravio',
 				DE: 'Ravio',
-				FR: 'Ravio',
-				ES: 'Ravio'
+				FR: 'Lavio',
+				ES: 'Ravio',
+				IT: 'Lavio'
 			},
 			Offset: 0x570
 		},
@@ -275,7 +305,8 @@ function LoadCharacters() {
 				EN: 'Yuga',
 				DE: 'Yuga',
 				FR: 'Yuga',
-				ES: 'Yuga'
+				ES: 'Yuga',
+				IT: 'Yuga'
 			},
 			Offset: 0x5A0
 		},

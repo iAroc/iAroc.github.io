@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
 		<link rel="stylesheet" href="bootstrap/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="yadcf-0.9.3/jquery.dataTables.yadcf.css">
@@ -15,6 +16,10 @@
 		<!--<script src="yadcf-0.9.3/shBrushJScript.js"></script>-->
 		<script src="yadcf-0.9.3/shCore.js"></script>
 		<script src="WeaponData.js"></script>
+		<script src="MaterialData.js"></script>
+		<script src="SkillNames.js"></script>
+		<script src="Characters.js"></script>
+		<script src="Offsets.js"></script>
 		
 		
 		<script>
@@ -23,351 +28,22 @@
 			var DecryptedFile = []
 			DecryptedFile.WeaponObj = {}
 			DecryptedFile.HasMaterialAdded = false
-			DecryptedFile.CharacterNamesAndOffsets = [ 
-				[0x003308C,'Link'],
-				[0x00330BC,'Zelda'],
-				[0x00330EC,'Shiek'],
-				[0x003311C,'Impa'],
-				[0x003314C,'Ganondorf'],
-				[0x003317C,'Darunia'],
-				[0x00331AC,'Ruto'],
-				[0x00331DC,'Agitha'],
-				[0x003320C,'Midna'],
-				[0x003323C,'Fi'],
-				[0x003326C,'Ghirahim'],
-				[0x003329C,'Zant'],
-				[0x00332CC,'Lana'],
-				[0x00332FC,'Cia'],
-				[0x003332C,'Volga'],
-				[0x003335C,'Wizzro'],
-				[0x003338C,'Twili Midna'],
-				[0x00333BC,'Young Link'],
-				[0x00333EC,'Tingle'],
-				[0x003341C,'Ganon'],
-				[0x003344C,'Cucco'],
-				[0x003347C,'Linkle'],
-				[0x00334AC,'Skull Kid'],
-				[0x00334DC,'Toon Link'],
-				[0x003350C,'Tetra'],
-				[0x003353C,'King Daphnes'],
-				[0x003356C,'Medli'],
-				[0x003359C,'Marin'],
-				[0x00335CC,'Toon Zelda'],
-				[0x00335FC,'Ravio'],
-				[0x003362C,'Yuga']
-			]
+
 			DecryptedFile.SkillNames = [
 				'Open Slot', 'Str Attack I+', 'Str Attack II+', 'Str Attack III+', 'Str Attack IV+', 'Str Attack V+', 'Str Attack VI+', 'Fire+', 'Water+', 'Lightning+', 'Light+', 'Darkness+', 'VS Legend', 'VS Time', 'VS Twilight', 'VS Skyward', 'VS Sorceress', 'VS Beast', 'VS Dragon', 'VS Undead', 'VS Soldier', 'VS Ganon', 'EXP+', 'Rupees+', 'Materials+', 'Slots+', 'Stars+', 'Hearts+', 'Health+', 'Special+', 'Bombs+', 'Arrows+', 'Boomerang+', 'Hookshot+', 'One-Hit Kill', 'Sturdy Feet', 'Regen', 'Defenseless', 'No Healing', 'Adversity', 'Compatriot', 'Evil\'s Bane', 'Legendary', 'Sp. Attack+', 'Fin. Blow+', 'Reg. Attack+', 'Heart-strong', 'Focus Spirit+', 'Hasty Attacks', 'Food+', 'Hammer+', 'VS Sea', 'VS Termina','Exorcism','Heart Power']
-			DecryptedFile.WeaponNameAndChars = [
-				['Link','Hylian Sword','Knight\'s Sword','Level 1'],
-				['Link','Hylian Sword','White\'s Sword','Level 2'],
-				['Link','Hylian Sword','Magical Sword','Level 3'],
-				
-				['Link','Magic Rod','Fire Rod','Level 1'],
-				['Link','Magic Rod','Prism Rod','Level 2'],
-				['Link','Magic Rod','Magical Rod','Level 3'],
-				
-				['Link','Great Fairy','Great Fountain Fairy','Level 1'],
-				['Link','Great Fairy','Great Forest Fairy','Level 2'],
-				['Link','Great Fairy','Great Sky Fairy','Level 3'],
-				
-				['Link','Gauntlets','Silver Gauntlets','Level 1'],
-				['Link','Gauntlets','Golden Gauntlets','Level 2'],
-				['Link','Gauntlets','Power Gauntlets','Level 3'],
-				
-				['Lana','Book of Sorcery','Spirit\'s Tome','Level 1'],
-				['Lana','Book of Sorcery','Sealing Tome','Level 2'],
-				['Lana','Book of Sorcery','Sorceress Tome','Level 3'],
-				
-				['Lana','Spear','Deku Spear','Level 1'],
-				['Lana','Spear','Kokiri Spear','Level 2'],
-				['Lana','Spear','Faron Spear','Level 3'],
-				
-				['Lana','Summoning Gate','Gate of Time','Level 1'],
-				['Lana','Summoning Gate','Guardian\'s Gate','Level 2'],
-				['Lana','Summoning Gate','Gate of Souls','Level 3'],
-				
-				['Zelda','Rapier','Polished Rapier','Level 1'],
-				['Zelda','Rapier','Glittering Rapier','Level 2'],
-				['Zelda','Rapier','Gleaming Rapier','Level 3'],
-				
-				['Zelda','Baton','Wind Waker','Level 1'],
-				['Zelda','Baton','Sacred Baton','Level 2'],
-				['Zelda','Baton','Glorious Baton','Level 3'],
-				
-				['Impa','Giant Blade','Giant\'s Knife','Level 1'],
-				['Impa','Giant Blade','Biggoron\'s Knife','Level 2'],
-				['Impa','Giant Blade','Biggoron\'s Sword','Level 3'],
-				
-				['Impa','Naginata','Guardian Naginata','Level 1'],
-				['Impa','Naginata','Scorching Naginata','Level 2'],
-				['Impa','Naginata','Sheikah Naginata','Level 3'],
-				
-				['Ganondorf','Great Swords','Swords of Despair','Level 1'],
-				['Ganondorf','Great Swords','Swords of Darkness','Level 2'],
-				['Ganondorf','Great Swords','Swords of Demise','Level 3'],
-				
-				['Sheik','Harp','Goddess\'s Harp','Level 1'],
-				['Sheik','Harp','Typhoon Harp','Level 2'],
-				['Sheik','Harp','Triforce Harp','Level 3'],
-				
-				['Darunia','Hammer','Magic Hammer','Level 1'],
-				['Darunia','Hammer','Igneous Hammer','Level 2'],
-				['Darunia','Hammer','Megaton Hammer','Level 3'],
-				
-				['Ruto','Zora Scale','Silver Scale','Level 1'],
-				['Ruto','Zora Scale','Golden Scale','Level 2'],
-				['Ruto','Zora Scale','Water Dragon Scale','Level 3'],
-				
-				['Agitha','Parasol','Butterfly Parasol','Level 1'],
-				['Agitha','Parasol','Luna Parasol','Level 2'],
-				['Agitha','Parasol','Princess Parasol','Level 3'],
-				
-				['Midna','Shackle','Cursed Shackle','Level 1'],
-				['Midna','Shackle','Twilight Shackle','Level 2'],
-				['Midna','Shackle','Sol Shackle','Level 3'],
-				
-				['Fi','Goddess Blade','Goddess Sword','Level 1'],
-				['Fi','Goddess Blade','Goddess Longsword','Level 2'],
-				['Fi','Goddess Blade','True Goddess Blade','Level 3'],
-				
-				['Ghirahim','Demon Blade','Demon Tribe Sword','Level 1'],
-				['Ghirahim','Demon Blade','Demon Longsword','Level 2'],
-				['Ghirahim','Demon Blade','True Demon Blade','Level 3'],
-				
-				['Zant','Scimitars','Usurper\'s Scimitars','Level 1'],
-				['Zant','Scimitars','Shadow Scimitars','Level 2'],
-				['Zant','Scimitars','Scimitars of Twilight','Level 3'], 
-
-				['Link','Master Sword','Master Sword','Level 1'],
-	
-				['Link','Hylian Sword','Magical Sword +','Level 4'],
-				['Link','Magic Rod','Magical Rod +','Level 4'],
-				['Link','Great Fairy','Great Sky Fairy +','Level 4'],
-				['Link','Gauntlets','Power Gloves +','Level 4'],
-				
-				['Lana','Book of Sorcery','Sorceress Tome +','Level 4'],
-				['Lana','Spear','Faron Spear +','Level 4'],
-				['Lana','Summoning Gate','Gate of Souls +','Level 4'],
-
-				['Zelda','Rapier','Gleaming Rapier +','Level 4'],
-				['Zelda','Baton','Glorious Baton +','Level 4'],
-				
-				['Impa','Giant Blade','Biggoron\'s Sword +','Level 4'],
-				['Impa','Naginata','Sheikah Naginata +','Level 4'],
-
-				['Ganondorf','Great Swords','Swords of Demise +','Level 4'],
-				['Sheik','Harp','Triforce Harp +','Level 4'],
-				['Darunia','Hammer','Megaton Hammer +','Level 4'],
-				['Ruto','Zora Scale','Water Dragon Scale +','Level 4'],
-				['Agitha','Parasol','Princess Parasol','Level 4'],
-				['Midna','Shackle','Sol Shackle +','Level 4'],
-				['Fi','Goddess Blade','True Goddess Blade +','Level 4'],
-				['Ghirahim','Demon Blade','True Demon Blade +','Level 4'],
-				['Zant','Scimitars','Scimitars of Twilight','Level 4'],
-
-				['Cia','Scepter','Scepter of Time','Level 1'],
-				['Cia','Scepter','Guardian\'s Scepter','Level 2'],
-				['Cia','Scepter','Scepter of Souls','Level 3'],
-				
-				['Volga','Dragon Spear','Dragonbone Pike','Level 1'],
-				['Volga','Dragon Spear','Stonecleaver Claw','Level 2'],
-				['Volga','Dragon Spear','Flesh-Render Fang','Level 3'],
-
-				['Wizzro','Ring','Blue Ring','Level 1'],
-				['Wizzro','Ring','Red Ring','Level 2'],
-				['Wizzro','Ring','Magical Ring','Level 3'],
-				
-				['Link','Horse','Epona','Level 1'],
-				['Link','Horse','Twilight Epona','Level 2'],
-				['Link','Horse','Epona of Time','Level 3'],
-				
-				['Twili Midna','Mirror','Mirror of Shadows','Level 1'],
-				['Twili Midna','Mirror','Mirror of Silence','Level 2'],
-				['Twili Midna','Mirror','Mirror of Twilight','Level 3'],
-				
-				['Link','Spinner','Ancient Spinner','Level 1'],
-				['Link','Spinner','Enhanced Spinner','Level 2'],
-				['Link','Spinner','Triforce Spinner','Level 3'],
-				
-				['Zelda','Dominion Rod','Old Dominion Rod','Level 1'],
-				['Zelda','Dominion Rod','High Dominion Rod','Level 2'],
-				['Zelda','Dominion Rod','Royal Dominion Rod','Level 3'],
-				
-				['Young Link','Mask','Fierce Deity Mask','Level 1'],
-				['Young Link','Mask','Furious Deity Mask','Level 2'],
-				['Young Link','Mask','Vengeful Deity Mask','Level 3'],
-				
-				['Tingle','Balloon','Rosy Balloon','Level 1'],
-				['Tingle','Balloon','Love-Filled Balloon','Level 2'],
-				['Tingle','Balloon','Mr. Fairy Balloon','Level 3'],
-				
-				['Ganon','Ganon','Ganon\'s Rage ','Level 1'],
-				['Giant Cucco','Giant Cucco','Cucco\'s Spirit ','Level 1'],
-				
-				['Ganondorf','Trident','Thief\'s Trident','Level 1'],
-				['Ganondorf','Trident','King of Evil Trident','Level 2'],
-				['Ganondorf','Trident','Trident of Demise','Level 3'],
-				
-				['Linkle','Crossbows','Simple Crossbows','Level 1'],
-				['Linkle','Crossbows','Hylian Crossbows','Level 2'],
-				['Linkle','Crossbows','Legend\'s Crossbows','Level 3'],
-				
-				['Skull Kid','Ocarina','Fairy Ocarina','Level 1'],
-				['Skull Kid','Ocarina','Lunar Ocarina','Level 2'],
-				['Skull Kid','Ocarina','Majora\'s Ocarina','Level 3'],
-				
-				['Toon Link','Light Sword','Hero\'s Sword','Level 1'],
-				['Toon Link','Light Sword','Phantom Sword','Level 2'],
-				['Toon Link','Light Sword','Lokomo Sword','Level 3'],
-				
-				['Tetra','Cutlass','Pirate Cutlass','Level 1'],
-				['Tetra','Cutlass','Jeweled Cutlass','Level 2'],
-				['Tetra','Cutlass','Regal Cutlass','Level 3'],
-				
-				['King Daphnes','Sail','Windfall Sail','Level 1'],
-				['King Daphnes','Sail','Swift Sail','Level 2'],
-				['King Daphnes','Sail','Sail of Red Lions','Level 3'],
-				
-				['Cia','Scepter','cepter of Souls +','Level 4'],
-				['Volga','Dragon Spear','Flesh-Render Fang +','Level 4'],
-				['Wizzro','Ring','Magical Ring +','Level 4'],
-				['Link','Horse','Epona of Time +','Level 4'],
-				['Twili Midna','Mirror','Mirror of Twilight +','Level 4'],
-				['Link','Spinner','Triforce Spinner +','Level 4'],
-				['Zelda','Dominion Rod','Royal Dominion Rod +','Level 4'],
-				['Young Link','Mask','Vengeful Deity Mask +','Level 4'],
-				['Tingle','Balloon','Mr. Fairy Balloon +','Level 4'],
-				['Ganondorf','Trident','Trident of Demise +','Level 4'],
-				['Linkle','Crossbows','Legend\'s Crossbows +','Level 4'],
-				['Skull Kid','Ocarina','Majora\'s Ocarina +','Level 4'],
-				['Toon Link','Light Sword','Lokomo Sword +','Level 4'],
-				['Tetra','Cutlass','Regal Cutlass +','Level 4'],
-				['King Daphnes','Sail','Sail of Red Lions +','Level 4'],
-				
-				['Medli','Rito Harp','Sacred Harp','Level 1'],
-				['Medli','Rito Harp','Earth God\'s Harp','Level 2'],
-				['Medli','Rito Harp','Din\'s Harp','Level 3'],
-				['Medli','Rito Harp','Din\'s Harp +','Level 4'],
-				
-				['Marin','Bell','Sea Lily Bell','Level 1'],
-				['Marin','Bell','Wavelet Bell','Level 2'],
-				['Marin','Bell','Awakening Bell','Level 3'],
-				['Marin','Bell','Awakening Bell +','Level 4'],
-				
-				['Linkle','Boots','Winged Boots','Level 1'],
-				['Linkle','Boots','Roc Boots','Level 2'],
-				['Linkle','Boots','Pegasus Boots','Level 3'],
-				['Linkle','Boots','Pegasus Boots +','Level 4'], // 9A
-
-				['Link','Gauntlets','Burning Gloves','Level 4+'],
-				['Shiek','Harp','Shining Harp','Level 4+'],
-				['Lana','Summoning Gate','Gate of Tides','Level 4+'],
-				['Darunia','Hammer','Darkfire Hammer','Level 4+'],
-				['Ruto','Zora Scale','Sun Dragon Scale','Level 4+'],
-				['Agitha','Parasol','Incandescent Parasol','Level 4+'],
-				['Midna','Shackle','Thunderhead Shackle','Level 4+'],
-				['Fi','Goddess Blade','Liquid Goddess Blade','Level 4+'],
-				['Young Link','Mask','Inflamed Deity\'s Mask','Level 4+'],
-				['Skull Kid','Ocarina','Crackling Ocarina','Level 4+'],
-				['Tetra','Cutlass','Cutlass of Light','Level 4+'],
-				['King Daphnes','Sail','Supercharged Sail','Level 4+'],
-				['Toon Zelda','Phantom Arms','Protector Sword','Level 1'],
-				['Toon Zelda','Phantom Arms','Warp Sword','Level 2'],
-				['Toon Zelda','Phantom Arms','Wrecker Sword','Level 3'],
-				['Toon Zelda','Phantom Arms','Wrecker Sword +','Level 4'],
-				['Toon Link','Sand Wand','Sand Wand','Level 1'],
-				['Toon Link','Sand Wand','Jeweled Sand Wand','Level 2'],
-				['Toon Link','Sand Wand','Nice Sand Wand','Level 3'],
-				['Toon Link','Sand Wand','Nice Sand Wand +','Level 4'],
-				['Link','Magic Rod','Crackling Rod','Level 4+'],
-				['Impa','Naginata','Crackling Naginata','Level 4+'],
-				['Lana','Spear','Sun Faron Spear','Level 4+'],
-				['Zelda','Baton','Liquid Glorious Baton','Level 4+'],
-				['Ganondorf','Trident','Burning Trident','Level 4+'],
-				['Zant','Scimitars','Darkwater Scimitars','Level 4+'],
-				['Ghirahim','Demon Blade','Darkfire Demon Blade','Level 4+'],
-				['Cia','Scepter','Crackling Scepter','Level 4+'],
-				['Volga','Dragon Spear','Darkfire Fang','Level 4+'],
-				['Wizzro','Ring','Darkwater Ring','Level 4+'],
-				['Twili Midna','Mirror','Darklight Mirror','Level 4+'],
-				['Tingle','Balloon','Liquid Fire Balloon','Level 4+'],
-				['Ravio','Rental Hammer','Wooden Hammer','Level 1'],
-				['Ravio','Rental Hammer','White Bunny Hammer','Level 2'],
-				['Ravio','Rental Hammer','Nice Hammer','Level 3'],
-				['Ravio','Rental Hammer','Nice Hammer +','Level 4'],
-				['Yuga','Picture Frame','Wooden Frame','Level 1'],
-				['Yuga','Picture Frame','Frame of Sealing','Level 2'],
-				['Yuga','Picture Frame','Demon King\'s Frame','Level 3'],
-				['Yuga','Picture Frame','Demon King\'s Frame +','Level 4'],
-				['Link','Hylian Sword','Darkmagic Sword','Level 4+'],
-				['Link','Great Fairy','Great Fairy of Tempests','Level 4+'],
-				['Lana','Book of Sorcery','Tome of the Night','Level 4+'],
-				['Zelda','Rapier','Gloomy Rapier','Level 4+'],
-				['Impa','Giant Blade','Biggoron\'s Sunblade','Level 4+'],
-				['Ganondorf','Great Swords','Swords of Renewal','Level 4+'],
-				['Link','Horse','Stormy-Eyed Epona','Level 4+'],
-				['Link','Spinner','Hydro-Spinner','Level 4+'],
-				['Zelda','Dominion Rod','Volcanic Dominion Rod','Level 4+'],
-				['Linkle','Crossbows','Luminous Crossbows','Level 4+'],
-				['Toon Link','Light Sword','Lokomo Sword of Oceans','Level 4+'],
-				['Medli','Rito Harp','Din\'s Harp of Oceans','Level 4+'],
-				['Marin','Bell','Awakening Sunbell','Level 4+'],
-				['Linkle','Boots','Gleambolt Pegasus Boots','Level 4+'],
-				['Toon Zelda','Phantom Arms','Flaming Wrecker Sword','Level 4+'],
-				['Toon Link','Sand Wand','Darkfire Nice Sand Wand','Level 4+'],
-				['Ravio','Rental Hammer','Crackling Nice Hammer','Level 4+'],
-				['Yuga','Picture Frame','Burning Frame','Level 4+']
-			]
-			
 			
 			var SaveData = {
+				Lang: 'EN',
 				Weapons: LoadWeaponData(),
+				WeaponObj: {},
+				SkillNames: LoadSkillNames(),
+				Offsets: LoadOffsets(),
+				Material: LoadMaterial(),
+				MaterialObj: {},
+				Characters: LoadCharacters(),
+				CharacterObj: {},
 			}
-			
-			/*
-			for(let i = 0; i < DecryptedFile.CharacterNamesAndOffsets.length;i++) { // DecryptedFile.CharacterNamesAndOffsets.length
-				console.log('\t\t\t\t\t' + DecryptedFile.CharacterNamesAndOffsets[i][1] + ': {')
-				var AllClassNames = []
-				for(let z = 0; z < DecryptedFile.WeaponNameAndChars.length;z++) {
-					if(DecryptedFile.WeaponNameAndChars[z][0] == DecryptedFile.CharacterNamesAndOffsets[i][1]) {
-						AllClassNames.push(DecryptedFile.WeaponNameAndChars[z][1])
-					}
-				}
-				var AllClassNamesUnique = AllClassNames.filter( onlyUnique );
-				
-				for(let h = 0; h < AllClassNamesUnique.length;h++) {
-					console.log('\t\t\t\t\t\t' + h + ': {')
-					console.log('\t\t\t\t\t\t\tClassName: {')
-					console.log('\t\t\t\t\t\t\t\tEN: \'' + AllClassNamesUnique[h].replace('\'','\\\'') + '\',')
-					console.log('\t\t\t\t\t\t\t\tDE: \'' + AllClassNamesUnique[h].replace('\'','\\\'') + '\',')
-					console.log('\t\t\t\t\t\t\t\tFR: \'' + AllClassNamesUnique[h].replace('\'','\\\'') + '\',')
-					console.log('\t\t\t\t\t\t\t\tES: \'' + AllClassNamesUnique[h].replace('\'','\\\'') + '\'')
-					console.log('\t\t\t\t\t\t\t},')
-					console.log('\t\t\t\t\t\t\tWeapons: {')
-					var WeaponNr = 0
-					for(let z = 0; z < DecryptedFile.WeaponNameAndChars.length;z++) {
-						if(DecryptedFile.WeaponNameAndChars[z][0] == DecryptedFile.CharacterNamesAndOffsets[i][1] && DecryptedFile.WeaponNameAndChars[z][1] == AllClassNamesUnique[h]) {
-							console.log('\t\t\t\t\t\t\t\t' + WeaponNr + ': {')
-							console.log('\t\t\t\t\t\t\t\t\tName: {')
-							console.log('\t\t\t\t\t\t\t\t\t\tEN: \'' + DecryptedFile.WeaponNameAndChars[z][2].replace('\'','\\\'') + '\',')
-							console.log('\t\t\t\t\t\t\t\t\t\tDE: \'' + DecryptedFile.WeaponNameAndChars[z][2].replace('\'','\\\'') + '\',')
-							console.log('\t\t\t\t\t\t\t\t\t\tFR: \'' + DecryptedFile.WeaponNameAndChars[z][2].replace('\'','\\\'') + '\',')
-							console.log('\t\t\t\t\t\t\t\t\t\tES: \'' + DecryptedFile.WeaponNameAndChars[z][2].replace('\'','\\\'') + '\'')
-							console.log('\t\t\t\t\t\t\t\t\t},')
-							console.log('\t\t\t\t\t\t\t\t\tLevel: \'' + DecryptedFile.WeaponNameAndChars[z][3] + '\',')
-							console.log('\t\t\t\t\t\t\t\t\tWeaponID: 0x' + d2h(z) + ',')
-							console.log('\t\t\t\t\t\t\t\t},')
-							WeaponNr += 1
-						}
-					}
-					console.log('\t\t\t\t\t\t\t},')
-					console.log('\t\t\t\t\t\t},')
-				}
-				console.log('\t\t\t\t\t},')
-			}
-			*/
-			
+						
 			DecryptedFile.SkillNames[255] = 'No Slot'
 			DecryptedFile.LoadedCharacterOffset = 0x0
 			DecryptedFile.Badges = {
@@ -566,18 +242,46 @@
 				}
 			}
 			
-			function loadJson(fileName) {
-				var json = null;
-				$.ajax({
-					'url': fileName,
-					'dataType': "json",
-					'success': function (data) {
-						json = data;
+			function receivedText() {
+				SaveData.saveGame = new Uint8Array(fr.result);
+				
+				
+				ScanMaterial('Bronze')
+				ScanMaterial('Silver')
+				ScanMaterial('Gold')
+				
+				$('#Rupees').val(readInt32(SaveData.Offsets.General.Rupees))
+				
+				
+				for(let i = 0;i < SaveData.Characters.length;i++){
+					$('#Character_Edit_Select').append('<option value="' + i + '">' + SaveData.Characters[i].Name[SaveData.Lang] + '</option>')
+				}
+				LoadCharacterEdit()
+				
+
+				LoadWeapons()
+				
+				$('#Weapons_Table > thead > tr').find('th').eq(0).css('position','relative')
+				
+				$('#Weapons_Table > thead > tr').find('th').eq(1).css('position','relative')
+				$('#Weapons_Table > thead > tr').find('th').eq(2).css('position','relative')
+
+				LoadAddFilter();
+				
+				for(let i = 0; i < SaveData.SkillNames.length; i++) {
+					if(SaveData.SkillNames[i]) {
+						for(let z = 1; z <= 8; z++) {
+							$('#WeaponEditSkill_' + z).append('<option value="'+ i +'">' + SaveData.SkillNames[i].Name[SaveData.Lang] + '</option>')
+						}
 					}
-				});
-				return json;
+				}
+				
+
+				$('#MainEditContainer').css('display','block');
 			}
-		  
+			
+			//------------ HexEdit Funcs
+			
 			function d2h(d) {
 				return (d / 256 + 1 / 512).toString(16).substring(2, 4);
 			}
@@ -591,8 +295,8 @@
 				return result;
 			}
 			
-			function readInt32(array, startPos) {
-				var newArr = [array[startPos + 3],array[startPos + 2],array[startPos + 1],array[startPos]]
+			function readInt32(startPos) {
+				var newArr = [SaveData.saveGame[startPos + 3],SaveData.saveGame[startPos + 2],SaveData.saveGame[startPos + 1],SaveData.saveGame[startPos]]
 				var result=0;
 				for (let i=3;i>=0;i--) {
 					result+=newArr[3-i]<<(8*i);
@@ -600,79 +304,403 @@
 				return result;
 			};
 			
-			function writeInt32(array, startPos, val) {
+			function writeInt32(startPos, val) {
 				val &= 0xFFFFFFFF;
 				var hex = val.toString(16).toUpperCase();
 				var endValue = ("00000000" + hex).slice(-8)
 				var Values = parseHexString(endValue)
-				array[startPos] = Values[3]
-				array[startPos+1] = Values[2]
-				array[startPos+2] = Values[1]
-				array[startPos+3] = Values[0]
+				SaveData.saveGame[startPos] = Values[3]
+				SaveData.saveGame[startPos+1] = Values[2]
+				SaveData.saveGame[startPos+2] = Values[1]
+				SaveData.saveGame[startPos+3] = Values[0]
 			}
 	
-			function readInt16(array, startPos) {
-				var HexNr = d2h(array[startPos + 1]) + d2h(array[startPos])
+			function readInt16(startPos) {
+				var HexNr = d2h(SaveData.saveGame[startPos + 1]) + d2h(SaveData.saveGame[startPos])
 				return parseInt(HexNr,16)
 			};
 			
-			function writeInt16(array, startPos, val) {
+			function writeInt16(startPos, val) {
 				val &= 0xFFFFFFFF;
 				var hex = val.toString(16).toUpperCase();
 				var endValue = ("00000000" + hex).slice(-4)
 				var Values = parseHexString(endValue)
-				array[startPos+1] = Values[0]
-				array[startPos] = Values[1]
+				SaveData.saveGame[startPos+1] = Values[0]
+				SaveData.saveGame[startPos] = Values[1]
+			}
+
+			//------------ Material Stuff
+			
+			function ScanMaterial(rarity) {
+				for (let i = 0;i < SaveData.Material[rarity].length; i++){
+					var currentValue = readInt16(SaveData.Offsets.General.Material + (SaveData.Material[rarity][i].Offset * 2))
+					var NewMaterial = "";
+					if(!SaveData.MaterialObj[rarity + '_Added']){
+						SaveData.MaterialObj[rarity + '_Added'] = true
+						NewMaterial += '<div class="row">'
+					}else{
+						NewMaterial += '<div class="row" style="margin-top: 10px;">'
+					}
+					NewMaterial += '<div>'
+					NewMaterial += '<span style="margin-left: 15px;line-height: 34px;">' + SaveData.Material[rarity][i].Name[SaveData.Lang] + '</span>'
+					NewMaterial += '<input value="' + currentValue + '" type="text" id="Material_' + rarity + '_' + i + '" class="form-control" style="display: inline-block;width: 30%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),999,true,\'' + rarity + '\');" onkeyup="VerifyInput($(this),999,true,\'' + rarity + '\');">'
+					NewMaterial += '</div>'
+					NewMaterial += '</div>'
+					
+					$('#Material_Panel_Body_' + rarity).append(NewMaterial);
+				}
+			}
+
+			//------------ Character Stuff
+			
+			function CreateCharacterObj(characterID) {
+				SaveData.CharacterObj.ID =			characterID
+				SaveData.CharacterObj.Name =		SaveData.Characters[characterID].Name[SaveData.Lang]
+				SaveData.CharacterObj.Experience =	readInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset)
+				SaveData.CharacterObj.Level =		SaveData.saveGame[SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x8] + 1
+				SaveData.CharacterObj.Attack =		readInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset - 0x6)
 			}
 			
-			function receivedText() {
-				DecryptedFile.saveGame = new Uint8Array(fr.result);
-						
-				LoadMaterial('Bronze')
-				LoadMaterial('Silver')
-				LoadMaterial('Gold')
-				
-				$('#Rupees').val(readInt32(DecryptedFile.saveGame,0x000002B8))
-				
-				for(let i = 0;i < DecryptedFile.CharacterNamesAndOffsets.length;i++){
-					$('#Character_Edit_Select').append('<option value="' + i + '">' + DecryptedFile.CharacterNamesAndOffsets[i][1] + '</option>')
-				}
-				LoadCharacterEdit()
-				
-				LoadWeapons()
-				
-				$('#Weapons_Table > thead > tr').find('th').eq(0).css('position','relative')
-				
-				$('#Weapons_Table > thead > tr').find('th').eq(1).css('position','relative')
-				$('#Weapons_Table > thead > tr').find('th').eq(2).css('position','relative')
+			function UpdateCharacterObj(characterID) {
+				SaveData.CharacterObj.Experience = $('#CharacterEdit_Exp_' + characterID).val()
+				SaveData.CharacterObj.Level = $('#CharacterEdit_Level_' + characterID).val()
+				SaveData.CharacterObj.Attack = $('#CharacterEdit_Attack_' + characterID).val()
+				SaveCurrentProcess()
+			}
+			
+			function LoadCharacterEdit() {
+				var CharacterID = $('#Character_Edit_Select').val()
+				CreateCharacterObj(CharacterID)
 
-				LoadAddFilter();
+				var CharacterEditHTML = "";
+				CharacterEditHTML += '<div class="row">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Experience</span>'
+				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.Experience + '" type="text" id="CharacterEdit_Exp_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),12842457);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this),12842457);UpdateCharacterObj(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
 				
-				for(let i = 0; i < DecryptedFile.SkillNames.length; i++) {
-					if(DecryptedFile.SkillNames[i]) {
-						for(let z = 1; z <= 8; z++) {
-							$('#WeaponEditSkill_' + z).append('<option value="'+ i +'">' + DecryptedFile.SkillNames[i] + '</option>')
+				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Level</span>'
+				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.Level + '" type="text" id="CharacterEdit_Level_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this), 255);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this), 255);UpdateCharacterObj(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+				
+				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Attack</span>'
+				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.Attack + '" type="text" id="CharacterEdit_Attack_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),9999);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this),9999);UpdateCharacterObj(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+				
+				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<button type="button" class="btn btn-warning" onclick="LoadBadges();" style="width:calc(100% - 30px);margin-left:15px;" disabled>Edit Badges</button>'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+				
+				$('#Character_Panel_Body').html(CharacterEditHTML);
+			}
+
+			//------------ Weapon Stuff
+			
+			function ScanWeaponInfo(SearchWeaponID) {
+				for (var Character in SaveData.Weapons){
+					for(var Class in SaveData.Weapons[Character]) {
+						for(var Weapon in SaveData.Weapons[Character][Class].Weapons) {
+							if(SaveData.Weapons[Character][Class].Weapons[Weapon].WeaponID == SearchWeaponID) {
+								var CharacterName = ""
+								for(var q = 0; q < SaveData.Characters.length; q++) {
+									if(SaveData.Characters[q].Name.EN == Character) {
+										CharacterName = SaveData.Characters[q].Name[SaveData.Lang]
+									}
+								}
+								return [CharacterName,SaveData.Weapons[Character][Class].ClassName[SaveData.Lang],SaveData.Weapons[Character][Class].Weapons[Weapon].Name[SaveData.Lang],Character]
+							}
 						}
 					}
 				}
+			}
 
-				$('#MainEditContainer').css('display','block');
+			function CreateWeaponObj(currentOffset, rowID) {
+				SaveData.WeaponObj.KillsToUnlockSkill_1 = 	readInt16(currentOffset + 0x00)
+				SaveData.WeaponObj.KillsToUnlockSkill_2 = 	readInt16(currentOffset + 0x02)
+				SaveData.WeaponObj.KillsToUnlockSkill_3 = 	readInt16(currentOffset + 0x04)
+				SaveData.WeaponObj.KillsToUnlockSkill_4 = 	readInt16(currentOffset + 0x06)
+				SaveData.WeaponObj.KillsToUnlockSkill_5 = 	readInt16(currentOffset + 0x08)
+				SaveData.WeaponObj.KillsToUnlockSkill_6 = 	readInt16(currentOffset + 0x0A)
+				SaveData.WeaponObj.KillsToUnlockSkill_7 = 	readInt16(currentOffset + 0x0C)
+				SaveData.WeaponObj.KillsToUnlockSkill_8 = 	readInt16(currentOffset + 0x0E)
+				SaveData.WeaponObj.ID = 					readInt16(currentOffset + 0x10)
+				if(SaveData.WeaponObj.ID != 65535 && SaveData.WeaponObj.ID < 212) {
+					SaveData.WeaponObj.Power = 					readInt16(currentOffset + 0x12)
+					SaveData.WeaponObj.Stars = 					readInt16(currentOffset + 0x14)
+					SaveData.WeaponObj.Skill_1 =				{ID: SaveData.saveGame[currentOffset + 0x16], Name: SaveData.SkillNames[SaveData.saveGame[currentOffset + 0x16]].Name[SaveData.Lang]}
+					SaveData.WeaponObj.Skill_2 =				{ID: SaveData.saveGame[currentOffset + 0x17], Name: SaveData.SkillNames[SaveData.saveGame[currentOffset + 0x17]].Name[SaveData.Lang]}
+					SaveData.WeaponObj.Skill_3 =				{ID: SaveData.saveGame[currentOffset + 0x18], Name: SaveData.SkillNames[SaveData.saveGame[currentOffset + 0x18]].Name[SaveData.Lang]}
+					SaveData.WeaponObj.Skill_4 =				{ID: SaveData.saveGame[currentOffset + 0x19], Name: SaveData.SkillNames[SaveData.saveGame[currentOffset + 0x19]].Name[SaveData.Lang]}
+					SaveData.WeaponObj.Skill_5 =				{ID: SaveData.saveGame[currentOffset + 0x1A], Name: SaveData.SkillNames[SaveData.saveGame[currentOffset + 0x1A]].Name[SaveData.Lang]}
+					SaveData.WeaponObj.Skill_6 =				{ID: SaveData.saveGame[currentOffset + 0x1B], Name: SaveData.SkillNames[SaveData.saveGame[currentOffset + 0x1B]].Name[SaveData.Lang]}
+					SaveData.WeaponObj.Skill_7 =				{ID: SaveData.saveGame[currentOffset + 0x1C], Name: SaveData.SkillNames[SaveData.saveGame[currentOffset + 0x1C]].Name[SaveData.Lang]}
+					SaveData.WeaponObj.Skill_8 =				{ID: SaveData.saveGame[currentOffset + 0x1D], Name: SaveData.SkillNames[SaveData.saveGame[currentOffset + 0x1D]].Name[SaveData.Lang]}
+					SaveData.WeaponObj.Identifier =				SaveData.saveGame[currentOffset + 0x1E]
+					SaveData.WeaponObj.currentOffset =			currentOffset
+					SaveData.WeaponObj.rowID =					rowID
+					var WeaponInfo = ScanWeaponInfo(SaveData.WeaponObj.ID)
+					SaveData.WeaponObj.Character =				WeaponInfo[0]
+					SaveData.WeaponObj.Type =					WeaponInfo[1]
+					SaveData.WeaponObj.Name =					WeaponInfo[2]
+					SaveData.WeaponObj.CharacterEN = 			WeaponInfo[3]
+				}
 			}
 			
-			function DrawDataTable() {
-			setTimeout(function() {
-				var Width_Th_1 = $('#Weapons_Table > thead > tr').find('th').eq(0).find('span').eq(0).width()
-				var Width_Select_1 = $('#Weapons_Table > thead > tr').find('th').eq(0).find('div').eq(0).width()
-				$('#Weapons_Table > thead > tr').find('th').eq(0).css('width',Width_Th_1 + Width_Select_1 + 15)
+			function UpdateWeaponObj() {
+				for(var i = 1; i < 9;i++) {
+					SaveData.WeaponObj['KillsToUnlockSkill_' + i] = $('#WeaponEditLocked_' + i).val()
+				}
+				SaveData.WeaponObj.ID = $('#WeaponEditName').val()
+				SaveData.WeaponObj.Power = $('#WeaponEditAttack').val()
+				SaveData.WeaponObj.Stars = $('#WeaponEditStars').val()
+				for(var i = 1; i < 9;i++) {
+					SaveData.WeaponObj['Skill_' + i] = {ID: $('#WeaponEditSkill_' + i).val(), Name: SaveData.SkillNames[$('#WeaponEditSkill_' + i).val()].Name[SaveData.Lang]}
+				}
+				var WeaponInfo = ScanWeaponInfo($('#WeaponEditName').val())
+				SaveData.WeaponObj.Character =				WeaponInfo[0]
+				SaveData.WeaponObj.Type =					WeaponInfo[1]
+				SaveData.WeaponObj.Name =					WeaponInfo[2]
+				SaveData.WeaponObj.CharacterEN = 			WeaponInfo[3]
+				SaveCurrentProcess()
+				
+				var row = $('#WeaponEditRow_' + SaveData.WeaponObj.rowID)
+				var rowData = SaveData.dataTable.row(row).data();
+				var rowIndex = SaveData.dataTable.row(row).index();
+				
+				rowData[0] = SaveData.WeaponObj.Character
+				rowData[1] = SaveData.WeaponObj.Type
+				rowData[2] = SaveData.WeaponObj.Name
+				rowData[3] = SaveData.WeaponObj.Power
+				rowData[4] = SaveData.WeaponObj.Stars
+				rowData[5] = SaveData.WeaponObj.Skill_1.Name
+				rowData[6] = SaveData.WeaponObj.Skill_2.Name
+				rowData[7] = SaveData.WeaponObj.Skill_3.Name;
+				rowData[8] = SaveData.WeaponObj.Skill_4.Name
+				rowData[9] = SaveData.WeaponObj.Skill_5.Name
+				rowData[10] = SaveData.WeaponObj.Skill_6.Name
+				rowData[11] = SaveData.WeaponObj.Skill_7.Name
+				rowData[12] = SaveData.WeaponObj.Skill_8.Name
+				
+				$('#Weapons_Table').dataTable().fnUpdate(rowData,rowIndex,undefined,false);
 
-				var Width_Th_1 = $('#Weapons_Table > thead > tr').find('th').eq(1).find('span').eq(0).width()
-				var Width_Select_1 = $('#Weapons_Table > thead > tr').find('th').eq(1).find('div').eq(0).width()
-				$('#Weapons_Table > thead > tr').find('th').eq(1).css('width',Width_Th_1 + Width_Select_1 + 15)
+			}
+			
+			function LoadWeapons() {
+				var currentOffset = SaveData.Offsets.General.Weapons
+				var maxWeapons = 9999
+				for(let i = 0; i < maxWeapons; i++) {
+					CreateWeaponObj(currentOffset)
+					currentOffset += 0x28
+					if (currentOffset > SaveData.saveGame.length) {
+						maxWeapons = 0
+					}else{
+						if(SaveData.WeaponObj.WeaponID != 65535 && SaveData.WeaponObj.ID < 212) {
+							var TableRow = '<tr id="WeaponEditRow_' + i +'">'
+							TableRow += '<td>' + SaveData.WeaponObj.Character + '</td>' 
+							TableRow += '<td>' + SaveData.WeaponObj.Type + '</td>' 
+							TableRow += '<td>' + SaveData.WeaponObj.Name + '</td>' 
+							TableRow += '<td>' + SaveData.WeaponObj.Power + '</td>'
+							TableRow += '<td>' + SaveData.WeaponObj.Stars + '</td>'
+							TableRow += '<td>' + SaveData.WeaponObj.Skill_1.Name + '</td>'
+							TableRow += '<td>' + SaveData.WeaponObj.Skill_2.Name + '</td>'
+							TableRow += '<td>' + SaveData.WeaponObj.Skill_3.Name + '</td>'
+							TableRow += '<td>' + SaveData.WeaponObj.Skill_4.Name + '</td>'
+							TableRow += '<td>' + SaveData.WeaponObj.Skill_5.Name + '</td>'
+							TableRow += '<td>' + SaveData.WeaponObj.Skill_6.Name + '</td>'
+							TableRow += '<td>' + SaveData.WeaponObj.Skill_7.Name + '</td>'
+							TableRow += '<td>' + SaveData.WeaponObj.Skill_8.Name + '</td>'
+							TableRow += '<td><button type="button" class="btn btn-success" onclick="LoadWeaponEdit(CreateWeaponObj(' + (currentOffset - 0x28) + ', '+ i +'));">Edit Weapon</button></td>'
+							TableRow += '</tr>'
+							
+							$('#Weapons_Table > tbody').append(TableRow)
+						}
+					}
+				}
+			}
+			
+			function LoadWeaponEdit_Types(loadNames  = false) {
+				var SelectedChar = $('#WeaponEditCharname').val()
+				for (var i = 0; i < SaveData.Characters.length; i++) {
+					if (SelectedChar == SaveData.Characters[i].Name[SaveData.Lang]) {
+						SaveData.WeaponObj.CharacterEN = SaveData.Characters[i].Name.EN
+					}
+				}
+				$('#WeaponEditType').html('')
 				
-				var Width_Th_1 = $('#Weapons_Table > thead > tr').find('th').eq(2).find('span').eq(0).width()
-				var Width_Select_1 = $('#Weapons_Table > thead > tr').find('th').eq(2).find('div').eq(0).width()
-				$('#Weapons_Table > thead > tr').find('th').eq(2).css('width',Width_Th_1 + Width_Select_1 + 15)
+				for(let i = 0; i < 10; i++) {
+					if (typeof SaveData.Weapons[SaveData.WeaponObj.CharacterEN][i] != 'undefined') {
+						if(SaveData.WeaponObj.Type == SaveData.Weapons[SaveData.WeaponObj.CharacterEN][i].ClassName[SaveData.Lang]) {
+							SaveData.WeaponObj.InternalCharID = i
+						}
+						$('#WeaponEditType').append('<option>' + SaveData.Weapons[SaveData.WeaponObj.CharacterEN][i].ClassName[SaveData.Lang] + '</option>')
+					}
+				}
+				if (loadNames) {
+					LoadWeaponEdit_Names(true)
+				}
+			}
+			
+			function LoadWeaponEdit_Names(fireChange) {
+				var SelectedChar = $('#WeaponEditCharname').val()
+				for (var i = 0; i < SaveData.Characters.length; i++) {
+					if (SelectedChar == SaveData.Characters[i].Name[SaveData.Lang]) {
+						SaveData.WeaponObj.CharacterEN = SaveData.Characters[i].Name.EN
+					}
+				}
 				
+				for(let i = 0; i < 10; i++) {
+					if (typeof SaveData.Weapons[SaveData.WeaponObj.CharacterEN][i] != 'undefined') {
+						if($('#WeaponEditType').val() == SaveData.Weapons[SaveData.WeaponObj.CharacterEN][i].ClassName[SaveData.Lang]) {
+							SaveData.WeaponObj.InternalCharID = i
+						}
+					}
+				}
+				
+				$('#WeaponEditName').html('')
+				
+				for(let i = 0; i < 10; i++) {
+					if (typeof SaveData.Weapons[SaveData.WeaponObj.CharacterEN][SaveData.WeaponObj.InternalCharID].Weapons[i] != 'undefined') {
+						$('#WeaponEditName').append('<option value="' + SaveData.Weapons[SaveData.WeaponObj.CharacterEN][SaveData.WeaponObj.InternalCharID].Weapons[i].WeaponID + '">[' + SaveData.Weapons[SaveData.WeaponObj.CharacterEN][SaveData.WeaponObj.InternalCharID].Weapons[i].Level + '] ' + SaveData.Weapons[SaveData.WeaponObj.CharacterEN][SaveData.WeaponObj.InternalCharID].Weapons[i].Name[SaveData.Lang] + '</option>')
+					}
+				}
+
+				if (fireChange) {
+					$('#WeaponEditName').change();
+				}
+			} 
+			
+			function LoadWeaponEdit(WeaponObj) {
+				$('#WeaponEditCharname').html('')
+
+				for(let i = 0; i < SaveData.Characters.length; i++) {
+					$('#WeaponEditCharname').append('<option>' + SaveData.Characters[i].Name[SaveData.Lang] + '</option>')
+				}				
+				$('#WeaponEditCharname').val(SaveData.WeaponObj.Character);
+				
+				
+				LoadWeaponEdit_Types()
+				$('#WeaponEditType').val(SaveData.WeaponObj.Type);
+				
+				LoadWeaponEdit_Names()
+				$('#WeaponEditName').val(SaveData.WeaponObj.ID);
+				
+				$('#WeaponEditAttack').val(SaveData.WeaponObj.Power);
+				$('#WeaponEditStars').val(SaveData.WeaponObj.Stars);
+				
+				for(let z = 1; z <= 8; z++) {
+					$('#WeaponEditSkill_' + z).val(SaveData.WeaponObj['Skill_' + z].ID)
+					
+					if (SaveData.WeaponObj['KillsToUnlockSkill_' + z] > 0) {
+						$('#WeaponEditLocked_' + z).val(SaveData.WeaponObj['KillsToUnlockSkill_' + z]);
+						$('#CheckboxWeaponEdit_' + z).prop('checked', true);
+						$('#DivWeaponEditLocked_' + z).show();
+					}
+				}
+				
+				$('#Weapon_Modal').modal('show');
+			}
+			
+			function ChangeLockedKills(SkillID) {
+				var isChecked = $('#CheckboxWeaponEdit_' + SkillID).is(':checked')
+				if(isChecked){
+					$('#DivWeaponEditLocked_' + SkillID).show();
+				} else {
+					$('#DivWeaponEditLocked_' + SkillID).hide();
+					$('#WeaponEditLocked_' + SkillID).val(0);
+				}
+			}
+
+			//------------ Misc Stuff
+	
+			function VerifyInput(input, maxValue, isMaterial = false, rarity = 0) {
+				var newValue = input.val().replace(/\D/g,'');
+				if(newValue > maxValue) {
+					newValue = maxValue
+				}
+				input.val(newValue)
+				if (isMaterial){
+					if ($('#Material_Bulk_Edit_' + rarity).is(':checked')) {
+						for(let i = 0;i < SaveData.Material[rarity].length; i++){
+							$('#Material_' + rarity + '_' + i).val(newValue);
+						}
+					}
+				}
+			}
+			
+			function SaveMaterial(rarity) {
+				for (let i = 0;i < SaveData.Material[rarity].length; i++){
+					writeInt16(SaveData.Offsets.General.Material + (SaveData.Material[rarity][i].Offset * 2), $('#Material_' + rarity + '_' + i).val())
+				}
+			}
+
+			function SaveCurrentProcess() {
+				SaveMaterial('Bronze')
+				SaveMaterial('Silver')
+				SaveMaterial('Gold')
+				
+				writeInt32(SaveData.Offsets.General.Rupees,$('#Rupees').val())
+				
+				//--- Character
+				writeInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset,SaveData.CharacterObj.Experience)
+				SaveData.saveGame[SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset + 0x8] = SaveData.CharacterObj.Level - 1
+				writeInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset - 0x6, SaveData.CharacterObj.Attack)
+				
+				//--- Weapon
+				writeInt16(SaveData.WeaponObj.currentOffset + 0x00,SaveData.WeaponObj.KillsToUnlockSkill_1)
+				writeInt16(SaveData.WeaponObj.currentOffset + 0x02,SaveData.WeaponObj.KillsToUnlockSkill_2)
+				writeInt16(SaveData.WeaponObj.currentOffset + 0x04,SaveData.WeaponObj.KillsToUnlockSkill_3)
+				writeInt16(SaveData.WeaponObj.currentOffset + 0x06,SaveData.WeaponObj.KillsToUnlockSkill_4)
+				writeInt16(SaveData.WeaponObj.currentOffset + 0x08,SaveData.WeaponObj.KillsToUnlockSkill_5)
+				writeInt16(SaveData.WeaponObj.currentOffset + 0x0A,SaveData.WeaponObj.KillsToUnlockSkill_6)
+				writeInt16(SaveData.WeaponObj.currentOffset + 0x0C,SaveData.WeaponObj.KillsToUnlockSkill_7)
+				writeInt16(SaveData.WeaponObj.currentOffset + 0x0E,SaveData.WeaponObj.KillsToUnlockSkill_8)
+				writeInt16(SaveData.WeaponObj.currentOffset + 0x10,SaveData.WeaponObj.ID)
+				if(SaveData.WeaponObj.ID != 65535 && SaveData.WeaponObj.ID < 212) {
+					writeInt16(SaveData.WeaponObj.currentOffset + 0x12,SaveData.WeaponObj.Power)
+					writeInt16(SaveData.WeaponObj.currentOffset + 0x14,SaveData.WeaponObj.Stars)
+					for(let i = 1;i < 9;i++) {
+						SaveData.saveGame[SaveData.WeaponObj.currentOffset + 0x15 + i] = SaveData.WeaponObj['Skill_' + i].ID
+					}
+
+					SaveData.saveGame[SaveData.WeaponObj.currentOffset + 0x1E] = SaveData.WeaponObj.Identifier
+				}
+
+			}
+			
+			function DownloadFile() {
+				SaveCurrentProcess()
+
+				var file = new Blob([new Uint8Array(SaveData.saveGame)], {type: 'application/octet-stream'});
+				var downloadUrl = URL.createObjectURL(file);
+				var a = document.createElement("a");
+				a.href = downloadUrl;
+				a.download = "zmha.bin";
+				document.body.appendChild(a);
+				a.click();				
+			}
+
+			function DrawDataTable() {
+				setTimeout(function() {
+					var Width_Th_1 = $('#Weapons_Table > thead > tr').find('th').eq(0).find('span').eq(0).width()
+					var Width_Select_1 = $('#Weapons_Table > thead > tr').find('th').eq(0).find('div').eq(0).width()
+					$('#Weapons_Table > thead > tr').find('th').eq(0).css('width',Width_Th_1 + Width_Select_1 + 15)
+
+					var Width_Th_1 = $('#Weapons_Table > thead > tr').find('th').eq(1).find('span').eq(0).width()
+					var Width_Select_1 = $('#Weapons_Table > thead > tr').find('th').eq(1).find('div').eq(0).width()
+					$('#Weapons_Table > thead > tr').find('th').eq(1).css('width',Width_Th_1 + Width_Select_1 + 15)
+					
+					var Width_Th_1 = $('#Weapons_Table > thead > tr').find('th').eq(2).find('span').eq(0).width()
+					var Width_Select_1 = $('#Weapons_Table > thead > tr').find('th').eq(2).find('div').eq(0).width()
+					$('#Weapons_Table > thead > tr').find('th').eq(2).css('width',Width_Th_1 + Width_Select_1 + 15)
 				}, 200);
 			}
 			
@@ -709,30 +737,9 @@
 					    }, {
 					        column_number: 2
 					    }]);
-						DecryptedFile.dataTable = oTable
+						SaveData.dataTable = oTable
 			}
-						
-			function EncryptFile() {
-				SaveMaterial('Bronze')
-				SaveMaterial('Silver')
-				SaveMaterial('Gold')
-				
-				writeInt32(DecryptedFile.saveGame,0x000002B8,$('#Rupees').val())
-			
-				var FileArray = $.merge([], DecryptedFile.saveGame);
-				DownloadFile(FileArray)
-			}
-			
-			function DownloadFile(FileArray) {
-				var file = new Blob([new Uint8Array(FileArray)], {type: 'application/octet-stream'});
-				var downloadUrl = URL.createObjectURL(file);
-				var a = document.createElement("a");
-				a.href = downloadUrl;
-				a.download = "zmha.bin";
-				document.body.appendChild(a);
-				a.click();
-			}
-			
+							
 			function LoadBadges() {
 				BaseAddr = DecryptedFile.LoadedCharacterOffset - 0x18
 				
@@ -778,97 +785,7 @@
 				
 				$('#Badges_Modal').modal('show');
 			}
-		
-			function LoadMaterial(rarity) {
-				for (let i = 0;i < DecryptedFile.Material[rarity].length; i++){
-					Material_Panel_Body(i,readInt16(DecryptedFile.saveGame,0x00001AFE + (DecryptedFile.Material[rarity][i][0] * 2)),rarity)
-				}
-			}
-			
-			function SaveMaterial(rarity) {
-				for (let i = 0;i < DecryptedFile.Material[rarity].length; i++){
-					writeInt16(DecryptedFile.saveGame,0x00001AFE + (DecryptedFile.Material[rarity][i][0] * 2), $('#Material_' + rarity + '_' + i).val())
-				}
-			}
-			
-			function Material_Panel_Body(materialID, currentValue, rarity) {
-				var NewMaterial = "";
-				if(!DecryptedFile.HasMaterialAdded){
-					DecryptedFile.HasMaterialAdded = true
-					NewMaterial += '<div class="row">'
-				}else{
-					NewMaterial += '<div class="row" style="margin-top: 10px;">'
-				}
-				NewMaterial += '<div>'
-				NewMaterial += '<span style="margin-left: 15px;line-height: 34px;">' + DecryptedFile.Material[rarity][materialID][1] + '</span>'
-				NewMaterial += '<input value="' + currentValue + '" type="text" id="Material_' + rarity + '_' + materialID + '" class="form-control" style="display: inline-block;width: 30%;float: right;margin-right: 15px;" onchange="VerifyMaterialInput($(this),\'' + rarity + '\');" onkeyup="VerifyMaterialInput($(this),\'' + rarity + '\');">'
-				NewMaterial += '</div>'
-				NewMaterial += '</div>'
-				
-				$('#Material_Panel_Body_' + rarity).append(NewMaterial);
-			}
-			
-			function VerifyMaterialInput(input, rarity) {
-				var newValue = input.val().replace(/\D/g,'');
-				if(newValue > 999) {
-					newValue = 999
-				}
-				input.val(newValue)
-				if ($('#Material_Bulk_Edit_' + rarity).is(':checked')) {
-					for(let i = 0;i < DecryptedFile.Material[rarity].length; i++){
-						$('#Material_' + rarity + '_' + i).val(newValue);
-					}
-				}
-			}
-			
-			function VerifyInput(input, maxValue) {
-				var newValue = input.val().replace(/\D/g,'');
-				if(newValue > maxValue) {
-					newValue = maxValue
-				}
-				input.val(newValue)
-			}
-			
-			function SetCharacterInfos(CharacterID) {
-				DecryptedFile.saveGame[DecryptedFile.CharacterNamesAndOffsets[CharacterID][0]+8] = $('#CharacterEdit_Level_' + CharacterID).val() - 1
-				writeInt32(DecryptedFile.saveGame, DecryptedFile.CharacterNamesAndOffsets[CharacterID][0],$('#CharacterEdit_Exp_' + CharacterID).val())
-				writeInt16(DecryptedFile.saveGame, DecryptedFile.CharacterNamesAndOffsets[CharacterID][0]-6,$('#CharacterEdit_Attack_' + CharacterID).val())
-			}
-			
-			function LoadCharacterEdit() {
-				var CharacterID = $('#Character_Edit_Select').val()
-				DecryptedFile.LoadedCharacterOffset = DecryptedFile.CharacterNamesAndOffsets[CharacterID][0]
-				var CharacterEditHTML = "";
-				CharacterEditHTML += '<div class="row">'
-				CharacterEditHTML += '<div>'
-				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Experience</span>'
-				CharacterEditHTML += '<input value="' + readInt32(DecryptedFile.saveGame, DecryptedFile.CharacterNamesAndOffsets[CharacterID][0]) + '" type="text" id="CharacterEdit_Exp_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),12842457);SetCharacterInfos(' + CharacterID + ');" onkeyup="VerifyInput($(this),12842457);SetCharacterInfos(' + CharacterID + ');">'
-				CharacterEditHTML += '</div>'
-				CharacterEditHTML += '</div>'
-				
-				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
-				CharacterEditHTML += '<div>'
-				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Level</span>'
-				CharacterEditHTML += '<input value="' + Number(Number(DecryptedFile.saveGame[DecryptedFile.CharacterNamesAndOffsets[CharacterID][0]+8])+1) + '" type="text" id="CharacterEdit_Level_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this), 255);SetCharacterInfos(' + CharacterID + ');" onkeyup="VerifyInput($(this), 255);SetCharacterInfos(' + CharacterID + ');">'
-				CharacterEditHTML += '</div>'
-				CharacterEditHTML += '</div>'
-				
-				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
-				CharacterEditHTML += '<div>'
-				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Attack</span>'
-				CharacterEditHTML += '<input value="' + readInt16(DecryptedFile.saveGame, DecryptedFile.CharacterNamesAndOffsets[CharacterID][0]-6) + '" type="text" id="CharacterEdit_Attack_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),9999);SetCharacterInfos(' + CharacterID + ');" onkeyup="VerifyInput($(this),9999);SetCharacterInfos(' + CharacterID + ');">'
-				CharacterEditHTML += '</div>'
-				CharacterEditHTML += '</div>'
-				
-				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
-				CharacterEditHTML += '<div>'
-				CharacterEditHTML += '<button type="button" class="btn btn-warning" onclick="LoadBadges();" style="width:calc(100% - 30px);margin-left:15px;">Edit Badges</button>'
-				CharacterEditHTML += '</div>'
-				CharacterEditHTML += '</div>'
-				
-				$('#Character_Panel_Body').html(CharacterEditHTML);
-			}
-			
+						
 			function ToggleSubImg(ClickedBadge) {
 				ClickedBadge.find('img').eq(0).toggle();
 				CalculateBadges();
@@ -932,145 +849,7 @@
 				});
 				CalculateBadges()
 			}
-			
-			function GetSkillName(SkillID) {
-				if (DecryptedFile.SkillNames[SkillID]) {
-					return DecryptedFile.SkillNames[SkillID]
-				}
-				return 'Unknown(' + SkillID + ')'
-			}
-			
-			function CreateWeaponObj(currentOffset, rowID) {
-				DecryptedFile.WeaponObj = {}
-				DecryptedFile.WeaponObj.KillsToUnlockSkill_1 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x00)
-				DecryptedFile.WeaponObj.KillsToUnlockSkill_2 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x02)
-				DecryptedFile.WeaponObj.KillsToUnlockSkill_3 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x04)
-				DecryptedFile.WeaponObj.KillsToUnlockSkill_4 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x06)
-				DecryptedFile.WeaponObj.KillsToUnlockSkill_5 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x08)
-				DecryptedFile.WeaponObj.KillsToUnlockSkill_6 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x0A)
-				DecryptedFile.WeaponObj.KillsToUnlockSkill_7 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x0C)
-				DecryptedFile.WeaponObj.KillsToUnlockSkill_8 = 	readInt16(DecryptedFile.saveGame, currentOffset + 0x0E)
-				DecryptedFile.WeaponObj.WeaponID = 				readInt16(DecryptedFile.saveGame, currentOffset + 0x10)
-				DecryptedFile.WeaponObj.WeaponPower = 			readInt16(DecryptedFile.saveGame, currentOffset + 0x12)
-				DecryptedFile.WeaponObj.WeaponStars = 			readInt16(DecryptedFile.saveGame, currentOffset + 0x14)
-				DecryptedFile.WeaponObj.Skill_1 =				DecryptedFile.saveGame[currentOffset + 0x16]
-				DecryptedFile.WeaponObj.Skill_2 =				DecryptedFile.saveGame[currentOffset + 0x17]
-				DecryptedFile.WeaponObj.Skill_3 =				DecryptedFile.saveGame[currentOffset + 0x18]
-				DecryptedFile.WeaponObj.Skill_4 =				DecryptedFile.saveGame[currentOffset + 0x19]
-				DecryptedFile.WeaponObj.Skill_5 =				DecryptedFile.saveGame[currentOffset + 0x1A]
-				DecryptedFile.WeaponObj.Skill_6 =				DecryptedFile.saveGame[currentOffset + 0x1B]
-				DecryptedFile.WeaponObj.Skill_7 =				DecryptedFile.saveGame[currentOffset + 0x1C]
-				DecryptedFile.WeaponObj.Skill_8 =				DecryptedFile.saveGame[currentOffset + 0x1D]
-				DecryptedFile.WeaponObj.WeaponIdentifier =		DecryptedFile.saveGame[currentOffset + 0x1E]
-				DecryptedFile.WeaponObj.currentOffset =			currentOffset
-				DecryptedFile.WeaponObj.rowID =					rowID
-				return DecryptedFile.WeaponObj
-			}
-			
-			function LoadWeapons() {
-				var currentOffset = 0x000337F4
-				var maxWeapons = 9999
-				for(let i = 0; i < maxWeapons; i++) {
-					var WeaponObj = CreateWeaponObj(currentOffset)
-					currentOffset += 0x28
-					if (currentOffset > DecryptedFile.saveGame.length) {
-						maxWeapons = 0
-					}else{
-						if(WeaponObj.WeaponID != 65535) {
-							if(WeaponObj.WeaponID >= DecryptedFile.WeaponNameAndChars.length) {
-								AddErrorLog('Unknown Weapon ID:' + WeaponObj.WeaponID)							
-							}else{
-								var TableRow = '<tr id="WeaponEditRow_' + i +'">'
-								TableRow += '<td>' + DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][0] + '</td>' // Character
-								TableRow += '<td>' + DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][1] + '</td>' // WeaponType
-								TableRow += '<td>' + DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][2] + '</td>' // WeaponName
-								TableRow += '<td>' + WeaponObj.WeaponPower + '</td>'
-								TableRow += '<td>' + WeaponObj.WeaponStars + '</td>'
-								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_1) + '</td>'
-								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_2) + '</td>'
-								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_3) + '</td>'
-								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_4) + '</td>'
-								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_5) + '</td>'
-								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_6) + '</td>'
-								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_7) + '</td>'
-								TableRow += '<td>' + GetSkillName(WeaponObj.Skill_8) + '</td>'
-								TableRow += '<td><button type="button" class="btn btn-success" onclick="LoadWeaponEdit(CreateWeaponObj(' + (currentOffset - 0x28) + ', '+ i +'));">Edit Weapon</button></td>'
-								TableRow += '</tr>'
-								
-								$('#Weapons_Table > tbody').append(TableRow)
-							}
-						}
-					}
-				}
-							}
-			
-			function LoadWeaponEdit_Types(loadNames  = false) {
-				$('#WeaponEditType').html('')
-				var AllTypes = []
-				for(let i = 0; i < DecryptedFile.WeaponNameAndChars.length; i++) {
-					if(DecryptedFile.WeaponNameAndChars[i][0] == $('#WeaponEditCharname').val()) {
-						AllTypes.push(DecryptedFile.WeaponNameAndChars[i][1]);
-					}
-				}
-				var AllTypesUnique = AllTypes.filter( onlyUnique );
-				for(let i = 0; i < AllTypesUnique.length; i++) {
-					$('#WeaponEditType').append('<option>' + AllTypesUnique[i] + '</option>')
-				}
-				if (loadNames) {
-					LoadWeaponEdit_Names(true)
-				}
-			}
-			
-			function LoadWeaponEdit_Names(fireChange) {
-				$('#WeaponEditName').html('')
-				var AllNames = []
-				for(let i = 0; i < DecryptedFile.WeaponNameAndChars.length; i++) {
-					if(DecryptedFile.WeaponNameAndChars[i][0] == $('#WeaponEditCharname').val() && DecryptedFile.WeaponNameAndChars[i][1] == $('#WeaponEditType').val()) {
-						AllNames.push('<option value="' + i + '">' + ' [' + DecryptedFile.WeaponNameAndChars[i][3] + '] ' + DecryptedFile.WeaponNameAndChars[i][2] + '</option>');
-					}
-				}
-				var AllTypesUnique = AllNames.filter( onlyUnique );
-				for(let i = 0; i < AllTypesUnique.length; i++) {
-					$('#WeaponEditName').append(AllTypesUnique[i])
-				}
-				if (fireChange) {
-					$('#WeaponEditName').change();
-				}
-			} 
-			
-			function LoadWeaponEdit(WeaponObj) {
-				$('#WeaponEditCharname').html('')
-				var AllNames = []
-				for(let i = 0; i < DecryptedFile.WeaponNameAndChars.length; i++) {
-					AllNames.push(DecryptedFile.WeaponNameAndChars[i][0]);
-				}
-				var AllNamesUnique = AllNames.filter( onlyUnique );
-				for(let i = 0; i < AllNamesUnique.length; i++) {
-					$('#WeaponEditCharname').append('<option>' + AllNamesUnique[i] + '</option>')
-				}
-				$('#WeaponEditCharname').val(DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][0]);
-				
-				LoadWeaponEdit_Types()
-				$('#WeaponEditType').val(DecryptedFile.WeaponNameAndChars[WeaponObj.WeaponID][1]);
-				LoadWeaponEdit_Names()
-				$('#WeaponEditName').val(WeaponObj.WeaponID);
-
-				$('#WeaponEditAttack').val(WeaponObj.WeaponPower);
-				$('#WeaponEditStars').val(WeaponObj.WeaponStars);
-
-				for(let z = 1; z <= 8; z++) {
-					$('#WeaponEditSkill_' + z).val(WeaponObj['Skill_' + z])
 					
-					if (WeaponObj['KillsToUnlockSkill_' + z] > 0) {
-						$('#WeaponEditLocked_' + z).val(WeaponObj['KillsToUnlockSkill_' + z]);
-						$('#CheckboxWeaponEdit_' + z).prop('checked', true);
-						$('#DivWeaponEditLocked_' + z).show();
-					}
-				}
-				
-				$('#Weapon_Modal').modal('show');
-			}
-			
 			function ChangedWeapon() {
 				var currentOffset = DecryptedFile.WeaponObj.currentOffset
 				writeInt16(DecryptedFile.saveGame, currentOffset + 0x10,$('#WeaponEditName').val())
@@ -1126,20 +905,9 @@
 				$('#WeaponEditSkill_6').val(19)
 				$('#WeaponEditSkill_7').val(20)
 				$('#WeaponEditSkill_8').val(44)
-				ChangedWeapon()
+				UpdateWeaponObj()
 			}
-			
-			function ChangeLockedKills(SkillID) {
-				var isChecked = $('#CheckboxWeaponEdit_' + SkillID).is(':checked')
-				if(isChecked){
-					$('#DivWeaponEditLocked_' + SkillID).show();
-				} else {
-					$('#DivWeaponEditLocked_' + SkillID).hide();
-					$('#WeaponEditLocked_' + SkillID).val(0);
-				}
-				ChangedWeapon();
-			}
-			
+						
 			(function($){
 				$.fn.disableSelection = function() {
 					return this
@@ -1184,7 +952,7 @@
 									<br>
 									<br>
 									<input type="submit" class="btn btn-primary" value="Load" style="width:100px;margin:auto;" name="go" onclick='handleFileSelect();'>
-									<input type="submit" class="btn btn-primary" value="Save" style="width:100px;margin:auto;" name="go" onclick='EncryptFile();'>
+									<input type="submit" class="btn btn-primary" value="Save" style="width:100px;margin:auto;" name="go" onclick='DownloadFile();'>
 								</div>
 							</div>
 						</div>
@@ -1221,7 +989,7 @@
 								<div class="panel-body">
 									<div>
 										<span style="margin-left: 15px;line-height: 34px;">Rupees</span>
-										<input value="" type="text" id="Rupees" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyRupeeInput($(this), 9999999);" onkeyup="VerifyRupeeInput($(this), 9999999);">
+										<input value="" type="text" id="Rupees" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this), 9999999);" onkeyup="VerifyInput($(this), 9999999);">
 									</div>
 								</div>
 							</div>
@@ -1542,15 +1310,15 @@
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditName">Name</label>
-						<select class="form-control" id="WeaponEditName" style="width: 50%; display: inline-block;margin-left: 241px;" onchange="ChangedWeapon();"></select>
+						<select class="form-control" id="WeaponEditName" style="width: 50%; display: inline-block;margin-left: 241px;" onchange="UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditName">Attack</label>
-						<input type="text" class="form-control" id="WeaponEditAttack" style="width: 50%; display: inline-block;margin-left: 236px;" onchange="VerifyInput($(this),999);ChangedWeapon();" onkeyup="VerifyInput($(this),999)">
+						<input type="text" class="form-control" id="WeaponEditAttack" style="width: 50%; display: inline-block;margin-left: 236px;" onchange="VerifyInput($(this),999);UpdateWeaponObj();" onkeyup="VerifyInput($(this),999)">
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditName">Stars</label>
-						<select class="form-control" id="WeaponEditStars" style="width: 50%; display: inline-block;margin-left: 244px;" onchange="ChangedWeapon();">
+						<select class="form-control" id="WeaponEditStars" style="width: 50%; display: inline-block;margin-left: 244px;" onchange="UpdateWeaponObj();">
 							<option value="0">0 Stars</option>
 							<option value="1">1 Star</option>
 							<option value="2">2 Stars</option>
@@ -1561,75 +1329,75 @@
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_1">Skill 1</label>
-						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(1)" id="CheckboxWeaponEdit_1">Locked</label>
-						<select class="form-control" id="WeaponEditSkill_1" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="ChangedWeapon();"></select>
+						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(1);UpdateWeaponObj();" id="CheckboxWeaponEdit_1">Locked</label>
+						<select class="form-control" id="WeaponEditSkill_1" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_1">
 						<label for="WeaponEditLocked_1" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_1" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);ChangedWeapon();" onkeyup="VerifyInput($(this),65535);"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_1" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_2">Skill 2</label>
-						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(2)" id="CheckboxWeaponEdit_2">Locked</label>
-						<select class="form-control" id="WeaponEditSkill_2" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="ChangedWeapon();"></select>
+						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(2);UpdateWeaponObj();" id="CheckboxWeaponEdit_2">Locked</label>
+						<select class="form-control" id="WeaponEditSkill_2" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_2">
 						<label for="WeaponEditLocked_2" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_2" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);ChangedWeapon();" onkeyup="VerifyInput($(this),65535);"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_2" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_3">Skill 3</label>
-						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(3)" id="CheckboxWeaponEdit_3">Locked</label>
-						<select class="form-control" id="WeaponEditSkill_3" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="ChangedWeapon();"></select>
+						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(3);UpdateWeaponObj();" id="CheckboxWeaponEdit_3">Locked</label>
+						<select class="form-control" id="WeaponEditSkill_3" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_3">
 						<label for="WeaponEditLocked_3" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_3" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);ChangedWeapon();" onkeyup="VerifyInput($(this),65535);"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_3" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_4">Skill 4</label>
-						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(4)" id="CheckboxWeaponEdit_4">Locked</label>
-						<select class="form-control" id="WeaponEditSkill_4" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="ChangedWeapon();"></select>
+						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(4);UpdateWeaponObj();" id="CheckboxWeaponEdit_4">Locked</label>
+						<select class="form-control" id="WeaponEditSkill_4" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_4">
 						<label for="WeaponEditLocked_4" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_4" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);ChangedWeapon();" onkeyup="VerifyInput($(this),65535);"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_4" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_5">Skill 5</label>
-						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(5)" id="CheckboxWeaponEdit_5">Locked</label>
-						<select class="form-control" id="WeaponEditSkill_5" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="ChangedWeapon();"></select>
+						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(5);UpdateWeaponObj();" id="CheckboxWeaponEdit_5">Locked</label>
+						<select class="form-control" id="WeaponEditSkill_5" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_5">
 						<label for="WeaponEditLocked_5" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_5" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);ChangedWeapon();" onkeyup="VerifyInput($(this),65535);"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_5" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_6">Skill 6</label>
-						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(6)" id="CheckboxWeaponEdit_6">Locked</label>
-						<select class="form-control" id="WeaponEditSkill_6" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="ChangedWeapon();"></select>
+						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(6);UpdateWeaponObj();" id="CheckboxWeaponEdit_6">Locked</label>
+						<select class="form-control" id="WeaponEditSkill_6" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_6">
 						<label for="WeaponEditLocked_6" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_6" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);ChangedWeapon();" onkeyup="VerifyInput($(this),65535);"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_6" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_7">Skill 7</label>
-						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(7)" id="CheckboxWeaponEdit_7">Locked</label>
-						<select class="form-control" id="WeaponEditSkill_7" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="ChangedWeapon();"></select>
+						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(7);UpdateWeaponObj();" id="CheckboxWeaponEdit_7">Locked</label>
+						<select class="form-control" id="WeaponEditSkill_7" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_7">
 						<label for="WeaponEditLocked_7" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_7" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);ChangedWeapon();" onkeyup="VerifyInput($(this),65535);"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_7" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_8">Skill 8</label>
-						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(8)" id="CheckboxWeaponEdit_8">Locked</label>
-						<select class="form-control" id="WeaponEditSkill_8" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="ChangedWeapon();"></select>
+						<label class="checkbox-inline" style="margin-left: 160px;"><input type="checkbox" value="" onchange="ChangeLockedKills(8);UpdateWeaponObj();" id="CheckboxWeaponEdit_8">Locked</label>
+						<select class="form-control" id="WeaponEditSkill_8" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="UpdateWeaponObj();"></select>
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_8">
 						<label for="WeaponEditLocked_8" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_8" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);ChangedWeapon();" onkeyup="VerifyInput($(this),65535);"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_8" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
 					</div>
 				</div>
 				<div class="modal-footer">
