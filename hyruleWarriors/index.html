@@ -643,11 +643,13 @@
 			}
 
 			function SaveCurrentProcess() {
+				//--- General
+				writeInt32(SaveData.Offsets.General.Rupees,$('#Rupees').val())
+				
+				//--- Material
 				SaveMaterial('Bronze')
 				SaveMaterial('Silver')
-				SaveMaterial('Gold')
-				
-				writeInt32(SaveData.Offsets.General.Rupees,$('#Rupees').val())
+				SaveMaterial('Gold')		
 				
 				//--- Character
 				writeInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset,SaveData.CharacterObj.Experience)

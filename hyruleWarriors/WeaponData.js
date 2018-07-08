@@ -5,7 +5,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Hylian Sword',
 					DE: 'Einhänder',
-					FR: 'Hylian Sword',
+					FR: 'Épée à une main',
 					ES: 'Hylian Sword'
 				},
 				Weapons: {
@@ -13,7 +13,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Knight\'s Sword',
 							DE: 'Ritterschwert',
-							FR: 'Knight\'s Sword',
+							FR: 'Épée de chevalier',
 							ES: 'Knight\'s Sword'
 						},
 						Level: 'Level 1',
@@ -23,7 +23,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'White\'s Sword',
 							DE: 'Edelschwert',
-							FR: 'White\'s Sword',
+							FR: 'Épée blanche',
 							ES: 'White\'s Sword'
 						},
 						Level: 'Level 2',
@@ -33,7 +33,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Magical Sword',
 							DE: 'Magisches Schwert',
-							FR: 'Magical Sword',
+							FR: 'Épée magique',
 							ES: 'Magical Sword'
 						},
 						Level: 'Level 3',
@@ -43,7 +43,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Magical Sword +',
 							DE: 'Magisches Schwert +',
-							FR: 'Magical Sword +',
+							FR: 'Épée magique DX',
 							ES: 'Magical Sword +'
 						},
 						Level: 'Level 4',
@@ -53,7 +53,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Darkmagic Sword',
 							DE: 'Magisches Finsterschwert',
-							FR: 'Darkmagic Sword',
+							FR: 'Épée magique des ténèbres',
 							ES: 'Darkmagic Sword'
 						},
 						Level: 'Level 4+',
@@ -65,7 +65,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Magic Rod',
 					DE: 'Zauberstab',
-					FR: 'Magic Rod',
+					FR: 'Baguette',
 					ES: 'Magic Rod'
 				},
 				Weapons: {
@@ -73,7 +73,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Fire Rod',
 							DE: 'Feuerstab',
-							FR: 'Fire Rod',
+							FR: 'Baguette de feu',
 							ES: 'Fire Rod'
 						},
 						Level: 'Level 1',
@@ -83,7 +83,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Prism Rod',
 							DE: 'Roter Stab',
-							FR: 'Prism Rod',
+							FR: 'Baguette rouge',
 							ES: 'Prism Rod'
 						},
 						Level: 'Level 2',
@@ -93,7 +93,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Magical Rod',
 							DE: 'Magischer Stab',
-							FR: 'Magical Rod',
+							FR: 'Baguette magique',
 							ES: 'Magical Rod'
 						},
 						Level: 'Level 3',
@@ -103,7 +103,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Magical Rod +',
 							DE: 'Magischer Stab +',
-							FR: 'Magical Rod +',
+							FR: 'Baguette magique DX',
 							ES: 'Magical Rod +'
 						},
 						Level: 'Level 4',
@@ -113,7 +113,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Crackling Rod',
 							DE: 'Magischer Blitzstab',
-							FR: 'Crackling Rod',
+							FR: 'Baguette de foudre',
 							ES: 'Crackling Rod'
 						},
 						Level: 'Level 4+',
@@ -125,7 +125,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Great Fairy',
 					DE: 'Große Fee',
-					FR: 'Great Fairy',
+					FR: 'Grande fée',
 					ES: 'Great Fairy'
 				},
 				Weapons: {
@@ -133,7 +133,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Great Fountain Fairy',
 							DE: 'Große Fee der Quelle',
-							FR: 'Great Fountain Fairy',
+							FR: 'Gde fée de la fontaine',
 							ES: 'Great Fountain Fairy'
 						},
 						Level: 'Level 1',
@@ -143,7 +143,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Great Forest Fairy',
 							DE: 'Große Fee des Waldes',
-							FR: 'Great Forest Fairy',
+							FR: 'Grande fée sylvestre',
 							ES: 'Great Forest Fairy'
 						},
 						Level: 'Level 2',
@@ -153,7 +153,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Great Sky Fairy',
 							DE: 'Große Fee des Himmels',
-							FR: 'Great Sky Fairy',
+							FR: 'Grande fée céleste',
 							ES: 'Great Sky Fairy'
 						},
 						Level: 'Level 3',
@@ -163,7 +163,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Great Sky Fairy +',
 							DE: 'Große Fee des Himmels +',
-							FR: 'Great Sky Fairy +',
+							FR: 'Grande fée céleste DX',
 							ES: 'Great Sky Fairy +'
 						},
 						Level: 'Level 4',
@@ -173,7 +173,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Great Fairy of Tempests',
 							DE: 'Große Fee des Gewitters',
-							FR: 'Great Fairy of Tempests',
+							FR: 'Grande fée de la foudre',
 							ES: 'Great Fairy of Tempests'
 						},
 						Level: 'Level 4+',
@@ -185,7 +185,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Gauntlets',
 					DE: 'Handschuhe',
-					FR: 'Gauntlets',
+					FR: 'Gants',
 					ES: 'Gauntlets'
 				},
 				Weapons: {
@@ -193,7 +193,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Silver Gauntlets',
 							DE: 'Silberhandschuhe',
-							FR: 'Silver Gauntlets',
+							FR: 'Gantelets d\'argent',
 							ES: 'Silver Gauntlets'
 						},
 						Level: 'Level 1',
@@ -203,7 +203,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Golden Gauntlets',
 							DE: 'Goldhandschuhe',
-							FR: 'Golden Gauntlets',
+							FR: 'Gantelets d\'or',
 							ES: 'Golden Gauntlets'
 						},
 						Level: 'Level 2',
@@ -213,7 +213,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Power Gauntlets',
 							DE: 'Krafthandschuhe',
-							FR: 'Power Gauntlets',
+							FR: 'Gants de puissance',
 							ES: 'Power Gauntlets'
 						},
 						Level: 'Level 3',
@@ -223,7 +223,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Power Gloves +',
 							DE: 'Krafthandschuhe +',
-							FR: 'Power Gloves +',
+							FR: 'Gants de puissance DX',
 							ES: 'Power Gloves +'
 						},
 						Level: 'Level 4',
@@ -233,7 +233,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Burning Gloves',
 							DE: 'Brandhandschuhe',
-							FR: 'Burning Gloves',
+							FR: 'Gants de feu',
 							ES: 'Burning Gloves'
 						},
 						Level: 'Level 4+',
@@ -245,7 +245,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Master Sword',
 					DE: 'Master-Schwert',
-					FR: 'Master Sword',
+					FR: 'Épée de légende',
 					ES: 'Master Sword'
 				},
 				Weapons: {
@@ -253,7 +253,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Master Sword',
 							DE: 'Master-Schwert',
-							FR: 'Master Sword',
+							FR: 'Épée de légende',
 							ES: 'Master Sword'
 						},
 						Level: 'Level 1',
@@ -265,7 +265,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Horse',
 					DE: 'Epona',
-					FR: 'Horse',
+					FR: 'Épona',
 					ES: 'Horse'
 				},
 				Weapons: {
@@ -273,7 +273,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Epona',
 							DE: 'Epona',
-							FR: 'Epona',
+							FR: 'Épona',
 							ES: 'Epona'
 						},
 						Level: 'Level 1',
@@ -283,7 +283,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Twilight Epona',
 							DE: 'Schatten-Epona',
-							FR: 'Twilight Epona',
+							FR: 'Épona du Crépuscule',
 							ES: 'Twilight Epona'
 						},
 						Level: 'Level 2',
@@ -293,7 +293,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Epona of Time',
 							DE: 'Zeit-Epona',
-							FR: 'Epona of Time',
+							FR: 'Épona du temps',
 							ES: 'Epona of Time'
 						},
 						Level: 'Level 3',
@@ -303,7 +303,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Epona of Time +',
 							DE: 'Zeit-Epona +',
-							FR: 'Epona of Time +',
+							FR: 'Épona du temps DX',
 							ES: 'Epona of Time +'
 						},
 						Level: 'Level 4',
@@ -313,7 +313,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Stormy-Eyed Epona',
 							DE: 'Zeitsturm Epona',
-							FR: 'Stormy-Eyed Epona',
+							FR: 'Épona de la foudre',
 							ES: 'Stormy-Eyed Epona'
 						},
 						Level: 'Level 4+',
@@ -325,7 +325,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Spinner',
 					DE: 'Gleiter',
-					FR: 'Spinner',
+					FR: 'Aérouage',
 					ES: 'Spinner'
 				},
 				Weapons: {
@@ -333,7 +333,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Ancient Spinner',
 							DE: 'Gleiter',
-							FR: 'Ancient Spinner',
+							FR: 'Aérouage',
 							ES: 'Ancient Spinner'
 						},
 						Level: 'Level 1',
@@ -343,7 +343,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Enhanced Spinner',
 							DE: 'Schnellgleiter',
-							FR: 'Enhanced Spinner',
+							FR: 'Aérouage supérieur',
 							ES: 'Enhanced Spinner'
 						},
 						Level: 'Level 2',
@@ -353,7 +353,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Triforce Spinner',
 							DE: 'Magischer Gleiter',
-							FR: 'Triforce Spinner',
+							FR: 'Aérouage magique',
 							ES: 'Triforce Spinner'
 						},
 						Level: 'Level 3',
@@ -363,7 +363,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Triforce Spinner +',
 							DE: 'Magischer Gleiter +',
-							FR: 'Triforce Spinner +',
+							FR: 'Aérouage magique DX',
 							ES: 'Triforce Spinner +'
 						},
 						Level: 'Level 4',
@@ -373,7 +373,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Hydro-Spinner',
 							DE: 'Magischer Wassergleiter',
-							FR: 'Hydro-Spinner',
+							FR: 'Aérouage d\'eau',
 							ES: 'Hydro-Spinner'
 						},
 						Level: 'Level 4+',
@@ -387,7 +387,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Rapier',
 					DE: 'Rapier',
-					FR: 'Rapier',
+					FR: 'Rapière',
 					ES: 'Rapier'
 				},
 				Weapons: {
@@ -395,7 +395,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Polished Rapier',
 							DE: 'Platinrapier',
-							FR: 'Polished Rapier',
+							FR: 'Rapière en platine',
 							ES: 'Polished Rapier'
 						},
 						Level: 'Level 1',
@@ -405,7 +405,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Glittering Rapier',
 							DE: 'Glimmerrapier',
-							FR: 'Glittering Rapier',
+							FR: 'Rapière scintillante',
 							ES: 'Glittering Rapier'
 						},
 						Level: 'Level 2',
@@ -415,7 +415,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Gleaming Rapier',
 							DE: 'Lichtrapier',
-							FR: 'Gleaming Rapier',
+							FR: 'Rapière étincelante',
 							ES: 'Gleaming Rapier'
 						},
 						Level: 'Level 3',
@@ -425,7 +425,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Gleaming Rapier +',
 							DE: 'Lichtrapier +',
-							FR: 'Gleaming Rapier +',
+							FR: 'Rapière étincelante DX',
 							ES: 'Gleaming Rapier +'
 						},
 						Level: 'Level 4',
@@ -435,7 +435,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Gloomy Rapier',
 							DE: 'Finsterlichtrapier',
-							FR: 'Gloomy Rapier',
+							FR: 'Rapière des ténèbres',
 							ES: 'Gloomy Rapier'
 						},
 						Level: 'Level 4+',
@@ -447,7 +447,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Baton',
 					DE: 'Taktstock',
-					FR: 'Baton',
+					FR: 'Baguette',
 					ES: 'Baton'
 				},
 				Weapons: {
@@ -455,7 +455,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Wind Waker',
 							DE: 'Taktstock des Windes',
-							FR: 'Wind Waker',
+							FR: 'Baguette du vent',
 							ES: 'Wind Waker'
 						},
 						Level: 'Level 1',
@@ -465,7 +465,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sacred Baton',
 							DE: 'Heiliger Taktstock',
-							FR: 'Sacred Baton',
+							FR: 'Baguette sacrée',
 							ES: 'Sacred Baton'
 						},
 						Level: 'Level 2',
@@ -475,7 +475,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Glorious Baton',
 							DE: 'Taktstock der Güte',
-							FR: 'Glorious Baton',
+							FR: 'Baguette de bonté',
 							ES: 'Glorious Baton'
 						},
 						Level: 'Level 3',
@@ -485,7 +485,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Glorious Baton +',
 							DE: 'Taktstock der Güte +',
-							FR: 'Glorious Baton +',
+							FR: 'Baguette de bonté DX',
 							ES: 'Glorious Baton +'
 						},
 						Level: 'Level 4',
@@ -495,7 +495,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Liquid Glorious Baton',
 							DE: 'Wassertaktstock der Güte',
-							FR: 'Liquid Glorious Baton',
+							FR: 'Baguette d\'eau',
 							ES: 'Liquid Glorious Baton'
 						},
 						Level: 'Level 4+',
@@ -507,7 +507,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Dominion Rod',
 					DE: 'Kopierstab',
-					FR: 'Dominion Rod',
+					FR: 'Bâton Anima',
 					ES: 'Dominion Rod'
 				},
 				Weapons: {
@@ -515,7 +515,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Old Dominion Rod',
 							DE: 'Kopierstab',
-							FR: 'Old Dominion Rod',
+							FR: 'Bâton Anima',
 							ES: 'Old Dominion Rod'
 						},
 						Level: 'Level 1',
@@ -525,7 +525,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'High Dominion Rod',
 							DE: 'Variant-Kopierstab',
-							FR: 'High Dominion Rod',
+							FR: 'Bâton Anima modifié',
 							ES: 'High Dominion Rod'
 						},
 						Level: 'Level 2',
@@ -535,7 +535,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Royal Dominion Rod',
 							DE: 'Royal-Kopierstab',
-							FR: 'Royal Dominion Rod',
+							FR: 'Bâton Anima royal',
 							ES: 'Royal Dominion Rod'
 						},
 						Level: 'Level 3',
@@ -545,7 +545,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Royal Dominion Rod +',
 							DE: 'Royal-Kopierstab +',
-							FR: 'Royal Dominion Rod +',
+							FR: 'Bâton Anima royal DX',
 							ES: 'Royal Dominion Rod +'
 						},
 						Level: 'Level 4',
@@ -555,7 +555,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Volcanic Dominion Rod',
 							DE: 'Royal-Feuerkopierstab',
-							FR: 'Volcanic Dominion Rod',
+							FR: 'Bâton Anima de feu',
 							ES: 'Volcanic Dominion Rod'
 						},
 						Level: 'Level 4+',
@@ -569,7 +569,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Harp',
 					DE: 'Lyra',
-					FR: 'Harp',
+					FR: 'Lyre',
 					ES: 'Harp'
 				},
 				Weapons: {
@@ -577,7 +577,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Goddess\'s Harp',
 							DE: 'Lyra der Göttin',
-							FR: 'Goddess\'s Harp',
+							FR: 'Lyre de la Déesse',
 							ES: 'Goddess\'s Harp'
 						},
 						Level: 'Level 1',
@@ -587,7 +587,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Typhoon Harp',
 							DE: 'Lyra des Sturms',
-							FR: 'Typhoon Harp',
+							FR: 'Lyre des tempêtes',
 							ES: 'Typhoon Harp'
 						},
 						Level: 'Level 2',
@@ -597,7 +597,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Triforce Harp',
 							DE: 'Lyra der Shiekah',
-							FR: 'Triforce Harp',
+							FR: 'Lyre des Sheikahs',
 							ES: 'Triforce Harp'
 						},
 						Level: 'Level 3',
@@ -607,7 +607,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Triforce Harp +',
 							DE: 'Lyra der Shiekah +',
-							FR: 'Triforce Harp +',
+							FR: 'Lyre des Sheikahs DX',
 							ES: 'Triforce Harp +'
 						},
 						Level: 'Level 4',
@@ -617,7 +617,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Shining Harp',
 							DE: 'Lichtharfe',
-							FR: 'Shining Harp',
+							FR: 'Lyre de lumière',
 							ES: 'Shining Harp'
 						},
 						Level: 'Level 4+',
@@ -631,7 +631,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Giant Blade',
 					DE: 'Grossschwert',
-					FR: 'Giant Blade',
+					FR: 'Épée géante',
 					ES: 'Giant Blade'
 				},
 				Weapons: {
@@ -639,7 +639,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Giant\'s Knife',
 							DE: 'Langschwert',
-							FR: 'Giant\'s Knife',
+							FR: 'Épée gravée',
 							ES: 'Giant\'s Knife'
 						},
 						Level: 'Level 1',
@@ -649,7 +649,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Biggoron\'s Knife',
 							DE: 'Biggoron-Klinge',
-							FR: 'Biggoron\'s Knife',
+							FR: 'Épée affilée',
 							ES: 'Biggoron\'s Knife'
 						},
 						Level: 'Level 2',
@@ -659,7 +659,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Biggoron\'s Sword',
 							DE: 'Biggoron-Schwert',
-							FR: 'Biggoron\'s Sword',
+							FR: 'Épée supérieure',
 							ES: 'Biggoron\'s Sword'
 						},
 						Level: 'Level 3',
@@ -669,7 +669,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Biggoron\'s Sword +',
 							DE: 'Biggoron-Schwert +',
-							FR: 'Biggoron\'s Sword +',
+							FR: 'Épée supérieure DX',
 							ES: 'Biggoron\'s Sword +'
 						},
 						Level: 'Level 4',
@@ -679,7 +679,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Biggoron\'s Sunblade',
 							DE: 'Biggoron-Glanzschwert',
-							FR: 'Biggoron\'s Sunblade',
+							FR: 'Épée supérieure de lumière',
 							ES: 'Biggoron\'s Sunblade'
 						},
 						Level: 'Level 4+',
@@ -699,7 +699,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Guardian Naginata',
 							DE: 'Naginata der Hüterin',
-							FR: 'Guardian Naginata',
+							FR: 'Naginata du gardien',
 							ES: 'Guardian Naginata'
 						},
 						Level: 'Level 1',
@@ -709,7 +709,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Scorching Naginata',
 							DE: 'Glut-Naginata',
-							FR: 'Scorching Naginata',
+							FR: 'Naginata enflammé',
 							ES: 'Scorching Naginata'
 						},
 						Level: 'Level 2',
@@ -719,7 +719,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sheikah Naginata',
 							DE: 'Naginata der Ahnen',
-							FR: 'Sheikah Naginata',
+							FR: 'Naginata clanique',
 							ES: 'Sheikah Naginata'
 						},
 						Level: 'Level 3',
@@ -729,7 +729,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sheikah Naginata +',
 							DE: 'Naginata der Ahnen +',
-							FR: 'Sheikah Naginata +',
+							FR: 'Naginata clanique DX',
 							ES: 'Sheikah Naginata +'
 						},
 						Level: 'Level 4',
@@ -739,7 +739,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Crackling Naginata',
 							DE: 'Blitzaginata der Ahnen',
-							FR: 'Crackling Naginata',
+							FR: 'Naginata de foudre',
 							ES: 'Crackling Naginata'
 						},
 						Level: 'Level 4+',
@@ -753,7 +753,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Great Swords',
 					DE: 'Breitschwerter',
-					FR: 'Great Swords',
+					FR: 'Grandes épées',
 					ES: 'Great Swords'
 				},
 				Weapons: {
@@ -761,7 +761,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Swords of Despair',
 							DE: 'Schwerter des Bösen',
-							FR: 'Swords of Despair',
+							FR: 'Épées du mal',
 							ES: 'Swords of Despair'
 						},
 						Level: 'Level 1',
@@ -771,7 +771,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Swords of Darkness',
 							DE: 'Schwerter der Finsternis',
-							FR: 'Swords of Darkness',
+							FR: 'Épées des ténèbres',
 							ES: 'Swords of Darkness'
 						},
 						Level: 'Level 2',
@@ -781,7 +781,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Swords of Demise',
 							DE: 'Todbringer-Schwerter',
-							FR: 'Swords of Demise',
+							FR: 'Épées du néant',
 							ES: 'Swords of Demise'
 						},
 						Level: 'Level 3',
@@ -791,7 +791,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Swords of Demise +',
 							DE: 'Todbringer-Schwerter +',
-							FR: 'Swords of Demise +',
+							FR: 'Épées du néant DX',
 							ES: 'Swords of Demise +'
 						},
 						Level: 'Level 4',
@@ -801,7 +801,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Swords of Renewal',
 							DE: 'Todbringer-Hellschwerter',
-							FR: 'Swords of Renewal',
+							FR: 'Épées du néant de lumière',
 							ES: 'Swords of Renewal'
 						},
 						Level: 'Level 4+',
@@ -821,7 +821,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Thief\'s Trident',
 							DE: 'Diebesdreizack',
-							FR: 'Thief\'s Trident',
+							FR: 'Trident des voleurs',
 							ES: 'Thief\'s Trident'
 						},
 						Level: 'Level 1',
@@ -831,7 +831,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'King of Evil Trident',
 							DE: 'Dämonendreizack',
-							FR: 'King of Evil Trident',
+							FR: 'Trident du roi démon',
 							ES: 'King of Evil Trident'
 						},
 						Level: 'Level 2',
@@ -841,7 +841,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Trident of Demise',
 							DE: 'Todbringerdreizack',
-							FR: 'Trident of Demise',
+							FR: 'Trident de néant',
 							ES: 'Trident of Demise'
 						},
 						Level: 'Level 3',
@@ -851,7 +851,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Trident of Demise +',
 							DE: 'Todbringerdreizack +',
-							FR: 'Trident of Demise +',
+							FR: 'Trident de néant DX',
 							ES: 'Trident of Demise +'
 						},
 						Level: 'Level 4',
@@ -861,7 +861,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Burning Trident',
 							DE: 'Feuer-Todbringerdreizack',
-							FR: 'Burning Trident',
+							FR: 'Trident de feu',
 							ES: 'Burning Trident'
 						},
 						Level: 'Level 4+',
@@ -875,7 +875,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Hammer',
 					DE: 'Hammer',
-					FR: 'Hammer',
+					FR: 'Marteau',
 					ES: 'Hammer'
 				},
 				Weapons: {
@@ -883,7 +883,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Magic Hammer',
 							DE: 'Hammer',
-							FR: 'Magic Hammer',
+							FR: 'Marteau magique',
 							ES: 'Magic Hammer'
 						},
 						Level: 'Level 1',
@@ -893,7 +893,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Igneous Hammer',
 							DE: 'Brandhammer',
-							FR: 'Igneous Hammer',
+							FR: 'Marteau enflammé',
 							ES: 'Igneous Hammer'
 						},
 						Level: 'Level 2',
@@ -903,7 +903,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Megaton Hammer',
 							DE: 'Stahlhammer',
-							FR: 'Megaton Hammer',
+							FR: 'Masse des titans',
 							ES: 'Megaton Hammer'
 						},
 						Level: 'Level 3',
@@ -913,7 +913,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Megaton Hammer +',
 							DE: 'Stahlhammer +',
-							FR: 'Megaton Hammer +',
+							FR: 'Masse de titans DX',
 							ES: 'Megaton Hammer +'
 						},
 						Level: 'Level 4',
@@ -923,7 +923,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Darkfire Hammer',
 							DE: 'Dunkelhammer',
-							FR: 'Darkfire Hammer',
+							FR: 'Masse des ténèbres',
 							ES: 'Darkfire Hammer'
 						},
 						Level: 'Level 4+',
@@ -937,7 +937,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Zora Scale',
 					DE: 'Magische Schuppen',
-					FR: 'Zora Scale',
+					FR: 'Accessoire magique',
 					ES: 'Zora Scale'
 				},
 				Weapons: {
@@ -945,7 +945,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Silver Scale',
 							DE: 'Silberne Schuppen',
-							FR: 'Silver Scale',
+							FR: 'Écaille d\'argent',
 							ES: 'Silver Scale'
 						},
 						Level: 'Level 1',
@@ -955,7 +955,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Golden Scale',
 							DE: 'Goldene Schuppen',
-							FR: 'Golden Scale',
+							FR: 'Écaille d\'or',
 							ES: 'Golden Scale'
 						},
 						Level: 'Level 2',
@@ -965,7 +965,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Water Dragon Scale',
 							DE: 'Wasserdrachenschuppen',
-							FR: 'Water Dragon Scale',
+							FR: 'Écaille dragon d\'eau',
 							ES: 'Water Dragon Scale'
 						},
 						Level: 'Level 3',
@@ -975,7 +975,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Water Dragon Scale +',
 							DE: 'Wasserdrachenschuppen +',
-							FR: 'Water Dragon Scale +',
+							FR: 'Écaille dragon d\'eau DX',
 							ES: 'Water Dragon Scale +'
 						},
 						Level: 'Level 4',
@@ -985,7 +985,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sun Dragon Scale',
 							DE: 'Lichtdrachenschuppen',
-							FR: 'Sun Dragon Scale',
+							FR: 'Écaille de lumière',
 							ES: 'Sun Dragon Scale'
 						},
 						Level: 'Level 4+',
@@ -999,7 +999,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Parasol',
 					DE: 'Schirm',
-					FR: 'Parasol',
+					FR: 'Ombrelle',
 					ES: 'Parasol'
 				},
 				Weapons: {
@@ -1007,7 +1007,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Butterfly Parasol',
 							DE: 'Schmetterlingsschirm',
-							FR: 'Butterfly Parasol',
+							FR: 'Ombrelle de papillon',
 							ES: 'Butterfly Parasol'
 						},
 						Level: 'Level 1',
@@ -1017,7 +1017,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Luna Parasol',
 							DE: 'Luna-Schirm',
-							FR: 'Luna Parasol',
+							FR: 'Ombrelle Luna',
 							ES: 'Luna Parasol'
 						},
 						Level: 'Level 2',
@@ -1027,7 +1027,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Princess Parasol',
 							DE: 'Prinzessinnenschirm',
-							FR: 'Princess Parasol',
+							FR: 'Ombrelle princière',
 							ES: 'Princess Parasol'
 						},
 						Level: 'Level 3',
@@ -1037,7 +1037,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Princess Parasol +',
 							DE: 'Prinzessinnenschirm +',
-							FR: 'Princess Parasol +',
+							FR: 'Ombrelle princière DX',
 							ES: 'Princess Parasol +'
 						},
 						Level: 'Level 4',
@@ -1047,7 +1047,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Incandescent Parasol',
 							DE: 'Flammenschirm',
-							FR: 'Incandescent Parasol',
+							FR: 'Ombrelle de feu',
 							ES: 'Incandescent Parasol'
 						},
 						Level: 'Level 4+',
@@ -1061,7 +1061,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Shackle',
 					DE: 'Fessel',
-					FR: 'Shackle',
+					FR: 'Accessoire maudit',
 					ES: 'Shackle'
 				},
 				Weapons: {
@@ -1069,7 +1069,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Cursed Shackle',
 							DE: 'Fluchfessel',
-							FR: 'Cursed Shackle',
+							FR: 'Anneau maudit',
 							ES: 'Cursed Shackle'
 						},
 						Level: 'Level 1',
@@ -1079,7 +1079,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Twilight Shackle',
 							DE: 'Schattenfessel',
-							FR: 'Twilight Shackle',
+							FR: 'Anneau des ombres',
 							ES: 'Twilight Shackle'
 						},
 						Level: 'Level 2',
@@ -1089,7 +1089,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sol Shackle',
 							DE: 'Sol-Fessel',
-							FR: 'Sol Shackle',
+							FR: 'Anneau Astre',
 							ES: 'Sol Shackle'
 						},
 						Level: 'Level 3',
@@ -1099,7 +1099,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sol Shackle +',
 							DE: 'Sol-Fessel +',
-							FR: 'Sol Shackle +',
+							FR: 'Anneau Astre DX',
 							ES: 'Sol Shackle +'
 						},
 						Level: 'Level 4',
@@ -1109,7 +1109,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Thunderhead Shackle',
 							DE: 'Donnerfessel',
-							FR: 'Thunderhead Shackle',
+							FR: 'Anneau de foudre',
 							ES: 'Thunderhead Shackle'
 						},
 						Level: 'Level 4+',
@@ -1123,7 +1123,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Goddess Blade',
 					DE: 'Schwert der Göttin',
-					FR: 'Goddess Blade',
+					FR: 'Épée céleste',
 					ES: 'Goddess Blade'
 				},
 				Weapons: {
@@ -1131,7 +1131,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Goddess Sword',
 							DE: 'Schwert der Göttin',
-							FR: 'Goddess Sword',
+							FR: 'Épée divine',
 							ES: 'Goddess Sword'
 						},
 						Level: 'Level 1',
@@ -1141,7 +1141,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Goddess Longsword',
 							DE: 'Langschwert der Göttin',
-							FR: 'Goddess Longsword',
+							FR: 'Longue épée divine',
 							ES: 'Goddess Longsword'
 						},
 						Level: 'Level 2',
@@ -1151,7 +1151,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'True Goddess Blade',
 							DE: 'Weißes Schwert',
-							FR: 'True Goddess Blade',
+							FR: 'Blanche épée divine',
 							ES: 'True Goddess Blade'
 						},
 						Level: 'Level 3',
@@ -1161,7 +1161,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'True Goddess Blade +',
 							DE: 'Weißes Schwert +',
-							FR: 'True Goddess Blade +',
+							FR: 'Blanche épée divine DX',
 							ES: 'True Goddess Blade +'
 						},
 						Level: 'Level 4',
@@ -1171,7 +1171,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Liquid Goddess Blade',
 							DE: 'Weißwasserschwert',
-							FR: 'Liquid Goddess Blade',
+							FR: 'Blanche épée d\'eau',
 							ES: 'Liquid Goddess Blade'
 						},
 						Level: 'Level 4+',
@@ -1185,7 +1185,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Demon Blade',
 					DE: 'Dämonenschwert',
-					FR: 'Demon Blade',
+					FR: 'Épée démoniaque',
 					ES: 'Demon Blade'
 				},
 				Weapons: {
@@ -1193,7 +1193,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Demon Tribe Sword',
 							DE: 'Dämonenschwert',
-							FR: 'Demon Tribe Sword',
+							FR: 'Épée des démons',
 							ES: 'Demon Tribe Sword'
 						},
 						Level: 'Level 1',
@@ -1203,7 +1203,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Demon Longsword',
 							DE: 'Dämonenlangschwert',
-							FR: 'Demon Longsword',
+							FR: 'Longue épée démons',
 							ES: 'Demon Longsword'
 						},
 						Level: 'Level 2',
@@ -1213,7 +1213,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'True Demon Blade',
 							DE: 'Schwarzes Schwert',
-							FR: 'True Demon Blade',
+							FR: 'Noire épée démons',
 							ES: 'True Demon Blade'
 						},
 						Level: 'Level 3',
@@ -1223,7 +1223,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'True Demon Blade +',
 							DE: 'Schwarzes Schwert +',
-							FR: 'True Demon Blade +',
+							FR: 'Noire épée démons DX',
 							ES: 'True Demon Blade +'
 						},
 						Level: 'Level 4',
@@ -1233,7 +1233,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Darkfire Demon Blade',
 							DE: 'Schwarzes Feuerschwert',
-							FR: 'Darkfire Demon Blade',
+							FR: 'Noire épée de feu',
 							ES: 'Darkfire Demon Blade'
 						},
 						Level: 'Level 4+',
@@ -1247,7 +1247,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Scimitars',
 					DE: 'Krummsäbel',
-					FR: 'Scimitars',
+					FR: 'Épées courbes',
 					ES: 'Scimitars'
 				},
 				Weapons: {
@@ -1255,7 +1255,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Usurper\'s Scimitars',
 							DE: 'Säbel des Usurpators',
-							FR: 'Usurper\'s Scimitars',
+							FR: 'Sabres de l\'usurpateur',
 							ES: 'Usurper\'s Scimitars'
 						},
 						Level: 'Level 1',
@@ -1265,7 +1265,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Shadow Scimitars',
 							DE: 'Schattensäbel',
-							FR: 'Shadow Scimitars',
+							FR: 'Sabres de l\'ombre',
 							ES: 'Shadow Scimitars'
 						},
 						Level: 'Level 2',
@@ -1275,7 +1275,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Scimitars of Twilight',
 							DE: 'Säbel der Düsternis',
-							FR: 'Scimitars of Twilight',
+							FR: 'Sabres du Crépuscule',
 							ES: 'Scimitars of Twilight'
 						},
 						Level: 'Level 3',
@@ -1285,7 +1285,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Scimitars of Twilight +',
 							DE: 'Säbel der Düsternis +',
-							FR: 'Scimitars of Twilight +',
+							FR: 'Sabres du Crépuscule DX',
 							ES: 'Scimitars of Twilight +'
 						},
 						Level: 'Level 4',
@@ -1295,7 +1295,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Darkwater Scimitars',
 							DE: 'Wassersäbel d. Düsternis',
-							FR: 'Darkwater Scimitars',
+							FR: 'Sabres d\'eau',
 							ES: 'Darkwater Scimitars'
 						},
 						Level: 'Level 4+',
@@ -1309,7 +1309,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Book of Sorcery',
 					DE: 'Zauberbuch',
-					FR: 'Book of Sorcery',
+					FR: 'Grimoire',
 					ES: 'Book of Sorcery'
 				},
 				Weapons: {
@@ -1317,7 +1317,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Spirit\'s Tome',
 							DE: 'Zauberbuch des Geistes',
-							FR: 'Spirit\'s Tome',
+							FR: 'Grimoire de l\'esprit',
 							ES: 'Spirit\'s Tome'
 						},
 						Level: 'Level 1',
@@ -1327,7 +1327,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sealing Tome',
 							DE: 'Versiegeltes Zauberbuch',
-							FR: 'Sealing Tome',
+							FR: 'Grimoire du sceau',
 							ES: 'Sealing Tome'
 						},
 						Level: 'Level 2',
@@ -1337,7 +1337,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sorceress Tome',
 							DE: 'Zauberbuch der Himmel',
-							FR: 'Sorceress Tome',
+							FR: 'Grimoire céleste',
 							ES: 'Sorceress Tome'
 						},
 						Level: 'Level 3',
@@ -1347,7 +1347,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sorceress Tome +',
 							DE: 'Zauberbuch der Himmel +',
-							FR: 'Sorceress Tome +',
+							FR: 'Grimoire céleste DX',
 							ES: 'Sorceress Tome +'
 						},
 						Level: 'Level 4',
@@ -1357,7 +1357,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Tome of the Night',
 							DE: 'Zauberbuch des Dunkels',
-							FR: 'Tome of the Night',
+							FR: 'Grimoire des ténèbres',
 							ES: 'Tome of the Night'
 						},
 						Level: 'Level 4+',
@@ -1369,7 +1369,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Spear',
 					DE: 'Stab',
-					FR: 'Spear',
+					FR: 'Grand arbre',
 					ES: 'Spear'
 				},
 				Weapons: {
@@ -1377,7 +1377,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Deku Spear',
 							DE: 'Deku-Stab',
-							FR: 'Deku Spear',
+							FR: 'Drageon mojo',
 							ES: 'Deku Spear'
 						},
 						Level: 'Level 1',
@@ -1387,7 +1387,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Kokiri Spear',
 							DE: 'Kokiri-Stab',
-							FR: 'Kokiri Spear',
+							FR: 'Drageon kokiri',
 							ES: 'Kokiri Spear'
 						},
 						Level: 'Level 2',
@@ -1397,7 +1397,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Faron Spear',
 							DE: 'Phirone-Stab',
-							FR: 'Faron Spear',
+							FR: 'Drageon de Firone',
 							ES: 'Faron Spear'
 						},
 						Level: 'Level 3',
@@ -1407,7 +1407,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Faron Spear +',
 							DE: 'Phirone-Stab +',
-							FR: 'Faron Spear +',
+							FR: 'Drageon de Firone DX',
 							ES: 'Faron Spear +'
 						},
 						Level: 'Level 4',
@@ -1417,7 +1417,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sun Faron Spear',
 							DE: 'Phirone-Lichtstab',
-							FR: 'Sun Faron Spear',
+							FR: 'Drageon de lumière',
 							ES: 'Sun Faron Spear'
 						},
 						Level: 'Level 4+',
@@ -1429,7 +1429,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Summoning Gate',
 					DE: 'Portal',
-					FR: 'Summoning Gate',
+					FR: 'Porte d\'invocation',
 					ES: 'Summoning Gate'
 				},
 				Weapons: {
@@ -1437,7 +1437,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Gate of Time',
 							DE: 'Zeitportal',
-							FR: 'Gate of Time',
+							FR: 'Porte du temps',
 							ES: 'Gate of Time'
 						},
 						Level: 'Level 1',
@@ -1447,7 +1447,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Guardian\'s Gate',
 							DE: 'Hüterportal',
-							FR: 'Guardian\'s Gate',
+							FR: 'Porte des veilleurs',
 							ES: 'Guardian\'s Gate'
 						},
 						Level: 'Level 2',
@@ -1457,7 +1457,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Gate of Souls',
 							DE: 'Seelenportal',
-							FR: 'Gate of Souls',
+							FR: 'Porte des âmes',
 							ES: 'Gate of Souls'
 						},
 						Level: 'Level 3',
@@ -1467,7 +1467,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Gate of Souls +',
 							DE: 'Seelenportal +',
-							FR: 'Gate of Souls +',
+							FR: 'Porte des âmes DX',
 							ES: 'Gate of Souls +'
 						},
 						Level: 'Level 4',
@@ -1477,7 +1477,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Gate of Tides',
 							DE: 'Portal der Gezeiten',
-							FR: 'Gate of Tides',
+							FR: 'Porte d\'eau',
 							ES: 'Gate of Tides'
 						},
 						Level: 'Level 4+',
@@ -1491,7 +1491,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Scepter',
 					DE: 'Zepter',
-					FR: 'Scepter',
+					FR: 'Sceptre',
 					ES: 'Scepter'
 				},
 				Weapons: {
@@ -1499,7 +1499,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Scepter of Time',
 							DE: 'Zepter der Zeit',
-							FR: 'Scepter of Time',
+							FR: 'Sceptre du temps',
 							ES: 'Scepter of Time'
 						},
 						Level: 'Level 1',
@@ -1509,7 +1509,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Guardian\'s Scepter',
 							DE: 'Zepter der Hüterin',
-							FR: 'Guardian\'s Scepter',
+							FR: 'Sceptre des veilleurs',
 							ES: 'Guardian\'s Scepter'
 						},
 						Level: 'Level 2',
@@ -1519,7 +1519,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Scepter of Souls',
 							DE: 'Zepter der Seelen',
-							FR: 'Scepter of Souls',
+							FR: 'Sceptre des âmes',
 							ES: 'Scepter of Souls'
 						},
 						Level: 'Level 3',
@@ -1527,9 +1527,9 @@ function LoadWeaponData() {
 					},
 					3: {
 						Name: {
-							EN: 'cepter of Souls +',
+							EN: 'Scepter of Souls +',
 							DE: 'Zepter der Seelen +',
-							FR: 'cepter of Souls +',
+							FR: 'Sceptre des âmes DX',
 							ES: 'cepter of Souls +'
 						},
 						Level: 'Level 4',
@@ -1539,7 +1539,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Crackling Scepter',
 							DE: 'Blitz-Zepter der Seelen',
-							FR: 'Crackling Scepter',
+							FR: 'Sceptre de foudre',
 							ES: 'Crackling Scepter'
 						},
 						Level: 'Level 4+',
@@ -1553,7 +1553,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Dragon Spear',
 					DE: 'Drachenspeer',
-					FR: 'Dragon Spear',
+					FR: 'Lance martiale',
 					ES: 'Dragon Spear'
 				},
 				Weapons: {
@@ -1561,7 +1561,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Dragonbone Pike',
 							DE: 'Drachenbein',
-							FR: 'Dragonbone Pike',
+							FR: 'Os massif de dragon',
 							ES: 'Dragonbone Pike'
 						},
 						Level: 'Level 1',
@@ -1571,7 +1571,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Stonecleaver Claw',
 							DE: 'Bergspalter',
-							FR: 'Stonecleaver Claw',
+							FR: 'Griffe volcanique',
 							ES: 'Stonecleaver Claw'
 						},
 						Level: 'Level 2',
@@ -1581,7 +1581,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Flesh-Render Fang',
 							DE: 'Blutfang',
-							FR: 'Flesh-Render Fang',
+							FR: 'Croc sanguinolent',
 							ES: 'Flesh-Render Fang'
 						},
 						Level: 'Level 3',
@@ -1591,7 +1591,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Flesh-Render Fang +',
 							DE: 'Blutfang +',
-							FR: 'Flesh-Render Fang +',
+							FR: 'Croc sanguinolent DX',
 							ES: 'Flesh-Render Fang +'
 						},
 						Level: 'Level 4',
@@ -1601,7 +1601,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Darkfire Fang',
 							DE: 'Finsternisblutfang',
-							FR: 'Darkfire Fang',
+							FR: 'Croc des ténèbres',
 							ES: 'Darkfire Fang'
 						},
 						Level: 'Level 4+',
@@ -1615,7 +1615,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Ring',
 					DE: 'Ring',
-					FR: 'Ring',
+					FR: 'Bague',
 					ES: 'Ring'
 				},
 				Weapons: {
@@ -1623,7 +1623,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Blue Ring',
 							DE: 'Blauer Ring',
-							FR: 'Blue Ring',
+							FR: 'Bague bleue',
 							ES: 'Blue Ring'
 						},
 						Level: 'Level 1',
@@ -1633,7 +1633,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Red Ring',
 							DE: 'Roter Ring',
-							FR: 'Red Ring',
+							FR: 'Bague rouge',
 							ES: 'Red Ring'
 						},
 						Level: 'Level 2',
@@ -1643,7 +1643,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Magical Ring',
 							DE: 'Magischer Ring',
-							FR: 'Magical Ring',
+							FR: 'Bague magique',
 							ES: 'Magical Ring'
 						},
 						Level: 'Level 3',
@@ -1653,7 +1653,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Magical Ring +',
 							DE: 'Magischer Ring +',
-							FR: 'Magical Ring +',
+							FR: 'Bague magique DX',
 							ES: 'Magical Ring +'
 						},
 						Level: 'Level 4',
@@ -1663,7 +1663,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Darkwater Ring',
 							DE: 'Magischer Wasserring',
-							FR: 'Darkwater Ring',
+							FR: 'Bague d\'eau',
 							ES: 'Darkwater Ring'
 						},
 						Level: 'Level 4+',
@@ -1677,7 +1677,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Mirror',
 					DE: 'Spiegel',
-					FR: 'Mirror',
+					FR: 'Miroir',
 					ES: 'Mirror'
 				},
 				Weapons: {
@@ -1685,7 +1685,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Mirror of Shadows',
 							DE: 'Düsterspiegel',
-							FR: 'Mirror of Shadows',
+							FR: 'Miroir obscur',
 							ES: 'Mirror of Shadows'
 						},
 						Level: 'Level 1',
@@ -1695,7 +1695,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Mirror of Silence',
 							DE: 'Dämmerungsspiegel',
-							FR: 'Mirror of Silence',
+							FR: 'Miroir du Crépuscule',
 							ES: 'Mirror of Silence'
 						},
 						Level: 'Level 2',
@@ -1705,7 +1705,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Mirror of Twilight',
 							DE: 'Schattenspiegel',
-							FR: 'Mirror of Twilight',
+							FR: 'Miroir des ombres',
 							ES: 'Mirror of Twilight'
 						},
 						Level: 'Level 3',
@@ -1715,7 +1715,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Mirror of Twilight +',
 							DE: 'Schattenspiegel +',
-							FR: 'Mirror of Twilight +',
+							FR: 'Miroir des ombres DX',
 							ES: 'Mirror of Twilight +'
 						},
 						Level: 'Level 4',
@@ -1725,7 +1725,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Darklight Mirror',
 							DE: 'Schatterlichtspiegel',
-							FR: 'Darklight Mirror',
+							FR: 'Miroir de lumière',
 							ES: 'Darklight Mirror'
 						},
 						Level: 'Level 4+',
@@ -1739,7 +1739,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Mask',
 					DE: 'Maske',
-					FR: 'Mask',
+					FR: 'Masque',
 					ES: 'Mask'
 				},
 				Weapons: {
@@ -1747,7 +1747,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Fierce Deity Mask',
 							DE: 'Grimmige Gottheit',
-							FR: 'Fierce Deity Mask',
+							FR: 'Dieu démon',
 							ES: 'Fierce Deity Mask'
 						},
 						Level: 'Level 1',
@@ -1757,7 +1757,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Furious Deity Mask',
 							DE: 'Zornige Gottheit',
-							FR: 'Furious Deity Mask',
+							FR: 'Dieu démon véritable',
 							ES: 'Furious Deity Mask'
 						},
 						Level: 'Level 2',
@@ -1767,7 +1767,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Vengeful Deity Mask',
 							DE: 'Rasende Gottheit',
-							FR: 'Vengeful Deity Mask',
+							FR: 'Dieu démon ultime',
 							ES: 'Vengeful Deity Mask'
 						},
 						Level: 'Level 3',
@@ -1777,7 +1777,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Vengeful Deity Mask +',
 							DE: 'Rasende Gottheit +',
-							FR: 'Vengeful Deity Mask +',
+							FR: 'Dieu démon ultime DX',
 							ES: 'Vengeful Deity Mask +'
 						},
 						Level: 'Level 4',
@@ -1787,7 +1787,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Inflamed Deity\'s Mask',
 							DE: 'Feurige Gottheit',
-							FR: 'Inflamed Deity\'s Mask',
+							FR: 'Dieu démon de feu',
 							ES: 'Inflamed Deity\'s Mask'
 						},
 						Level: 'Level 4+',
@@ -1801,7 +1801,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Balloon',
 					DE: 'Ballon',
-					FR: 'Balloon',
+					FR: 'Ballon',
 					ES: 'Balloon'
 				},
 				Weapons: {
@@ -1809,7 +1809,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Rosy Balloon',
 							DE: 'Rosiger Ballon',
-							FR: 'Rosy Balloon',
+							FR: 'Ballon pétale de rose',
 							ES: 'Rosy Balloon'
 						},
 						Level: 'Level 1',
@@ -1819,7 +1819,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Love-Filled Balloon',
 							DE: 'Liebesballon',
-							FR: 'Love-Filled Balloon',
+							FR: 'Ballon de la passion',
 							ES: 'Love-Filled Balloon'
 						},
 						Level: 'Level 2',
@@ -1829,7 +1829,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Mr. Fairy Balloon',
 							DE: 'Feen-Ballon',
-							FR: 'Mr. Fairy Balloon',
+							FR: 'Ballon de M. Fée',
 							ES: 'Mr. Fairy Balloon'
 						},
 						Level: 'Level 3',
@@ -1839,7 +1839,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Mr. Fairy Balloon +',
 							DE: 'Feen-Ballon +',
-							FR: 'Mr. Fairy Balloon +',
+							FR: 'Ballon de M. Fée DX',
 							ES: 'Mr. Fairy Balloon +'
 						},
 						Level: 'Level 4',
@@ -1849,7 +1849,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Liquid Fire Balloon',
 							DE: 'Feen-Wasserballon',
-							FR: 'Liquid Fire Balloon',
+							FR: 'Ballon d\'eau',
 							ES: 'Liquid Fire Balloon'
 						},
 						Level: 'Level 4+',
@@ -1907,7 +1907,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Crossbows',
 					DE: 'Armbrüste',
-					FR: 'Crossbows',
+					FR: 'Arbalètes',
 					ES: 'Crossbows'
 				},
 				Weapons: {
@@ -1915,7 +1915,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Simple Crossbows',
 							DE: 'Armbrüste',
-							FR: 'Simple Crossbows',
+							FR: 'Arbalètes',
 							ES: 'Simple Crossbows'
 						},
 						Level: 'Level 1',
@@ -1925,7 +1925,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Hylian Crossbows',
 							DE: 'Trainings-Armbrüste',
-							FR: 'Hylian Crossbows',
+							FR: 'Arbalètes d\'entrainement',
 							ES: 'Hylian Crossbows'
 						},
 						Level: 'Level 2',
@@ -1935,7 +1935,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Legend\'s Crossbows',
 							DE: 'Legendäre Armbrüste',
-							FR: 'Legend\'s Crossbows',
+							FR: 'Arbalètes du guide',
 							ES: 'Legend\'s Crossbows'
 						},
 						Level: 'Level 3',
@@ -1945,7 +1945,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Legend\'s Crossbows +',
 							DE: 'Legendäre Armbrüste +',
-							FR: 'Legend\'s Crossbows +',
+							FR: 'Arbalètes du guide DX',
 							ES: 'Legend\'s Crossbows +'
 						},
 						Level: 'Level 4',
@@ -1955,7 +1955,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Luminous Crossbows',
 							DE: 'Legendäre Lichtarmbrüste',
-							FR: 'Luminous Crossbows',
+							FR: 'Arbalètes de lumière',
 							ES: 'Luminous Crossbows'
 						},
 						Level: 'Level 4+',
@@ -1967,7 +1967,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Boots',
 					DE: 'Stiefel',
-					FR: 'Boots',
+					FR: 'Bottes',
 					ES: 'Boots'
 				},
 				Weapons: {
@@ -1975,7 +1975,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Winged Boots',
 							DE: 'Schwingenstiefel',
-							FR: 'Winged Boots',
+							FR: 'Bottes ailées',
 							ES: 'Winged Boots'
 						},
 						Level: 'Level 1',
@@ -1985,7 +1985,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Roc Boots',
 							DE: 'Heilige Stiefel',
-							FR: 'Roc Boots',
+							FR: 'Bottes sacrées',
 							ES: 'Roc Boots'
 						},
 						Level: 'Level 2',
@@ -1995,7 +1995,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Pegasus Boots',
 							DE: 'Pegasusstiefel',
-							FR: 'Pegasus Boots',
+							FR: 'Bottes de Pégase',
 							ES: 'Pegasus Boots'
 						},
 						Level: 'Level 3',
@@ -2005,7 +2005,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Pegasus Boots +',
 							DE: 'Pegasusstiefel +',
-							FR: 'Pegasus Boots +',
+							FR: 'Botte de Pégase DX',
 							ES: 'Pegasus Boots +'
 						},
 						Level: 'Level 4',
@@ -2015,7 +2015,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Gleambolt Pegasus Boots',
 							DE: 'Lichtblitz-Pegasusstiefel',
-							FR: 'Gleambolt Pegasus Boots',
+							FR: 'Bottes de lumière',
 							ES: 'Gleambolt Pegasus Boots'
 						},
 						Level: 'Level 4+',
@@ -2037,7 +2037,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Fairy Ocarina',
 							DE: 'Feen-Okarina',
-							FR: 'Fairy Ocarina',
+							FR: 'Ocarina des fées',
 							ES: 'Fairy Ocarina'
 						},
 						Level: 'Level 1',
@@ -2047,7 +2047,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Lunar Ocarina',
 							DE: 'Mond-Okarina',
-							FR: 'Lunar Ocarina',
+							FR: 'Ocarina de la lune',
 							ES: 'Lunar Ocarina'
 						},
 						Level: 'Level 2',
@@ -2057,7 +2057,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Majora\'s Ocarina',
 							DE: 'Majoras Okarina',
-							FR: 'Majora\'s Ocarina',
+							FR: 'Ocarina de Majora',
 							ES: 'Majora\'s Ocarina'
 						},
 						Level: 'Level 3',
@@ -2067,7 +2067,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Majora\'s Ocarina +',
 							DE: 'Majoras Okarina +',
-							FR: 'Majora\'s Ocarina +',
+							FR: 'Ocarina de Majora DX',
 							ES: 'Majora\'s Ocarina +'
 						},
 						Level: 'Level 4',
@@ -2077,7 +2077,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Crackling Ocarina',
 							DE: 'Schock-Okarina',
-							FR: 'Crackling Ocarina',
+							FR: 'Ocarina de foudre',
 							ES: 'Crackling Ocarina'
 						},
 						Level: 'Level 4+',
@@ -2091,7 +2091,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Light Sword',
 					DE: 'Kurzschwert',
-					FR: 'Light Sword',
+					FR: 'Épée à une main',
 					ES: 'Light Sword'
 				},
 				Weapons: {
@@ -2099,7 +2099,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Hero\'s Sword',
 							DE: 'Heroenschwert',
-							FR: 'Hero\'s Sword',
+							FR: 'Épée du Héros',
 							ES: 'Hero\'s Sword'
 						},
 						Level: 'Level 1',
@@ -2109,7 +2109,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Phantom Sword',
 							DE: 'Phantomschwert',
-							FR: 'Phantom Sword',
+							FR: 'Épée spectrale',
 							ES: 'Phantom Sword'
 						},
 						Level: 'Level 2',
@@ -2119,7 +2119,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Lokomo Sword',
 							DE: 'Lokomo-Schwert',
-							FR: 'Lokomo Sword',
+							FR: 'Épée Locomo',
 							ES: 'Lokomo Sword'
 						},
 						Level: 'Level 3',
@@ -2129,7 +2129,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Lokomo Sword +',
 							DE: 'Lokomo-Schwert +',
-							FR: 'Lokomo Sword +',
+							FR: 'Épée Locomo DX',
 							ES: 'Lokomo Sword +'
 						},
 						Level: 'Level 4',
@@ -2139,7 +2139,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Lokomo Sword of Oceans',
 							DE: 'Lokomo-Wasserschwert',
-							FR: 'Lokomo Sword of Oceans',
+							FR: 'Épée Locomo d\'eau',
 							ES: 'Lokomo Sword of Oceans'
 						},
 						Level: 'Level 4+',
@@ -2151,7 +2151,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Sand Wand',
 					DE: 'Sandstab',
-					FR: 'Sand Wand',
+					FR: 'Baguette des sables',
 					ES: 'Sand Wand'
 				},
 				Weapons: {
@@ -2159,7 +2159,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sand Wand',
 							DE: 'Sandstab',
-							FR: 'Sand Wand',
+							FR: 'Baguette des sables',
 							ES: 'Sand Wand'
 						},
 						Level: 'Level 1',
@@ -2169,7 +2169,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Jeweled Sand Wand',
 							DE: 'Juwelen-Sandstab',
-							FR: 'Jeweled Sand Wand',
+							FR: 'Baguette des sables mod.',
 							ES: 'Jeweled Sand Wand'
 						},
 						Level: 'Level 2',
@@ -2179,7 +2179,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Nice Sand Wand',
 							DE: 'Deluxe-Sandstab',
-							FR: 'Nice Sand Wand',
+							FR: 'Great baguette des sables',
 							ES: 'Nice Sand Wand'
 						},
 						Level: 'Level 3',
@@ -2189,7 +2189,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Nice Sand Wand +',
 							DE: 'Deluxe-Sandstab +',
-							FR: 'Nice Sand Wand +',
+							FR: 'Great baguette des sables DX',
 							ES: 'Nice Sand Wand +'
 						},
 						Level: 'Level 4',
@@ -2199,7 +2199,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Darkfire Nice Sand Wand',
 							DE: 'Schwarzer Deluxe-Sandstab',
-							FR: 'Darkfire Nice Sand Wand',
+							FR: 'Baguette des ténèbres',
 							ES: 'Darkfire Nice Sand Wand'
 						},
 						Level: 'Level 4+',
@@ -2213,7 +2213,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Cutlass',
 					DE: 'Säbel',
-					FR: 'Cutlass',
+					FR: 'Sabre d\'abordage',
 					ES: 'Cutlass'
 				},
 				Weapons: {
@@ -2221,7 +2221,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Pirate Cutlass',
 							DE: 'Piratensäbel',
-							FR: 'Pirate Cutlass',
+							FR: 'Sabre de pirate',
 							ES: 'Pirate Cutlass'
 						},
 						Level: 'Level 1',
@@ -2231,7 +2231,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Jeweled Cutlass',
 							DE: 'Königssäbel',
-							FR: 'Jeweled Cutlass',
+							FR: 'Sabre royal',
 							ES: 'Jeweled Cutlass'
 						},
 						Level: 'Level 2',
@@ -2241,7 +2241,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Regal Cutlass',
 							DE: 'Schwingensäbel',
-							FR: 'Regal Cutlass',
+							FR: 'Sabre inestimable',
 							ES: 'Regal Cutlass'
 						},
 						Level: 'Level 3',
@@ -2251,7 +2251,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Regal Cutlass +',
 							DE: 'Schwingensäbel +',
-							FR: 'Regal Cutlass +',
+							FR: 'Sabre inestimable DX',
 							ES: 'Regal Cutlass +'
 						},
 						Level: 'Level 4',
@@ -2261,7 +2261,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Cutlass of Light',
 							DE: 'Lichtschwingensäbel',
-							FR: 'Cutlass of Light',
+							FR: 'Sabre de lumière',
 							ES: 'Cutlass of Light'
 						},
 						Level: 'Level 4+',
@@ -2275,7 +2275,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Sail',
 					DE: 'Segel',
-					FR: 'Sail',
+					FR: 'Voile',
 					ES: 'Sail'
 				},
 				Weapons: {
@@ -2283,7 +2283,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Windfall Sail',
 							DE: 'Bootsegel',
-							FR: 'Windfall Sail',
+							FR: 'Voile de bateau',
 							ES: 'Windfall Sail'
 						},
 						Level: 'Level 1',
@@ -2293,7 +2293,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Swift Sail',
 							DE: 'Siebenmeilen-Segel',
-							FR: 'Swift Sail',
+							FR: 'Voile rapide',
 							ES: 'Swift Sail'
 						},
 						Level: 'Level 2',
@@ -2303,7 +2303,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sail of Red Lions',
 							DE: 'Triforce-Segel',
-							FR: 'Sail of Red Lions',
+							FR: 'Voile de la Triforce',
 							ES: 'Sail of Red Lions'
 						},
 						Level: 'Level 3',
@@ -2313,7 +2313,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sail of Red Lions +',
 							DE: 'Triforce-Segel +',
-							FR: 'Sail of Red Lions +',
+							FR: 'Voile de la Triforce DX',
 							ES: 'Sail of Red Lions +'
 						},
 						Level: 'Level 4',
@@ -2323,7 +2323,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Supercharged Sail',
 							DE: 'Blitzsegel',
-							FR: 'Supercharged Sail',
+							FR: 'Voile de foudre',
 							ES: 'Supercharged Sail'
 						},
 						Level: 'Level 4+',
@@ -2337,7 +2337,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Rito Harp',
 					DE: 'Orni-Lyra',
-					FR: 'Rito Harp',
+					FR: 'Lyre',
 					ES: 'Rito Harp'
 				},
 				Weapons: {
@@ -2345,7 +2345,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sacred Harp',
 							DE: 'Heilige Lyra',
-							FR: 'Sacred Harp',
+							FR: 'Lyre sacrée',
 							ES: 'Sacred Harp'
 						},
 						Level: 'Level 1',
@@ -2355,7 +2355,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Earth God\'s Harp',
 							DE: 'Terragott-Lyra',
-							FR: 'Earth God\'s Harp',
+							FR: 'Lyre Dieu de la terre',
 							ES: 'Earth God\'s Harp'
 						},
 						Level: 'Level 2',
@@ -2365,7 +2365,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Din\'s Harp',
 							DE: 'Dins Lyra',
-							FR: 'Din\'s Harp',
+							FR: 'Lyre de Din',
 							ES: 'Din\'s Harp'
 						},
 						Level: 'Level 3',
@@ -2375,7 +2375,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Din\'s Harp +',
 							DE: 'Dins Lyra +',
-							FR: 'Din\'s Harp +',
+							FR: 'Lyre de Din DX',
 							ES: 'Din\'s Harp +'
 						},
 						Level: 'Level 4',
@@ -2385,7 +2385,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Din\'s Harp of Oceans',
 							DE: 'Dins Wasser-Lyra',
-							FR: 'Din\'s Harp of Oceans',
+							FR: 'Lyre d\'eau',
 							ES: 'Din\'s Harp of Oceans'
 						},
 						Level: 'Level 4+',
@@ -2399,7 +2399,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Bell',
 					DE: 'Glocke',
-					FR: 'Bell',
+					FR: 'Cloche',
 					ES: 'Bell'
 				},
 				Weapons: {
@@ -2407,7 +2407,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Sea Lily Bell',
 							DE: 'Nixenglöckchen',
-							FR: 'Sea Lily Bell',
+							FR: 'Cloche des Algues',
 							ES: 'Sea Lily Bell'
 						},
 						Level: 'Level 1',
@@ -2417,7 +2417,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Wavelet Bell',
 							DE: 'Glocke der Wellen',
-							FR: 'Wavelet Bell',
+							FR: 'Cloche de l\'Onde',
 							ES: 'Wavelet Bell'
 						},
 						Level: 'Level 2',
@@ -2427,7 +2427,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Awakening Bell',
 							DE: 'Glocke des Erwachens',
-							FR: 'Awakening Bell',
+							FR: 'Cloche de l\'Éveil',
 							ES: 'Awakening Bell'
 						},
 						Level: 'Level 3',
@@ -2437,7 +2437,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Awakening Bell +',
 							DE: 'Glocke des Erwachens +',
-							FR: 'Awakening Bell +',
+							FR: 'Cloche de l\'Éveil DX',
 							ES: 'Awakening Bell +'
 						},
 						Level: 'Level 4',
@@ -2447,7 +2447,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Awakening Sunbell',
 							DE: 'Glanzglocke des Erwachens',
-							FR: 'Awakening Sunbell',
+							FR: 'Cloche de lumière',
 							ES: 'Awakening Sunbell'
 						},
 						Level: 'Level 4+',
@@ -2461,7 +2461,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Phantom Arms',
 					DE: 'Phantomwaffen',
-					FR: 'Phantom Arms',
+					FR: 'Épée de gardien',
 					ES: 'Phantom Arms'
 				},
 				Weapons: {
@@ -2469,7 +2469,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Protector Sword',
 							DE: 'Beschützerschwert',
-							FR: 'Protector Sword',
+							FR: 'Épée de spectre',
 							ES: 'Protector Sword'
 						},
 						Level: 'Level 1',
@@ -2479,7 +2479,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Warp Sword',
 							DE: 'Teleportschwert',
-							FR: 'Warp Sword',
+							FR: 'Épée de téléporteur',
 							ES: 'Warp Sword'
 						},
 						Level: 'Level 2',
@@ -2489,7 +2489,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Wrecker Sword',
 							DE: 'Trümmerschwert',
-							FR: 'Wrecker Sword',
+							FR: 'Épée d\'acier',
 							ES: 'Wrecker Sword'
 						},
 						Level: 'Level 3',
@@ -2499,7 +2499,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Wrecker Sword +',
 							DE: 'Trümmerschwert +',
-							FR: 'Wrecker Sword +',
+							FR: 'Épée d\'acier',
 							ES: 'Wrecker Sword +'
 						},
 						Level: 'Level 4',
@@ -2509,7 +2509,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Flaming Wrecker Sword',
 							DE: 'Flammendes Trümmerschwert',
-							FR: 'Flaming Wrecker Sword',
+							FR: 'Épée d\'acier de feu',
 							ES: 'Flaming Wrecker Sword'
 						},
 						Level: 'Level 4+',
@@ -2523,7 +2523,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Rental Hammer',
 					DE: 'Leih-Hammer',
-					FR: 'Rental Hammer',
+					FR: 'Marteau',
 					ES: 'Rental Hammer'
 				},
 				Weapons: {
@@ -2531,7 +2531,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Wooden Hammer',
 							DE: 'Holzhammer',
-							FR: 'Wooden Hammer',
+							FR: 'Marteau en bois',
 							ES: 'Wooden Hammer'
 						},
 						Level: 'Level 1',
@@ -2541,7 +2541,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'White Bunny Hammer',
 							DE: 'Hasenhammer',
-							FR: 'White Bunny Hammer',
+							FR: 'Marteau du lapin blanc',
 							ES: 'White Bunny Hammer'
 						},
 						Level: 'Level 2',
@@ -2551,7 +2551,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Nice Hammer',
 							DE: 'Super-Hammer',
-							FR: 'Nice Hammer',
+							FR: 'Great marteau',
 							ES: 'Nice Hammer'
 						},
 						Level: 'Level 3',
@@ -2561,7 +2561,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Nice Hammer +',
 							DE: 'Super-Hammer +',
-							FR: 'Nice Hammer +',
+							FR: 'Great marteau DX',
 							ES: 'Nice Hammer +'
 						},
 						Level: 'Level 4',
@@ -2571,7 +2571,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Crackling Nice Hammer',
 							DE: 'Schock-Super-Hammer',
-							FR: 'Crackling Nice Hammer',
+							FR: 'Marteau de foudre',
 							ES: 'Crackling Nice Hammer'
 						},
 						Level: 'Level 4+',
@@ -2585,7 +2585,7 @@ function LoadWeaponData() {
 				ClassName: {
 					EN: 'Picture Frame',
 					DE: 'Bilderrahmen',
-					FR: 'Picture Frame',
+					FR: 'Cadre',
 					ES: 'Picture Frame'
 				},
 				Weapons: {
@@ -2593,7 +2593,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Wooden Frame',
 							DE: 'Holzrahmen',
-							FR: 'Wooden Frame',
+							FR: 'Cadre en bois',
 							ES: 'Wooden Frame'
 						},
 						Level: 'Level 1',
@@ -2603,7 +2603,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Frame of Sealing',
 							DE: 'Siegelrahmen',
-							FR: 'Frame of Sealing',
+							FR: 'Cadre du sceau',
 							ES: 'Frame of Sealing'
 						},
 						Level: 'Level 2',
@@ -2613,7 +2613,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Demon King\'s Frame',
 							DE: 'Dämonenkönig-Rahmen',
-							FR: 'Demon King\'s Frame',
+							FR: 'Cadre du roi démon',
 							ES: 'Demon King\'s Frame'
 						},
 						Level: 'Level 3',
@@ -2623,7 +2623,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Demon King\'s Frame +',
 							DE: 'Dämonenkönig-Rahmen +',
-							FR: 'Demon King\'s Frame +',
+							FR: 'Cadre du roi démon DX',
 							ES: 'Demon King\'s Frame +'
 						},
 						Level: 'Level 4',
@@ -2633,7 +2633,7 @@ function LoadWeaponData() {
 						Name: {
 							EN: 'Burning Frame',
 							DE: 'Feuerrahmen',
-							FR: 'Burning Frame',
+							FR: 'Cadre de feu',
 							ES: 'Burning Frame'
 						},
 						Level: 'Level 4+',
