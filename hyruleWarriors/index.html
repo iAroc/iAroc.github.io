@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="bootstrap/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="yadcf-0.9.3/jquery.dataTables.yadcf.css">
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+		<link rel="stylesheet" type="text/css" href="flags/flags.min.css">
 
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
@@ -23,17 +24,12 @@
 		
 		
 		<script>
-			
-			
 			var DecryptedFile = []
-			DecryptedFile.WeaponObj = {}
 			DecryptedFile.HasMaterialAdded = false
 
-			DecryptedFile.SkillNames = [
-				'Open Slot', 'Str Attack I+', 'Str Attack II+', 'Str Attack III+', 'Str Attack IV+', 'Str Attack V+', 'Str Attack VI+', 'Fire+', 'Water+', 'Lightning+', 'Light+', 'Darkness+', 'VS Legend', 'VS Time', 'VS Twilight', 'VS Skyward', 'VS Sorceress', 'VS Beast', 'VS Dragon', 'VS Undead', 'VS Soldier', 'VS Ganon', 'EXP+', 'Rupees+', 'Materials+', 'Slots+', 'Stars+', 'Hearts+', 'Health+', 'Special+', 'Bombs+', 'Arrows+', 'Boomerang+', 'Hookshot+', 'One-Hit Kill', 'Sturdy Feet', 'Regen', 'Defenseless', 'No Healing', 'Adversity', 'Compatriot', 'Evil\'s Bane', 'Legendary', 'Sp. Attack+', 'Fin. Blow+', 'Reg. Attack+', 'Heart-strong', 'Focus Spirit+', 'Hasty Attacks', 'Food+', 'Hammer+', 'VS Sea', 'VS Termina','Exorcism','Heart Power']
 			
 			var SaveData = {
-				Lang: 'EN',
+				Lang: LoadLang(),
 				Weapons: LoadWeaponData(),
 				WeaponObj: {},
 				SkillNames: LoadSkillNames(),
@@ -43,8 +39,24 @@
 				Characters: LoadCharacters(),
 				CharacterObj: {},
 			}
+			
+			function LoadLang() {
+				var savedLang = localStorage.getItem('EditorLanguage');
+				if(savedLang == null) {
+					localStorage.setItem('EditorLanguage','EN');
+					savedLang = 'EN'
+				}
+				setTimeout(function() {
+					$('#Lang_' + savedLang).css('display','none');
+				});
+				return savedLang
+			}
+			
+			function SetLang(newLang) {
+				localStorage.setItem('EditorLanguage',newLang);
+				location.reload();
+			}
 						
-			DecryptedFile.SkillNames[255] = 'No Slot'
 			DecryptedFile.LoadedCharacterOffset = 0x0
 			DecryptedFile.Badges = {
 				attack: [ 
@@ -107,116 +119,6 @@
 					[0x7,32]				
 				]
 			};
-			DecryptedFile.Material = {
-				Bronze: [
-					[0,'Metal Plate'],
-					[1,'Monster Tooth'],
-					[2,'Old Rag'],
-					[3,'Soldier\'s Uniform'],
-					[4,'Rock'],
-					[5,'Aeralfos Leather'],
-					[6,'Fiery Aeralfos Leather'],
-					[7,'Gibdo Bandage'],
-					[8,'ReDead Bandage'],
-					[9,'Lizalfos Scale'],
-					[10,'Dinolfos Fang'],
-					[11,'Moblin Flank'],
-					[12,'Shield-Moblin Helmet'],
-					[13,'Piece of Darknut Armor'],
-					[14,'Stalmaster Wrist Bone'],
-					[15,'Big Poe Necklace'],
-					[16,'Essence of Icy Big Poe'],
-					[17,'Hylian Captain Gauntlet'],
-					[18,'Goron Armor Breastplate'],
-					[77,'Big Blin Hide'],
-					[78,'Stone Blin Buckler'],
-					[79,'Monster Horn']
-				],
-				Silver: [
-					[19,'Ganon\'s Mane'],
-					[20,'King Dodongo\'s Claws'],
-					[21,'Gohma\'s Acid'],
-					[22,'Manhandla\'s Toxic Dust'],
-					[23,'Argorok\'s Embers'],
-					[24,'The Imprisoned\'s Scales'],
-					[25,'Cia\'s Bracelet'],
-					[26,'Volga\'s Helmet'],
-					[27,'Wizzro\'s Robe'],
-					[28,'Link\'s Boots'],
-					[29,'Lana\'s Hair Clip'],
-					[30,'Zelda\'s Brooch'],
-					[31,'Impa\'s Hair Band'],
-					[32,'Ganondorf\'s Gauntlet'],
-					[33,'Sheik\'s Kunai'],
-					[34,'Darunia\'s Spikes'],
-					[35,'Ruto\'s Earrings'],
-					[36,'Agitha\'s Basket'],
-					[37,'Midna\'s Hair'],
-					[38,'Fi\'s Heels'],
-					[39,'Ghirahim\'s Sash'],
-					[40,'Zant\'s Magic Gem'],
-					[41,'Round Aeralfos Shield'],
-					[42,'Fiery Aeralfos Wing'],
-					[43,'Heavy Gibdo Sword'],
-					[44,'ReDead Knight Ashes'],
-					[45,'Lizalfos Gauntlet'],
-					[46,'Dinolfos Arm Guard'],
-					[47,'Moblin Spear'],
-					[48,'Metal Moblin Shield'],
-					[49,'Large Darknut Sword'],
-					[50,'Stalmaster\'s Skull'],
-					[51,'Big Poe\'s Lantern'],
-					[52,'Icy Big Poe\'s Talisman'],
-					[53,'Holy Hylian Shield'],
-					[54,'Thick Goron Helmet'],
-					[80,'Big Blin Club'],
-					[81,'Stone Blin Helmet'],
-					[82,'Helmarcc Plume'],
-					[83,'Panthom Ganon\'s Cape'],
-					[84,'Twili Midna\'s Hairpin'],
-					[85,'Young Link\s Belzz'],
-					[86,'Tingle\s Map'],
-					[87,'Linke\s Boots'],
-					[88,'Skull Kid\'s Hat'],
-					[89,'Pirate\'s Charm'],
-					[90,'Tetra\'s Sandals'],
-					[91,'King Daphnes\'s Robe']
-				],
-				Gold: [
-					[55,'Ganon\'s Fang'],
-					[56,'King Dodongo\'s Crystal'],
-					[57,'Gohma\'s Lens'],
-					[58,'Manhandla\'s Sapling'],
-					[59,'Argorok\'s Stone'],
-					[60,'The Imprisoned\'s Pillar'],
-					[61,'Cia\'s Staff'],
-					[62,'Volga\'s Dragon Spear'],
-					[63,'Wizzro\'s Ring'],
-					[64,'Link\'s Scarf'],
-					[65,'Lana\'s Cloak'],
-					[66,'Zelda\'s Tiara'],
-					[67,'Impa\'s Breastplate'],
-					[68,'Ganondorf\'s Jewel'],
-					[69,'Sheik\'s Turban'],
-					[70,'Darunia\'s Bracelet'],
-					[71,'Ruto\'s Scale'],
-					[72,'Agitha\'s Pendant'],
-					[73,'Midna\'s Fused Shadow'],
-					[74,'Fi\'s Crystal'],
-					[75,'Ghirahim\'s Cape'],
-					[76,'Zant\'s Helmet'],
-					[92,'Helmaroc King\'s Mask'],
-					[93,'Phantom Ganon\'s Sword'],
-					[94,'Twili Midna\'s Robe'],
-					[95,'Keaton Mask'],
-					[96,'Tingle\'s Watch'],
-					[97,'Linkle\'s Compass'],
-					[98,'Majora\'s Mask'],
-					[99,'Island Outfit'],
-					[100,'Tetra\'s Bandana'],
-					[101,'King Daphnes\'s Crown'],
-				]
-			}
 
 			function handleFileSelect() {               
 				if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
@@ -897,7 +799,7 @@
 			}
 			
 			function MaxoutWeapon() {
-				$('#WeaponEditAttack').val(600)
+				$('#WeaponEditAttack').val(500)
 				$('#WeaponEditStars').val(5)
 				$('#WeaponEditSkill_1').val(48)
 				$('#WeaponEditSkill_2').val(34)
@@ -941,7 +843,7 @@
 	<body>
 		<div class="container text-center" id="main">
 			<div class="row">
-				<div class="col-sm-12 col-md-6" style="margin-left: auto;margin-right: auto;">
+				<div style="margin-left: auto;margin-right: auto;width:50%">
 					<br>
 					<div class="panel panel-primary">
 						<div class="panel-heading">
@@ -957,10 +859,16 @@
 									<input type="submit" class="btn btn-primary" value="Save" style="width:100px;margin:auto;" name="go" onclick='DownloadFile();'>
 								</div>
 							</div>
+							<div>
+								<a href="#"><img src="flags/blank.gif" id="Lang_DE" class="flag flag-de" onclick="SetLang('DE');"/></a>
+								<a href="#"><img src="flags/blank.gif" id="Lang_EN" class="flag flag-us" onclick="SetLang('EN');"/></a>
+								<a href="#"><img src="flags/blank.gif" id="Lang_FR" class="flag flag-fr" onclick="SetLang('FR');"/></a>
+								<a href="#"><img src="flags/blank.gif" id="Lang_ES" class="flag flag-es" onclick="SetLang('ES');"/></a>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-12 col-md-6" style="margin-left: auto;margin-right: auto;">
+				<div class="col-sm-12 col-md-6" style="margin-left: auto;margin-right: auto;display:none;">
 					<br>
 					<div class="panel panel-primary" style="height: 146px;">
 						<div class="panel-body" style="padding: 0px;text-align: left; padding-left: 5px;">
