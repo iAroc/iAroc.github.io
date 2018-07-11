@@ -245,7 +245,7 @@
 					}
 					NewMaterial += '<div>'
 					NewMaterial += '<span style="margin-left: 15px;line-height: 34px;">' + SaveData.Material[rarity][i].Name[SaveData.Lang] + '</span>'
-					NewMaterial += '<input value="' + currentValue + '" type="text" id="Material_' + rarity + '_' + i + '" class="form-control" style="display: inline-block;width: 30%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),999,true,\'' + rarity + '\');" onkeyup="VerifyInput($(this),999,true,\'' + rarity + '\');">'
+					NewMaterial += '<input value="' + currentValue + '" type="text" id="Material_' + rarity + '_' + i + '" class="form-control" style="display: inline-block;width: 30%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),999,1,\'' + rarity + '\');" onkeyup="VerifyInput($(this),999,1,\'' + rarity + '\');">'
 					NewMaterial += '</div>'
 					NewMaterial += '</div>'
 					
@@ -523,13 +523,18 @@
 
 			//------------ Misc Stuff
 	
-			function VerifyInput(input, maxValue, isMaterial = false, rarity = 0) {
+			function VerifyInput(input, maxValue, ExtraType = 0, rarity = 0) {
 				var newValue = input.val().replace(/\D/g,'');
+				if(ExtraType == 2) { // multipler
+					var StarBoost = ($('#WeaponEditStars').val() * 10)
+					var currentPercent = StarBoost + 100
+					maxValue = Math.floor(maxValue / currentPercent * 100)
+				}
 				if(newValue > maxValue) {
 					newValue = maxValue
 				}
 				input.val(newValue)
-				if (isMaterial){
+				if (ExtraType == 1){
 					if ($('#Material_Bulk_Edit_' + rarity).is(':checked')) {
 						for(let i = 0;i < SaveData.Material[rarity].length; i++){
 							$('#Material_' + rarity + '_' + i).val(newValue);
@@ -887,6 +892,7 @@
 					<li class="active"><a data-toggle="tab" href="#GeneralEdit">General & Character Edit</a></li>
 					<li><a data-toggle="tab" href="#MaterialEdit">Material Edit</a></li>
 				    <li><a data-toggle="tab" href="#WeaponEdit" onclick="DrawDataTable()">Weapon Edit</a></li>
+				    <!--<li><a data-toggle="tab" href="#AdventureMode">Adventure Mode</a></li>-->
 				</ul>
 				<br>
 				<div class="tab-content">
@@ -990,6 +996,36 @@
 									<tbody>
 									</tbody>
 								</table>
+							</div>
+						</div>
+					</div>
+					<div id="AdventureMode" class="tab-pane fade in">
+						<div class="panel panel-primary" style="width: 100%;display: inline-block;">
+							<div class="panel-heading">
+								<h3 class="panel-title">Adventure-Mode
+								</h3>
+							</div>
+							<div class="panel-body" id="AdventureMode_Body">
+								<ul class="nav nav-pills nav-stacked" style="width:190px;">
+									<li class="active"><a data-toggle="tab" href="#AdventureMap">Adventure Map</a></li>
+									<li><a data-toggle="tab" href="#GreatSeaMap">Great Sea Map</a></li>
+									<li><a data-toggle="tab" href="#MasterQuestMap">Master Quest Map</a></li>
+									<li><a data-toggle="tab" href="#MasterWindWakerMap">Master Wind Waker Map</a></li>
+								</ul>
+								<div class="tab-content">
+									<div id="AdventureMap" class="tab-pane fade in active">
+										AdventureMap, coming soon...
+									</div>
+									<div id="GreatSeaMap" class="tab-pane fade in active">
+										GreatSeaMap, coming soon...
+									</div>
+									<div id="MasterQuestMap" class="tab-pane fade in active">
+										MasterQuestMap, coming soon...
+									</div>
+									<div id="MasterWindWakerMap" class="tab-pane fade in active">
+										MasterWindWakerMap, coming soon...
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -1224,7 +1260,7 @@
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditName">Attack</label>
-						<input type="text" class="form-control" id="WeaponEditAttack" style="width: 50%; display: inline-block;margin-left: 236px;" onchange="VerifyInput($(this),999);UpdateWeaponObj();" onkeyup="VerifyInput($(this),999)">
+						<input type="text" class="form-control" id="WeaponEditAttack" style="width: 50%; display: inline-block;margin-left: 236px;" onchange="VerifyInput($(this),999,2);UpdateWeaponObj();" onkeyup="VerifyInput($(this),999,2)">
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditName">Stars</label>
