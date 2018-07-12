@@ -1006,31 +1006,31 @@
 								</h3>
 							</div>
 							<div class="panel-body" id="AdventureMode_Body">
-								<ul class="nav nav-pills nav-stacked" style="width:190px;">
+								<ul class="nav nav-pills nav-stacked" style="width:190px;display:inline-block">
 									<li class="active"><a data-toggle="tab" href="#AdventureMap">Adventure Map</a></li>
 									<li><a data-toggle="tab" href="#GreatSeaMap">Great Sea Map</a></li>
 									<li><a data-toggle="tab" href="#MasterQuestMap">Master Quest Map</a></li>
 									<li><a data-toggle="tab" href="#MasterWindWakerMap">Master Wind Waker Map</a></li>
 								</ul>
-								<div class="tab-content">
+								<div class="tab-content" style="display:inline-block;vertical-align: top;">
 									<div id="AdventureMap" class="tab-pane fade in active">
 										AdventureMap, coming soon...
 									</div>
-									<div id="GreatSeaMap" class="tab-pane fade in active">
+									<div id="GreatSeaMap" class="tab-pane fade in">
 										GreatSeaMap, coming soon...
 									</div>
-									<div id="MasterQuestMap" class="tab-pane fade in active">
+									<div id="MasterQuestMap" class="tab-pane fade in">
 										MasterQuestMap, coming soon...
 									</div>
-									<div id="MasterWindWakerMap" class="tab-pane fade in active">
+									<div id="MasterWindWakerMap" class="tab-pane fade in">
 										MasterWindWakerMap, coming soon...
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
 			</div>
-		</div>
 		</div>
 		<div class="modal" tabindex="-1" role="dialog" id="Badges_Modal">
 			<div class="modal-dialog" role="document">
@@ -1280,7 +1280,7 @@
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_1">
 						<label for="WeaponEditLocked_1" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_1" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_1" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></input>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_2">Skill 2</label>
@@ -1289,7 +1289,7 @@
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_2">
 						<label for="WeaponEditLocked_2" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_2" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_2" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></input>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_3">Skill 3</label>
@@ -1298,7 +1298,7 @@
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_3">
 						<label for="WeaponEditLocked_3" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_3" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_3" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></input>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_4">Skill 4</label>
@@ -1307,7 +1307,7 @@
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_4">
 						<label for="WeaponEditLocked_4" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_4" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_4" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></input>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_5">Skill 5</label>
@@ -1316,7 +1316,7 @@
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_5">
 						<label for="WeaponEditLocked_5" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_5" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_5" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></input>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_6">Skill 6</label>
@@ -1325,7 +1325,7 @@
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_6">
 						<label for="WeaponEditLocked_6" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_6" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_6" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></input>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_7">Skill 7</label>
@@ -1334,7 +1334,7 @@
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_7">
 						<label for="WeaponEditLocked_7" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_7" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_7" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></input>
 					</div>
 					<div class="form-group">
 						<label for="WeaponEditSkill_8">Skill 8</label>
@@ -1343,7 +1343,7 @@
 					</div>
 					<div class="form-group" style="display:none;" id="DivWeaponEditLocked_8">
 						<label for="WeaponEditLocked_8" style="margin-left: 168px">Kills to Unlock:</label>
-						<input type="text" value="0" class="form-control" id="WeaponEditLocked_8" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></select>
+						<input type="text" value="0" class="form-control" id="WeaponEditLocked_8" style="width: 50%; display: inline-block;margin-left: 10px;" onchange="VerifyInput($(this),65535);UpdateWeaponObj();" onkeyup="VerifyInput($(this),65535);UpdateWeaponObj();"></input>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -1351,7 +1351,7 @@
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>
-		  </div>
+		</div>
 		</div>
 	</body>
 </html>
