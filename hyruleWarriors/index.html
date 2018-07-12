@@ -816,7 +816,35 @@
 				$('#WeaponEditSkill_8').val(44)
 				UpdateWeaponObj()
 			}
-						
+
+			function LoadTile(MapName, TileNr) {
+				for(var i = 0; i < 128; i++) {
+					$('#AventureMap_' + i).css('outline','none')
+				}
+				$('#AventureMap_' + TileNr).css('outline','1px solid blue')
+				var baseOffset = SaveData.Offsets.Maps[MapName];
+				var LevelIsUnlocked = baseOffset + 0x4 + (TileNr * 4)
+				console.log('Tile: ' + TileNr + ' ' + SaveData.saveGame[LevelIsUnlocked])
+				
+				var TileHtml = '<div class="form-group">'
+				TileHtml += '<label for="TileEditLocked">Tile Locked Status</label>'
+				TileHtml += '<select class="form-control" id="TileEditLocked" style="width: 50%; display: inline-block;margin-left: 235px;" onchange="UpdateTile(\'' + MapName + '\', ' + TileNr + ');">'
+				TileHtml += '<option value="0">Locked</option>'
+				TileHtml += '<option value="1" disabled>Beaten</option>'
+				TileHtml += '<option value="2">Unlocked</option>'
+				TileHtml += '<option value="3">Beaten and Unlocked</option>'
+				TileHtml += '</select>'
+				TileHtml += '</div>'
+				$('#AventureMapTiletEdit').html(TileHtml)
+				$('#TileEditLocked').val(SaveData.saveGame[LevelIsUnlocked])
+			}
+			
+			function UpdateTile(MapName, TileNr) {
+				var baseOffset = SaveData.Offsets.Maps[MapName];
+				var LevelIsUnlocked = baseOffset + 0x4 + (TileNr * 4)
+				SaveData.saveGame[LevelIsUnlocked] = $('#TileEditLocked').val()				
+			}
+			
 			(function($){
 				$.fn.disableSelection = function() {
 					return this
@@ -892,7 +920,7 @@
 					<li class="active"><a data-toggle="tab" href="#GeneralEdit">General & Character Edit</a></li>
 					<li><a data-toggle="tab" href="#MaterialEdit">Material Edit</a></li>
 				    <li><a data-toggle="tab" href="#WeaponEdit" onclick="DrawDataTable()">Weapon Edit</a></li>
-				    <!--<li><a data-toggle="tab" href="#AdventureMode">Adventure Mode</a></li>-->
+				    <li><a data-toggle="tab" href="#AdventureMode">Adventure Mode</a></li>
 				</ul>
 				<br>
 				<div class="tab-content">
@@ -1008,22 +1036,42 @@
 							<div class="panel-body" id="AdventureMode_Body">
 								<ul class="nav nav-pills nav-stacked" style="width:190px;display:inline-block">
 									<li class="active"><a data-toggle="tab" href="#AdventureMap">Adventure Map</a></li>
-									<li><a data-toggle="tab" href="#GreatSeaMap">Great Sea Map</a></li>
-									<li><a data-toggle="tab" href="#MasterQuestMap">Master Quest Map</a></li>
-									<li><a data-toggle="tab" href="#MasterWindWakerMap">Master Wind Waker Map</a></li>
+									<li><a data-toggle="tab" href="#ComingSoon">Great Sea Map</a></li>
+									<li><a data-toggle="tab" href="#ComingSoon">Master Quest Map</a></li>
+									<li><a data-toggle="tab" href="#ComingSoon">Master Wind Waker Map</a></li>
+									<li><a data-toggle="tab" href="#ComingSoon">Twilight Map</a></li>
+									<li><a data-toggle="tab" href="#ComingSoon">Termina Map</a></li>
+									<li><a data-toggle="tab" href="#ComingSoon">Koholint Island Map</a></li>
+									<li><a data-toggle="tab" href="#ComingSoon">Grand Travels Map</a></li>
+									<li><a data-toggle="tab" href="#ComingSoon">Lorule Map</a></li>
+									<li><a data-toggle="tab" href="#ComingSoon">Rewards Map</a></li>
 								</ul>
 								<div class="tab-content" style="display:inline-block;vertical-align: top;">
 									<div id="AdventureMap" class="tab-pane fade in active">
-										AdventureMap, coming soon...
+										<div id="AdventureMapClick" style="position:relative;display:inline-block;">
+											<img src="images/maps/AdventureMap.png" style="width: 1300px;height: 450px;" />
+											<script>
+												var currentTile = 0
+												for(let y = 0; y < 8; y++) {
+													for(let x = 0; x < 16; x++) {
+														$('#AdventureMapClick').append('<div id="AventureMap_' + ((y*16) + x) + '" onclick="LoadTile(\'AdventureMap\','+ ((y*16) + x) +');" style="position: absolute;top:' + (y * 56.25) + 'px;left:' + (x * 81.25) + 'px;width: 80px;height: 55px;"></div>');
+													}
+												}
+											</script>
+										</div>
+										<div class="panel panel-primary" style="vertical-align: top;display:inline-block;width: 750px;">
+											<div class="panel-heading">
+												<h3 class="panel-title">Tiles Edit</h3>
+											</div>
+											<div class="panel-body" id="AventureMapTiletEdit">
+												<div>
+													<span style="margin-left: 15px;line-height: 34px;">Click on a Tile to Edit it</span>
+												</div>
+											</div>
+										</div>
 									</div>
-									<div id="GreatSeaMap" class="tab-pane fade in">
-										GreatSeaMap, coming soon...
-									</div>
-									<div id="MasterQuestMap" class="tab-pane fade in">
-										MasterQuestMap, coming soon...
-									</div>
-									<div id="MasterWindWakerMap" class="tab-pane fade in">
-										MasterWindWakerMap, coming soon...
+									<div id="ComingSoon" class="tab-pane fade in">
+										Coming soon...
 									</div>
 								</div>
 							</div>
