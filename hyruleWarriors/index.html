@@ -21,6 +21,7 @@
 		<script src="SkillNames.js"></script>
 		<script src="Characters.js"></script>
 		<script src="Offsets.js"></script>
+		<script src="Items.js"></script>
 		
 		
 		<script>
@@ -34,6 +35,7 @@
 				WeaponObj: {},
 				SkillNames: LoadSkillNames(),
 				Offsets: LoadOffsets(),
+				Items: LoadItems(),
 				Material: LoadMaterial(),
 				MaterialObj: {},
 				Characters: LoadCharacters(),
@@ -822,13 +824,13 @@
 					$('#AventureMap_' + i).css('outline','none')
 				}
 				$('#AventureMap_' + TileNr).css('outline','1px solid blue')
-				var baseOffset = SaveData.Offsets.Maps[MapName];
+				var baseOffset = SaveData.Offsets.Maps[MapName].Base;
 				var LevelIsUnlocked = baseOffset + 0x4 + (TileNr * 4)
-				console.log('Tile: ' + TileNr + ' ' + SaveData.saveGame[LevelIsUnlocked])
+				//console.log('Tile: ' + TileNr + ' ' + SaveData.saveGame[LevelIsUnlocked])
 				
 				var TileHtml = '<div class="form-group">'
-				TileHtml += '<label for="TileEditLocked">Tile Locked Status</label>'
-				TileHtml += '<select class="form-control" id="TileEditLocked" style="width: 50%; display: inline-block;margin-left: 235px;" onchange="UpdateTile(\'' + MapName + '\', ' + TileNr + ');">'
+				TileHtml += '<label for="TileEditLocked">Locked: </label>'
+				TileHtml += '<select class="form-control" id="TileEditLocked" style="width: 50%; display: inline-block;margin-left: 65px;" onchange="UpdateTile(\'' + MapName + '\', ' + TileNr + ');">'
 				TileHtml += '<option value="0">Locked</option>'
 				TileHtml += '<option value="1" disabled>Beaten</option>'
 				TileHtml += '<option value="2">Unlocked</option>'
@@ -840,7 +842,7 @@
 			}
 			
 			function UpdateTile(MapName, TileNr) {
-				var baseOffset = SaveData.Offsets.Maps[MapName];
+				var baseOffset = SaveData.Offsets.Maps[MapName].Base;
 				var LevelIsUnlocked = baseOffset + 0x4 + (TileNr * 4)
 				SaveData.saveGame[LevelIsUnlocked] = $('#TileEditLocked').val()				
 			}
@@ -866,6 +868,92 @@
 				$('#Badges_Modal').disableSelection()
 				$('#Weapon_Modal').disableSelection()
 			});
+			
+			function CalcAdventureMap() {
+				if($('#AdventureMapClick').width() == 0) {
+					setTimeout(CalcAdventureMap,10)
+				} else {
+					var OneTileWidth = $('#AdventureMapClick').width()/16
+					var OneTileHeight = $('#AdventureMapClick').height()/8
+					for(let y = 0; y < 8; y++) {
+						for(let x = 0; x < 16; x++) {
+							$('#AdventureMapClick').append('<div id="AventureMap_' + ((y*16) + x) + '" onclick="LoadTile(\'AdventureMap\','+ ((y*16) + x) +');" style="position: absolute;top:' + (y * OneTileHeight) + 'px;left:' + (x * OneTileWidth) + 'px;width: ' + OneTileWidth + 'px;height: ' + OneTileHeight + 'px;"></div>');
+						}
+					}
+				}
+				
+				UpdateBulkEditButtons('AdventureMap');
+			}
+			
+			function UpdateBulkEditButtons(MapName) {
+				var DisableButton = true
+				for (var i = 0; i < 8; i++) {
+					if (SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.NoFog + i] != 0x1) {
+						DisableButton = false
+					}
+				}
+				$('#' + MapName + 'RemoveFog').prop('disabled',DisableButton)
+				
+				var DisableButton = true
+				for(var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i ++) {
+					var TileOffset = SaveData.Offsets.Maps.AdventureMap.Unlocked + (i * 4)
+					if(SaveData.saveGame[TileOffset] < 2) {
+						DisableButton = false
+					}
+				}
+				$('#' + MapName + 'UnlockTiles').prop('disabled',DisableButton)
+				
+				var DisableButton = true
+				for (var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i++) {
+					if(SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.Searched + i] != 0x1) {
+						DisableButton = false
+					}
+				}
+				$('#' + MapName + 'SearchTiles').prop('disabled',DisableButton)		
+				
+				var DisableButton = true
+				for (var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i++) {
+					if(SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.EnemiesHidden + i] != 0x1) {
+						DisableButton = false
+					}
+				}
+				$('#' + MapName + 'UnhideEnemies').prop('disabled',DisableButton)		
+			}
+			
+			function RemoveFogFromMap(MapName) {
+				for (var i = 0; i < 8; i++) {
+					SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.NoFog + i] = 0x1
+				}
+				$('#' + MapName + 'RemoveFog').prop('disabled',true)
+			}
+			
+			function UnlockTiles(MapName) {
+				for(var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i ++) {
+					var TileOffset = SaveData.Offsets.Maps.AdventureMap.Unlocked + (i * 4)
+					if(SaveData.saveGame[TileOffset] < 2) {
+						SaveData.saveGame[TileOffset + 0] = 0x2
+						SaveData.saveGame[TileOffset + 1] = 0x0
+						SaveData.saveGame[TileOffset + 2] = 0x0
+						SaveData.saveGame[TileOffset + 3] = 0x0
+					}
+				}
+				$('#' + MapName + 'UnlockTiles').prop('disabled',true)
+			}
+
+			function SearchTiles(MapName) {
+				for (var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i++) {
+					SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.Searched + i] = 0x1
+				}
+				$('#' + MapName + 'SearchTiles').prop('disabled',true)
+			}
+			
+			function UnhideEnemies(MapName) {
+				for (var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i++) {
+					SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.EnemiesHidden + i] = 0x1
+				}
+				$('#' + MapName + 'UnhideEnemies').prop('disabled',true)
+			}
+			
 		</script>
 		<style>
 			html {
@@ -920,7 +1008,7 @@
 					<li class="active"><a data-toggle="tab" href="#GeneralEdit">General & Character Edit</a></li>
 					<li><a data-toggle="tab" href="#MaterialEdit">Material Edit</a></li>
 				    <li><a data-toggle="tab" href="#WeaponEdit" onclick="DrawDataTable()">Weapon Edit</a></li>
-				    <li><a data-toggle="tab" href="#AdventureMode">Adventure Mode</a></li>
+				    <li><a data-toggle="tab" href="#AdventureMode" onclick="CalcAdventureMap();">Adventure Mode</a></li>
 				</ul>
 				<br>
 				<div class="tab-content">
@@ -1035,7 +1123,7 @@
 							</div>
 							<div class="panel-body" id="AdventureMode_Body">
 								<ul class="nav nav-pills nav-stacked" style="width:190px;display:inline-block">
-									<li class="active"><a data-toggle="tab" href="#AdventureMap">Adventure Map</a></li>
+									<li class="active"><a data-toggle="tab" href="#AdventureMap" onclick="CalcAdventureMap();">Adventure Map</a></li>
 									<li><a data-toggle="tab" href="#ComingSoon">Great Sea Map</a></li>
 									<li><a data-toggle="tab" href="#ComingSoon">Master Quest Map</a></li>
 									<li><a data-toggle="tab" href="#ComingSoon">Master Wind Waker Map</a></li>
@@ -1046,26 +1134,33 @@
 									<li><a data-toggle="tab" href="#ComingSoon">Lorule Map</a></li>
 									<li><a data-toggle="tab" href="#ComingSoon">Rewards Map</a></li>
 								</ul>
-								<div class="tab-content" style="display:inline-block;vertical-align: top;">
+								<div class="tab-content" style="display:inline-block;vertical-align: top;width: calc(100% - 200px);">
 									<div id="AdventureMap" class="tab-pane fade in active">
-										<div id="AdventureMapClick" style="position:relative;display:inline-block;">
-											<img src="images/maps/AdventureMap.png" style="width: 1300px;height: 450px;" />
+										<div id="AdventureMapClick" style="position:relative;display:inline-block;width: calc(100% - 275px);">
+											<img src="images/maps/AdventureMap.png" style="width: 100%;" />
 											<script>
-												var currentTile = 0
-												for(let y = 0; y < 8; y++) {
-													for(let x = 0; x < 16; x++) {
-														$('#AdventureMapClick').append('<div id="AventureMap_' + ((y*16) + x) + '" onclick="LoadTile(\'AdventureMap\','+ ((y*16) + x) +');" style="position: absolute;top:' + (y * 56.25) + 'px;left:' + (x * 81.25) + 'px;width: 80px;height: 55px;"></div>');
-													}
-												}
 											</script>
 										</div>
-										<div class="panel panel-primary" style="vertical-align: top;display:inline-block;width: 750px;">
-											<div class="panel-heading">
-												<h3 class="panel-title">Tiles Edit</h3>
+										<div style="vertical-align: top;display:inline-block;width: 270px;">
+											<div class="panel panel-primary">
+												<div class="panel-heading">
+													<h3 class="panel-title">Bulk Edit</h3>
+												</div>
+												<div class="panel-body" id="AventureMapBulkEdit">
+													<button type="button" class="btn btn-warning" style="width:calc(100% - 30px);margin-left:15px;" id="AdventureMapRemoveFog" onclick="RemoveFogFromMap('AdventureMap');">Remove Fog from Map</button>
+													<button type="button" class="btn btn-warning" style="width:calc(100% - 30px);margin-left:15px;margin-top:10px;" id="AdventureMapUnlockTiles" onclick="UnlockTiles('AdventureMap');">Unlock all Tiles</button>
+													<button type="button" class="btn btn-warning" style="width:calc(100% - 30px);margin-left:15px;margin-top:10px;" id="AdventureMapSearchTiles" onclick="SearchTiles('AdventureMap');">Use Search on every Tile</button>
+													<button type="button" class="btn btn-warning" style="width:calc(100% - 30px);margin-left:15px;margin-top:10px;" id="AdventureMapUnhideEnemies" onclick="UnhideEnemies('AdventureMap');">Unhide all Enemies</button>
+												</div>
 											</div>
-											<div class="panel-body" id="AventureMapTiletEdit">
-												<div>
-													<span style="margin-left: 15px;line-height: 34px;">Click on a Tile to Edit it</span>
+											<div class="panel panel-primary">
+												<div class="panel-heading">
+													<h3 class="panel-title">Tiles Edit</h3>
+												</div>
+												<div class="panel-body" id="AventureMapTiletEdit">
+													<div>
+														<span style="margin-left: 15px;line-height: 34px;">Click on a Tile to Edit it</span>
+													</div>
 												</div>
 											</div>
 										</div>
