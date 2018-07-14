@@ -888,15 +888,15 @@
 			function UpdateBulkEditButtons(MapName) {
 				var DisableButton = true
 				for (var i = 0; i < 8; i++) {
-					if (SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.NoFog + i] != 0x1) {
+					if (SaveData.saveGame[SaveData.Offsets.Maps[MapName].NoFog + i] != 0x1) {
 						DisableButton = false
 					}
 				}
 				$('#' + MapName + 'RemoveFog').prop('disabled',DisableButton)
 				
 				var DisableButton = true
-				for(var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i ++) {
-					var TileOffset = SaveData.Offsets.Maps.AdventureMap.Unlocked + (i * 4)
+				for(var i = 0; i < SaveData.Offsets.Maps[MapName].LevelCount; i ++) {
+					var TileOffset = SaveData.Offsets.Maps[MapName].Unlocked + (i * 4)
 					if(SaveData.saveGame[TileOffset] < 2) {
 						DisableButton = false
 					}
@@ -904,32 +904,57 @@
 				$('#' + MapName + 'UnlockTiles').prop('disabled',DisableButton)
 				
 				var DisableButton = true
-				for (var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i++) {
-					if(SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.Searched + i] != 0x1) {
+				for (var i = 0; i < SaveData.Offsets.Maps[MapName].LevelCount; i++) {
+					if(SaveData.saveGame[SaveData.Offsets.Maps[MapName].Searched + i] != 0x1) {
 						DisableButton = false
 					}
 				}
 				$('#' + MapName + 'SearchTiles').prop('disabled',DisableButton)		
 				
 				var DisableButton = true
-				for (var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i++) {
-					if(SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.EnemiesHidden + i] != 0x1) {
+				for (var i = 0; i < SaveData.Offsets.Maps[MapName].LevelCount; i++) {
+					if(SaveData.saveGame[SaveData.Offsets.Maps[MapName].EnemiesHidden + i] != 0x1) {
 						DisableButton = false
 					}
 				}
-				$('#' + MapName + 'UnhideEnemies').prop('disabled',DisableButton)		
+				$('#' + MapName + 'UnhideEnemies').prop('disabled',DisableButton)
+				
+				
+				var DisableButton = true
+				for(var i = 0; i < SaveData.Offsets.Maps[MapName].LevelCount; i ++) {
+					var TileOffset = SaveData.Offsets.Maps[MapName].Unlocked + (i * 4)
+					if(SaveData.saveGame[TileOffset + 0] != 0x3) {
+						DisableButton = false
+					}
+					
+					var TileOffset = SaveData.Offsets.Maps[MapName].Beaten + i
+					if(SaveData.saveGame[TileOffset + 0] != 0xE0) {
+						DisableButton = false
+					}
+
+					if(SaveData.saveGame[SaveData.Offsets.Maps[MapName].EnemiesHidden + i] != 0x1) {
+						DisableButton = false
+					}
+
+					var TileOffset = SaveData.Offsets.Maps[MapName].Medal + i
+					if(SaveData.saveGame[TileOffset + 0] != 0x3) {
+						DisableButton = false
+					}
+				}
+				$('#' + MapName + 'RankA').prop('disabled',DisableButton)
+				
 			}
 			
 			function RemoveFogFromMap(MapName) {
 				for (var i = 0; i < 8; i++) {
-					SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.NoFog + i] = 0x1
+					SaveData.saveGame[SaveData.Offsets.Maps[MapName].NoFog + i] = 0x1
 				}
 				$('#' + MapName + 'RemoveFog').prop('disabled',true)
 			}
 			
 			function UnlockTiles(MapName) {
-				for(var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i ++) {
-					var TileOffset = SaveData.Offsets.Maps.AdventureMap.Unlocked + (i * 4)
+				for(var i = 0; i < SaveData.Offsets.Maps[MapName].LevelCount; i ++) {
+					var TileOffset = SaveData.Offsets.Maps[MapName].Unlocked + (i * 4)
 					if(SaveData.saveGame[TileOffset] < 2) {
 						SaveData.saveGame[TileOffset + 0] = 0x2
 						SaveData.saveGame[TileOffset + 1] = 0x0
@@ -941,17 +966,54 @@
 			}
 
 			function SearchTiles(MapName) {
-				for (var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i++) {
-					SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.Searched + i] = 0x1
+				for (var i = 0; i < SaveData.Offsets.Maps[MapName].LevelCount; i++) {
+					SaveData.saveGame[SaveData.Offsets.Maps[MapName].Searched + i] = 0x1
 				}
 				$('#' + MapName + 'SearchTiles').prop('disabled',true)
 			}
 			
 			function UnhideEnemies(MapName) {
-				for (var i = 0; i < SaveData.Offsets.Maps.AdventureMap.LevelCount; i++) {
-					SaveData.saveGame[SaveData.Offsets.Maps.AdventureMap.EnemiesHidden + i] = 0x1
+				for (var i = 0; i < SaveData.Offsets.Maps[MapName].LevelCount; i++) {
+					SaveData.saveGame[SaveData.Offsets.Maps[MapName].EnemiesHidden + i] = 0x1
 				}
 				$('#' + MapName + 'UnhideEnemies').prop('disabled',true)
+			}
+			
+			function RankAOnAllTiles(MapName) {
+				for(var i = 0; i < SaveData.Offsets.Maps[MapName].LevelCount; i ++) {
+					var TileOffset = SaveData.Offsets.Maps[MapName].Unlocked + (i * 4)
+					SaveData.saveGame[TileOffset + 0] = 0x3
+					SaveData.saveGame[TileOffset + 1] = 0x0
+					SaveData.saveGame[TileOffset + 2] = 0x0
+					SaveData.saveGame[TileOffset + 3] = 0x0
+					
+					var TileOffset = SaveData.Offsets.Maps[MapName].Beaten + (i * 8)
+					SaveData.saveGame[TileOffset + 0] = 0xE0
+					SaveData.saveGame[TileOffset + 1] = 0x01
+					SaveData.saveGame[TileOffset + 2] = 0x00
+					SaveData.saveGame[TileOffset + 3] = 0x00
+					SaveData.saveGame[TileOffset + 4] = 0x00
+					SaveData.saveGame[TileOffset + 5] = 0x00
+					SaveData.saveGame[TileOffset + 6] = 0x00
+					SaveData.saveGame[TileOffset + 7] = 0x00
+
+					SaveData.saveGame[SaveData.Offsets.Maps[MapName].EnemiesHidden + i] = 0x1
+
+					var TileOffset = SaveData.Offsets.Maps[MapName].Medal + (i * 4)
+					SaveData.saveGame[TileOffset + 0] = 0x3
+					SaveData.saveGame[TileOffset + 1] = 0x0
+					SaveData.saveGame[TileOffset + 2] = 0x0
+					SaveData.saveGame[TileOffset + 3] = 0x0				
+				}
+				
+				for (var i = 0; i < 8; i++) {
+					SaveData.saveGame[SaveData.Offsets.Maps[MapName].NoFog + i] = 0x1
+				}
+				
+				$('#' + MapName + 'RemoveFog').prop('disabled',true)
+				$('#' + MapName + 'UnlockTiles').prop('disabled',true)
+				$('#' + MapName + 'UnhideEnemies').prop('disabled',true)
+				$('#' + MapName + 'RankA').prop('disabled',true)
 			}
 			
 		</script>
@@ -1151,6 +1213,7 @@
 													<button type="button" class="btn btn-warning" style="width:calc(100% - 30px);margin-left:15px;margin-top:10px;" id="AdventureMapUnlockTiles" onclick="UnlockTiles('AdventureMap');">Unlock all Tiles</button>
 													<button type="button" class="btn btn-warning" style="width:calc(100% - 30px);margin-left:15px;margin-top:10px;" id="AdventureMapSearchTiles" onclick="SearchTiles('AdventureMap');">Use Search on every Tile</button>
 													<button type="button" class="btn btn-warning" style="width:calc(100% - 30px);margin-left:15px;margin-top:10px;" id="AdventureMapUnhideEnemies" onclick="UnhideEnemies('AdventureMap');">Unhide all Enemies</button>
+													<button type="button" class="btn btn-warning" style="width:calc(100% - 30px);margin-left:15px;margin-top:10px;" id="AdventureMapRankA" onclick="RankAOnAllTiles('AdventureMap');">Rank A on all Tiles (=100%)</button>
 												</div>
 											</div>
 											<div class="panel panel-primary">
