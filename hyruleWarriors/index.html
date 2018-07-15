@@ -1081,14 +1081,10 @@
 					SaveData.saveGame[SaveData.Offsets.Maps[MapName].EnemiesHidden + i] = 0x1
 
 					var TileOffset = SaveData.Offsets.Maps[MapName].Medal + (i * 4)
-					/*SaveData.saveGame[TileOffset + 0] = 0x3
+					SaveData.saveGame[TileOffset + 0] = 0x3
 					SaveData.saveGame[TileOffset + 1] = 0x0
 					SaveData.saveGame[TileOffset + 2] = 0x0
-					SaveData.saveGame[TileOffset + 3] = 0x0	*/			
-					SaveData.saveGame[TileOffset + 0] = 0xFF
-					SaveData.saveGame[TileOffset + 1] = 0xFF
-					SaveData.saveGame[TileOffset + 2] = 0xFF
-					SaveData.saveGame[TileOffset + 3] = 0xFF				
+					SaveData.saveGame[TileOffset + 3] = 0x0
 				}
 				
 				for (var i = 0; i < 8; i++) {
