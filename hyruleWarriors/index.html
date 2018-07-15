@@ -241,6 +241,14 @@
 				SaveData.saveGame[startPos+1] = Values[0]
 				SaveData.saveGame[startPos] = Values[1]
 			}
+			
+			function readInt08(startPos) {
+				return SaveData.saveGame[startPos]
+			}
+			
+			function writeInt08(startPos, val) {
+				SaveData.saveGame[startPos] = val
+			}
 
 			//------------ Material Stuff
 			
@@ -277,15 +285,27 @@
 			function CreateCharacterObj(characterID) {
 				SaveData.CharacterObj.ID =			characterID
 				SaveData.CharacterObj.Name =		SaveData.Characters[characterID].Name[SaveData.Lang]
-				SaveData.CharacterObj.Experience =	readInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x12)
-				SaveData.CharacterObj.Level =		SaveData.saveGame[SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x1A] + 1
-				SaveData.CharacterObj.Attack =		readInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x6)
+				SaveData.CharacterObj.Unlocked =	readInt08(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x0A) // 1 Byte
+				SaveData.CharacterObj.Unknown =		readInt08(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x0B) // 1 Byte
+				SaveData.CharacterObj.Attack =		readInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x0C) // 2 Bytes
+				SaveData.CharacterObj.Unknown2 =	readInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x0E) // 2 Bytes
+				SaveData.CharacterObj.Health =		readInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x10) // 2 Bytes // Totally unsure, but it seems to it in some way...
+				SaveData.CharacterObj.Experience =	readInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x12) // 4 Bytes
+				SaveData.CharacterObj.Unknown3 =	readInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x16) // 4 Bytes
+				SaveData.CharacterObj.Level =		readInt08(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x1A) + 1 // 1 Byte
+				SaveData.CharacterObj.HeartContainers =	readInt08(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x1B) // 1 Byte
 			}
 			
 			function UpdateCharacterObj(characterID) {
-				SaveData.CharacterObj.Experience = $('#CharacterEdit_Exp_' + characterID).val()
-				SaveData.CharacterObj.Level = $('#CharacterEdit_Level_' + characterID).val()
+				SaveData.CharacterObj.Unlocked = $('#CharacterEdit_Unlocked_' + characterID).val()
+				SaveData.CharacterObj.Unknown = $('#CharacterEdit_Unknown_' + characterID).val()
 				SaveData.CharacterObj.Attack = $('#CharacterEdit_Attack_' + characterID).val()
+				SaveData.CharacterObj.Unknown2 = $('#CharacterEdit_Unknown2_' + characterID).val()
+				SaveData.CharacterObj.Health = $('#CharacterEdit_Health_' + characterID).val()
+				SaveData.CharacterObj.Experience = $('#CharacterEdit_Exp_' + characterID).val()
+				SaveData.CharacterObj.Unknown3 = $('#CharacterEdit_Unknown3_' + characterID).val()
+				SaveData.CharacterObj.Level = $('#CharacterEdit_Level_' + characterID).val() - 1
+				SaveData.CharacterObj.HeartContainers = $('#CharacterEdit_HeartContainers_' + characterID).val()
 				SaveCurrentProcess()
 			}
 			
@@ -293,14 +313,35 @@
 				var CharacterID = $('#Character_Edit_Select').val()
 				CreateCharacterObj(CharacterID)
 
-				var CharacterEditHTML = "";
+				var CharacterEditHTML = "";			
 				CharacterEditHTML += '<div class="row">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Unlocked</span>'
+				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.Unlocked + '" type="tel" id="CharacterEdit_Unlocked_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),1);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this),1);UpdateCharacterObj(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+				
+				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Unknown</span>'
+				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.Unknown + '" type="tel" id="CharacterEdit_Unknown_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),255);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this),255);UpdateCharacterObj(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+
+				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
 				CharacterEditHTML += '<div>'
 				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Experience</span>'
 				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.Experience + '" type="tel" id="CharacterEdit_Exp_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),12842457);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this),12842457);UpdateCharacterObj(' + CharacterID + ');">'
 				CharacterEditHTML += '</div>'
 				CharacterEditHTML += '</div>'
 				
+				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Unknown2</span>'
+				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.Unknown2 + '" type="tel" id="CharacterEdit_Unknown2_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),65535);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this),65535);UpdateCharacterObj(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+			
 				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
 				CharacterEditHTML += '<div>'
 				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Level</span>'
@@ -312,6 +353,27 @@
 				CharacterEditHTML += '<div>'
 				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Attack</span>'
 				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.Attack + '" type="tel" id="CharacterEdit_Attack_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),9999);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this),9999);UpdateCharacterObj(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+				
+				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Unknown3</span>'
+				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.Unknown3 + '" type="tel" id="CharacterEdit_Unknown3_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),4294967295);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this),4294967295);UpdateCharacterObj(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+
+				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Health</span>'
+				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.Health + '" type="tel" id="CharacterEdit_Health_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),99999);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this),99999);UpdateCharacterObj(' + CharacterID + ');">'
+				CharacterEditHTML += '</div>'
+				CharacterEditHTML += '</div>'
+				
+				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
+				CharacterEditHTML += '<div>'
+				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">HeartContainers</span>'
+				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.HeartContainers + '" type="tel" id="CharacterEdit_HeartContainers_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this),3);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this),3);UpdateCharacterObj(' + CharacterID + ');">'
 				CharacterEditHTML += '</div>'
 				CharacterEditHTML += '</div>'
 				
@@ -578,9 +640,15 @@
 				SaveMaterial('Gold')		
 				
 				//--- Character
-				writeInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset,SaveData.CharacterObj.Experience)
-				SaveData.saveGame[SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset + 0x8] = SaveData.CharacterObj.Level - 1
-				writeInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset - 0x6, SaveData.CharacterObj.Attack)
+				writeInt08(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset + 0x0A,SaveData.CharacterObj.Unlocked) // 1 Byte
+				writeInt08(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset + 0x0B,SaveData.CharacterObj.Unknown) // 1 Byte
+				writeInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset + 0x0C,SaveData.CharacterObj.Attack) // 2 Bytes
+				writeInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset + 0x0E,SaveData.CharacterObj.Unknown2) // 2 Bytes
+				writeInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset + 0x10,SaveData.CharacterObj.Health) // 2 Bytes // Totally unsure, but it seems to it in some way...
+				writeInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset + 0x12,SaveData.CharacterObj.Experience) // 4 Bytes
+				writeInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset + 0x16,SaveData.CharacterObj.Unknown3) // 4 Bytes
+				writeInt08(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset + 0x1A,SaveData.CharacterObj.Level) // 1 Byte
+				writeInt08(SaveData.Offsets.Characters.Base + SaveData.Characters[SaveData.CharacterObj.ID].Offset + 0x1B,SaveData.CharacterObj.HeartContainers) // 1 Byte
 				
 				//--- Weapon
 				writeInt16(SaveData.WeaponObj.currentOffset + 0x00,SaveData.WeaponObj.KillsToUnlockSkill_1)
