@@ -6,7 +6,7 @@ function LoadOffsets() {
 	Offsets.General.Material 	= 0x00001AFE
 	Offsets.General.Weapons 	= 0x000337F4
 	Offsets.Characters = {}
-	Offsets.Characters.Base 	= 0x0003308C
+	Offsets.Characters.Base 	= 0x0003307A
 	Offsets.Maps = {}
 	Offsets.Maps.AdventureMap = {}
 	Offsets.Maps.AdventureMap.Base		= 0x00002BE8

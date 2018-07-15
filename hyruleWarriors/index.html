@@ -25,10 +25,6 @@
 		
 		
 		<script>
-			var DecryptedFile = []
-			DecryptedFile.HasMaterialAdded = false
-
-			
 			var SaveData = {
 				Lang: LoadLang(),
 				Weapons: LoadWeaponData(),
@@ -59,7 +55,7 @@
 				location.reload();
 			}
 						
-			DecryptedFile.LoadedCharacterOffset = 0x0
+			/*DecryptedFile.LoadedCharacterOffset = 0x0
 			DecryptedFile.Badges = {
 				attack: [ 
 					[0x0,1], 
@@ -120,7 +116,7 @@
 					[0x7,16],
 					[0x7,32]				
 				]
-			};
+			};*/
 
 			function handleFileSelect() {               
 				if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
@@ -281,9 +277,9 @@
 			function CreateCharacterObj(characterID) {
 				SaveData.CharacterObj.ID =			characterID
 				SaveData.CharacterObj.Name =		SaveData.Characters[characterID].Name[SaveData.Lang]
-				SaveData.CharacterObj.Experience =	readInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset)
-				SaveData.CharacterObj.Level =		SaveData.saveGame[SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x8] + 1
-				SaveData.CharacterObj.Attack =		readInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset - 0x6)
+				SaveData.CharacterObj.Experience =	readInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x12)
+				SaveData.CharacterObj.Level =		SaveData.saveGame[SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x1A] + 1
+				SaveData.CharacterObj.Attack =		readInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x6)
 			}
 			
 			function UpdateCharacterObj(characterID) {
@@ -881,10 +877,6 @@
 				return self.indexOf(value) === index;
 			}
 			
-			function AddErrorLog(Msg) {
-				$('#ErrorLog').append(Msg + '<br>');
-			}
-
 			$(function() {
 				$('#Badges_Modal').disableSelection()
 				$('#Weapon_Modal').disableSelection()
@@ -1021,10 +1013,14 @@
 					SaveData.saveGame[SaveData.Offsets.Maps[MapName].EnemiesHidden + i] = 0x1
 
 					var TileOffset = SaveData.Offsets.Maps[MapName].Medal + (i * 4)
-					SaveData.saveGame[TileOffset + 0] = 0x3
+					/*SaveData.saveGame[TileOffset + 0] = 0x3
 					SaveData.saveGame[TileOffset + 1] = 0x0
 					SaveData.saveGame[TileOffset + 2] = 0x0
-					SaveData.saveGame[TileOffset + 3] = 0x0				
+					SaveData.saveGame[TileOffset + 3] = 0x0	*/			
+					SaveData.saveGame[TileOffset + 0] = 0xFF
+					SaveData.saveGame[TileOffset + 1] = 0xFF
+					SaveData.saveGame[TileOffset + 2] = 0xFF
+					SaveData.saveGame[TileOffset + 3] = 0xFF				
 				}
 				
 				for (var i = 0; i < 8; i++) {
