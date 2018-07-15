@@ -292,7 +292,7 @@
 				SaveData.CharacterObj.Health =		readInt16(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x10) // 2 Bytes // Totally unsure, but it seems to it in some way...
 				SaveData.CharacterObj.Experience =	readInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x12) // 4 Bytes
 				SaveData.CharacterObj.Unknown3 =	readInt32(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x16) // 4 Bytes
-				SaveData.CharacterObj.Level =		readInt08(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x1A) + 1 // 1 Byte
+				SaveData.CharacterObj.Level =		readInt08(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x1A) // 1 Byte
 				SaveData.CharacterObj.HeartContainers =	readInt08(SaveData.Offsets.Characters.Base + SaveData.Characters[characterID].Offset + 0x1B) // 1 Byte
 			}
 			
@@ -345,7 +345,7 @@
 				CharacterEditHTML += '<div class="row" style="margin-top: 10px;">'
 				CharacterEditHTML += '<div>'
 				CharacterEditHTML += '<span style="margin-left: 15px;line-height: 34px;">Level</span>'
-				CharacterEditHTML += '<input value="' + SaveData.CharacterObj.Level + '" type="tel" id="CharacterEdit_Level_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this), 255);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this), 255);UpdateCharacterObj(' + CharacterID + ');">'
+				CharacterEditHTML += '<input value="' + (SaveData.CharacterObj.Level + 1) + '" type="tel" id="CharacterEdit_Level_' + CharacterID + '" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this), 255);UpdateCharacterObj(' + CharacterID + ');" onkeyup="VerifyInput($(this), 255);UpdateCharacterObj(' + CharacterID + ');">'
 				CharacterEditHTML += '</div>'
 				CharacterEditHTML += '</div>'
 				
