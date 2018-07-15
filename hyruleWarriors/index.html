@@ -180,6 +180,19 @@
 					}
 				}
 				
+				var DisableButton = true
+				for(let i = 0; i < 12; i++) {
+					if (SaveData.saveGame[SaveData.Offsets.General.DiscoverMaterials + i] != 0xFF) {
+						console.log(i)
+						DisableButton = false
+					}
+				}
+				if (SaveData.saveGame[SaveData.Offsets.General.DiscoverMaterials + 12] != 0x3F) {
+						console.log(12)
+					DisableButton = false
+				}
+				$('#DiscoverAllMaterials').prop('disabled',DisableButton)
+				
 
 				$('#MainEditContainer').css('display','block');
 			}
@@ -253,6 +266,14 @@
 					
 					$('#Material_Panel_Body_' + rarity).append(NewMaterial);
 				}
+			}
+			
+			function DiscoverAllMaterials() {
+				for(let i = 0; i < 12; i++) {
+					SaveData.saveGame[SaveData.Offsets.General.DiscoverMaterials + i] = 0xFF
+				}
+				SaveData.saveGame[SaveData.Offsets.General.DiscoverMaterials + 12] = 0x3F
+				$('#DiscoverAllMaterials').prop('disabled','true')
 			}
 
 			//------------ Character Stuff
@@ -1084,6 +1105,9 @@
 									<div>
 										<span style="margin-left: 15px;line-height: 34px;">Rupees</span>
 										<input value="" type="text" id="Rupees" class="form-control" style="display: inline-block;width: 50%;float: right;margin-right: 15px;" onchange="VerifyInput($(this), 9999999);" onkeyup="VerifyInput($(this), 9999999);">
+									</div>
+									<div>
+										<button type="button" class="btn btn-warning" style="width:calc(100% - 30px);margin-left:15px;margin-top:15px;" id="DiscoverAllMaterials" onclick="DiscoverAllMaterials();">Discover all Materials</button>
 									</div>
 								</div>
 							</div>

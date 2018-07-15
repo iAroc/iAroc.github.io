@@ -2,6 +2,7 @@ function LoadOffsets() {
 	var Offsets = {}
 	Offsets.General = {}
 	Offsets.General.Rupees 		= 0x000002B8
+	Offsets.General.DiscoverMaterials 		= 0x00001BFE
 	Offsets.General.Material 	= 0x00001AFE
 	Offsets.General.Weapons 	= 0x000337F4
 	Offsets.Characters = {}
