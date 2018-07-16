@@ -12,7 +12,8 @@
 			var SaveData = {
 				Offsets: {
 					Parts: 0x0000EC14,
-					Weapons: 0x0000BEE0
+					Weapons: 0x0000BEE0,
+					BPCount: 0x0001415A
 				},
 				Parts: LoadParts(),
 				WeaponTags: ['Short Range','Long Range','Easy Grip','Speed Shot','Steady Hand','Speed Load','Sonic Assist','Light Weight','Sonic Assist+','Short Range+','Long Range+','Legendary'],
@@ -20,6 +21,35 @@
 				WeaponObj: {}
 			}
 
+			function parseHexString(str) { 
+				var result = [];
+				while (str.length >= 2) { 
+					result.push(parseInt(str.substring(0, 2), 16));
+					str = str.substring(2, str.length);
+				}
+				return result;
+			}
+						
+			function readInt32(startPos) {
+				var newArr = [SaveData.saveGame[startPos + 3],SaveData.saveGame[startPos + 2],SaveData.saveGame[startPos + 1],SaveData.saveGame[startPos]]
+				var result=0;
+				for (let i=3;i>=0;i--) {
+					result+=newArr[3-i]<<(8*i);
+				}
+				return result;
+			};
+			
+			function writeInt32(startPos, val) {
+				val &= 0xFFFFFFFF;
+				var hex = val.toString(16).toUpperCase();
+				var endValue = ("00000000" + hex).slice(-8)
+				var Values = parseHexString(endValue)
+				SaveData.saveGame[startPos] = Values[3]
+				SaveData.saveGame[startPos+1] = Values[2]
+				SaveData.saveGame[startPos+2] = Values[1]
+				SaveData.saveGame[startPos+3] = Values[0]
+			}
+	
 			function handleFileSelect() {               
 				if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
 					alert('The File APIs are not fully supported in this browser.');
@@ -38,6 +68,7 @@
 				}
 				else {
 					file = input.files[0];
+					SaveData.FileName = file.name
 					fr = new FileReader();
 					fr.onload = receivedText;
 					fr.readAsArrayBuffer(file);
@@ -64,23 +95,26 @@
 				for (let i = 0; i < 999; i++) {
 					var weaponOffset =  SaveData.Offsets.Weapons + (i * 0x50)
 					if	(IsValidWeapon(weaponOffset)) {
-						CreateWeaponObj(weaponOffset)
+						CreateWeaponObj(weaponOffset,i)
 						var WeaponRow = ""
 						WeaponRow += '<tr>'
 						WeaponRow += '<td>' + i + '</td>'
-						WeaponRow += '<td>' + SaveData.WeaponObj.Class.Name + '</td>'
-						WeaponRow += '<td>' + SaveData.WeaponObj.Type.Name + '</td>'
-						WeaponRow += '<td>' + SaveData.WeaponObj.Tag.Name + '</td>'
-						WeaponRow += '<td>' + SaveData.WeaponObj.GSC.Name + '</td>'
-						WeaponRow += '<td>' + SaveData.WeaponObj.Damage + '</td>'
-						WeaponRow += '<td>' + SaveData.WeaponObj.Firespeed + '</td>'
-						WeaponRow += '<td>' + SaveData.WeaponObj.Capacity + '</td>'
-						WeaponRow += '<td>' + SaveData.WeaponObj.Firepower + '</td>'
-						WeaponRow += '<td>' + SaveData.WeaponObj.SlotCount + '</td>'
+						WeaponRow += '<td id="WeaponEdit_' + i + '_Class">' + SaveData.WeaponObj.Class.Name + '</td>'
+						WeaponRow += '<td id="WeaponEdit_' + i + '_Type">' + SaveData.WeaponObj.Type.Name + '</td>'
+						WeaponRow += '<td id="WeaponEdit_' + i + '_Tag">' + SaveData.WeaponObj.Tag.Name + '</td>'
+						WeaponRow += '<td id="WeaponEdit_' + i + '_GSC">' + SaveData.WeaponObj.GSC.Name + '</td>'
+						WeaponRow += '<td id="WeaponEdit_' + i + '_Damage">' + SaveData.WeaponObj.Damage + '</td>'
+						WeaponRow += '<td id="WeaponEdit_' + i + '_Firespeed">' + SaveData.WeaponObj.Firespeed + '</td>'
+						WeaponRow += '<td id="WeaponEdit_' + i + '_Capacity">' + SaveData.WeaponObj.Capacity + '</td>'
+						WeaponRow += '<td id="WeaponEdit_' + i + '_Firepower">' + SaveData.WeaponObj.Firepower + '</td>'
+						WeaponRow += '<td id="WeaponEdit_' + i + '_SlotCount">' + SaveData.WeaponObj.SlotCount + '</td>'
+						WeaponRow += '<td><button type="button" class="btn btn-warning" style="width:90%;" onclick="LoadWeaponEdit(' + i + ');">Edit Weapon</button></td>'
 						WeaponRow += '</tr>'
 						$('#WeaponTable > tbody').append(WeaponRow);
 					}
 				}
+
+				$('#BPCount').val(readInt32(SaveData.Offsets.BPCount))
 				
 				$('#MainContainer').css('display','block')
 			}
@@ -123,7 +157,9 @@
 				return isValid;
 			}
 			
-			function CreateWeaponObj(weaponOffset) {
+			function CreateWeaponObj(weaponOffset, RowID) {
+				SaveData.WeaponObj.RowID = RowID
+				SaveData.WeaponObj.weaponOffset = weaponOffset
 				SaveData.WeaponObj.Type = {Value: SaveData.saveGame[weaponOffset + 0x02]}
 				SaveData.WeaponObj.Class = {Value: SaveData.saveGame[weaponOffset + 0x03]}
 				SaveData.WeaponObj.Damage = SaveData.saveGame[weaponOffset + 0x10]
@@ -152,12 +188,146 @@
 						}
 					}
 				}
-				/*SaveData.WeaponObj.Slots = []
-				for(let i = 0; i < 7;i++) {
-					SaveData.WeaponObj.Slots[i] = [SaveData.saveGame[weaponOffset + 0x18 + (i * 4)]]
-				}*/
+				SaveData.WeaponObj.Slots = []
+				for(let i = 0; i < SaveData.WeaponObj.SlotCount;i++) {
+					SaveData.WeaponObj.Slots[i] = {Values: [SaveData.saveGame[weaponOffset + 0x1A + (i * 0x8)],SaveData.saveGame[weaponOffset + 0x1B + (i * 0x8)],SaveData.saveGame[weaponOffset + 0x1C + (i * 0x8)]]}
+					for (let x = 0; x < SaveData.Parts.length;x++) {
+						if (SaveData.WeaponObj.Slots[i].Values[0] == SaveData.Parts[x].Values[2] && SaveData.WeaponObj.Slots[i].Values[1] == SaveData.Parts[x].Values[3] && SaveData.WeaponObj.Slots[i].Values[2] == SaveData.Parts[x].Values[4]) {
+							SaveData.WeaponObj.Slots[i].Name = SaveData.Parts[x].Name
+							SaveData.WeaponObj.Slots[i].ID = x
+						}						
+					}
+				}
 			}
 			
+			function UpdateWeaponObj() {
+				var weaponOffset = SaveData.WeaponObj.weaponOffset
+				SaveData.saveGame[weaponOffset + 0x02] = SaveData.WeaponData[$('#WeaponEditClass').val()].Types[$('#WeaponEditType').val()].Value
+				SaveData.saveGame[weaponOffset + 0x03] = SaveData.WeaponData[$('#WeaponEditClass').val()].Value
+				SaveData.saveGame[weaponOffset + 0x10] = $('#WeaponEditDamage').val()
+				SaveData.saveGame[weaponOffset + 0x11] = $('#WeaponEditSlotCount').val()
+				SaveData.saveGame[weaponOffset + 0x13] = $('#WeaponEditFirespeed').val()
+				SaveData.saveGame[weaponOffset + 0x14] = $('#WeaponEditCapacity').val()
+				SaveData.saveGame[weaponOffset + 0x15] = $('#WeaponEditFirepower').val()
+				SaveData.saveGame[weaponOffset + 0x16] = $('#WeaponEditTag').val()
+				SaveData.saveGame[weaponOffset + 0x18] = $('#WeaponEditGSC').val()
+				
+				for(let i = 0; i < $('#WeaponEditSlotCount').val();i++) {
+					SaveData.saveGame[weaponOffset + 0x1A + (i * 0x8)] = SaveData.Parts[$('#WeaponEditSlot_' + i).val()].Values[2]
+					SaveData.saveGame[weaponOffset + 0x1B + (i * 0x8)] = SaveData.Parts[$('#WeaponEditSlot_' + i).val()].Values[3]
+					SaveData.saveGame[weaponOffset + 0x1C + (i * 0x8)] = SaveData.Parts[$('#WeaponEditSlot_' + i).val()].Values[4]
+				}
+				
+				$('#WeaponEdit_' + SaveData.WeaponObj.RowID + '_Class').html($("#WeaponEditClass").children("option").filter(":selected").text())
+				$('#WeaponEdit_' + SaveData.WeaponObj.RowID + '_Type').html($("#WeaponEditType").children("option").filter(":selected").text())
+				$('#WeaponEdit_' + SaveData.WeaponObj.RowID + '_Tag').html($("#WeaponEditTag").children("option").filter(":selected").text())
+				$('#WeaponEdit_' + SaveData.WeaponObj.RowID + '_GSC').html($("#WeaponEditGSC").children("option").filter(":selected").text())
+				$('#WeaponEdit_' + SaveData.WeaponObj.RowID + '_Damage').html($('#WeaponEditDamage').val())
+				$('#WeaponEdit_' + SaveData.WeaponObj.RowID + '_Firespeed').html($('#WeaponEditFirespeed').val())
+				$('#WeaponEdit_' + SaveData.WeaponObj.RowID + '_Capacity').html($('#WeaponEditCapacity').val())
+				$('#WeaponEdit_' + SaveData.WeaponObj.RowID + '_Firepower').html($('#WeaponEditFirepower').val())
+				$('#WeaponEdit_' + SaveData.WeaponObj.RowID + '_SlotCount').html($('#WeaponEditSlotCount').val())
+			}
+			
+			function LoadWeaponEdit(WeaponID) {
+				var weaponOffset = SaveData.Offsets.Weapons + (WeaponID * 0x50)
+				CreateWeaponObj(weaponOffset, WeaponID)
+				
+				$('#WeaponEditClass').html('')
+				for (let i = 0; i < SaveData.WeaponData.length;i++) {
+					$('#WeaponEditClass').append('<option value="' + i + '">' + SaveData.WeaponData[i].Name + '</option>')
+				}
+				$('#WeaponEditClass').val(SaveData.WeaponObj.Class.ID);
+
+				$('#WeaponEditType').html('')
+				for (let i = 0; i < SaveData.WeaponData[SaveData.WeaponObj.Class.ID].Types.length;i++) {
+					$('#WeaponEditType').append('<option value="' + i + '">' + SaveData.WeaponData[SaveData.WeaponObj.Class.ID].Types[i].Name + '</option>')
+				}
+				$('#WeaponEditType').val(SaveData.WeaponObj.Type.ID);
+
+				$('#WeaponEditTag').html('')
+				for (let i = 0; i < SaveData.WeaponTags.length;i++) {
+					$('#WeaponEditTag').append('<option value="' + i + '">' + SaveData.WeaponTags[i] + '</option>')
+				}
+				$('#WeaponEditTag').val(SaveData.WeaponObj.Tag.Value);
+				
+				$('#WeaponEditGSC').html('')
+				$('#WeaponEditGSC').append('<option value="' + 0x00 + '">Off</option>')
+				$('#WeaponEditGSC').append('<option value="' + 0x09 + '">On</option>')
+				$('#WeaponEditGSC').val(SaveData.WeaponObj.GSC.Value);
+				
+				$('#WeaponEditDamage').html('')
+				for (let i = 0; i <= 0x3D;i++) {
+					$('#WeaponEditDamage').append('<option value="' + i + '">' + i + '</option>')
+				}
+				$('#WeaponEditDamage').val(SaveData.WeaponObj.Damage);
+				
+				$('#WeaponEditFirespeed').val(SaveData.WeaponObj.Firespeed);
+				$('#WeaponEditCapacity').val(SaveData.WeaponObj.Capacity);
+				$('#WeaponEditFirepower').val(SaveData.WeaponObj.Firepower);
+				
+				$('#WeaponEditSlotCount').html('')
+				for (let i = 0; i <= 0x7;i++) {
+					$('#WeaponEditSlotCount').append('<option value="' + i + '">' + i + '</option>')
+				}
+				$('#WeaponEditSlotCount').val(SaveData.WeaponObj.SlotCount);
+				
+				for (let x = 0; x < 7;x++) {
+					$('#WeaponEditSlot_' + x).html('')
+					for (let i = 0; i < SaveData.Parts.length;i++) {
+						$('#WeaponEditSlot_' + x).append('<option value="' + i + '">' + SaveData.Parts[i].Name + '</option>')
+					}
+					if (x < SaveData.WeaponObj.SlotCount) {
+						$('#WeaponEditSlot_' + x).val(SaveData.WeaponObj.Slots[x].ID)
+						$('#WeaponEditSlot_' + x).prop('disabled',false)
+					} else {
+						$('#WeaponEditSlot_' + x).prop('disabled',true)
+					}
+				}
+				
+				$('#Weapon_Modal').modal('show');
+			}
+			
+			function ReloadWeaponTypes() {
+				$('#WeaponEditType').html('')
+				for (let i = 0; i < SaveData.WeaponData[$('#WeaponEditClass').val()].Types.length;i++) {
+					$('#WeaponEditType').append('<option value="' + i + '">' + SaveData.WeaponData[$('#WeaponEditClass').val()].Types[i].Name + '</option>')
+				}
+			}
+			
+			function UpdateSlotCount() {
+				for (let i = 0; i < 7;i++) {
+					if (i < $('#WeaponEditSlotCount').val()) {
+						$('#WeaponEditSlot_' + i).prop('disabled',false)
+					} else {
+						$('#WeaponEditSlot_' + i).prop('disabled',true)
+						$('#WeaponEditSlot_' + i).val(0)
+					}
+				}
+			}
+			
+			function VerifyInput(input, maxValue) {
+				var newValue = input.val().replace(/\D/g,'');
+				if(newValue > maxValue) {
+					newValue = maxValue
+				}
+				input.val(newValue)
+			}
+			
+			function SaveCurrentEdits() {
+				writeInt32(SaveData.Offsets.BPCount, $('#BPCount').val())
+			}
+			
+			function DownloadFile() {
+				var file = new Blob([new Uint8Array(SaveData.saveGame)], {type: 'application/octet-stream'});
+				var downloadUrl = URL.createObjectURL(file);
+				var a = document.createElement("a");
+				a.href = downloadUrl;
+				a.download = SaveData.FileName;
+				document.body.appendChild(a);
+				a.click();				
+			}
+
 			function d2h(Number) {
 				var HexNr = Number.toString(16)
 				if (HexNr.length < 2) {
@@ -170,7 +340,10 @@
 		<style>
 			html {
 				overflow-y: scroll; 
-			}		
+			}
+			.modal-open {
+				padding-right: 0px !important;
+			}
 		</style>
 	</head>
 	<body>
@@ -189,7 +362,7 @@
 									<br>
 									<br>
 									<input type="submit" class="btn btn-primary" value="Load" style="width:100px;margin:auto;" name="go" onclick='handleFileSelect();'>
-									<input type="submit" class="btn btn-primary" value="Save" style="width:100px;margin:auto;" name="go" onclick='DownloadFile();' disabled>
+									<input type="submit" class="btn btn-primary" value="Save" style="width:100px;margin:auto;" name="go" onclick='DownloadFile();'>
 								</div>
 							</div>
 						</div>
@@ -200,12 +373,24 @@
 
 		<div style="width:90%;margin-left:auto;margin-right:auto;display:none;" id="MainContainer">
 			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#WeaponEdit">Weapon Edit</a></li>
+				<li class="active"><a data-toggle="tab" href="#GeneralEdit">General Edit</a></li>
+				<li><a data-toggle="tab" href="#WeaponEdit">Weapon Edit</a></li>
 				<li><a data-toggle="tab" href="#PartsData">Parts Data</a></li>
 			</ul>
 			<br>
 			<div class="tab-content">
-				<div id="WeaponEdit" class="tab-pane fade in active">
+				<div id="GeneralEdit" class="tab-pane fade in active">
+					<div class="panel panel-primary" style="vertical-align: top;">
+						<div class="panel-heading">
+							<h3 class="panel-title">General Edit</h3>
+						</div>
+						<div class="panel-body">
+							<label for="BPCount" style="margin-top: 7px;">BP Count</label>
+							<input type="tel" class="form-control" id="BPCount" style="width: 50%; display: inline-block;float:right;" onchange="VerifyInput($(this),9999999);SaveCurrentEdits();" onkeyup="VerifyInput($(this),9999999);SaveCurrentEdits();">
+						</div>
+					</div>
+				</div>
+				<div id="WeaponEdit" class="tab-pane fade in">
 					<div class="panel panel-primary" style="vertical-align: top;">
 						<div class="panel-heading">
 							<h3 class="panel-title">Weapon Edit</h3>
@@ -224,6 +409,7 @@
 										<th>Capacity</th>
 										<th>Firepower</th>
 										<th>SlotCount</th>
+										<th>Edit</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -250,6 +436,85 @@
 								</tbody>
 							</table>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" tabindex="-1" role="dialog" id="Weapon_Modal">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Edit Weapon</h5>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="WeaponEditClass">Class</label>
+							<select class="form-control" id="WeaponEditClass" style="width: 50%; display: inline-block;float:right;" onchange="ReloadWeaponTypes();UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditType">Type</label>
+							<select class="form-control" id="WeaponEditType" style="width: 50%; display: inline-block;float:right;" onchange="UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditTag">Tag</label>
+							<select class="form-control" id="WeaponEditTag" style="width: 50%; display: inline-block;float:right;" onchange="UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditGSC">GSC</label>
+							<select class="form-control" id="WeaponEditGSC" style="width: 50%; display: inline-block;float:right;" onchange="UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditDamage">Damage</label>
+							<select class="form-control" id="WeaponEditDamage" style="width: 50%; display: inline-block;float:right;" onchange="UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditFirespeed">Firespeed</label>
+							<input type="tel" class="form-control" id="WeaponEditFirespeed" style="width: 50%; display: inline-block;float:right;" onchange="VerifyInput($(this),255);UpdateWeaponObj();" onkeyup="VerifyInput($(this),255);UpdateWeaponObj();">
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditCapacity">Capacity</label>
+							<input type="tel" class="form-control" id="WeaponEditCapacity" style="width: 50%; display: inline-block;float:right;" onchange="VerifyInput($(this),255);UpdateWeaponObj();" onkeyup="VerifyInput($(this),255);UpdateWeaponObj();">
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditFirepower">Firepower</label>
+							<input type="tel" class="form-control" id="WeaponEditFirepower" style="width: 50%; display: inline-block;float:right;" onchange="VerifyInput($(this),255);UpdateWeaponObj();" onkeyup="VerifyInput($(this),255);UpdateWeaponObj();">
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditSlotCount">SlotCount</label>
+							<select class="form-control" id="WeaponEditSlotCount" style="width: 50%; display: inline-block;float:right;" onchange="UpdateSlotCount();UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditSlot_0">Slot 1</label>
+							<select class="form-control" id="WeaponEditSlot_0" style="width: 50%; display: inline-block;float:right;" onchange="UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditSlot_1">Slot 2</label>
+							<select class="form-control" id="WeaponEditSlot_1" style="width: 50%; display: inline-block;float:right;" onchange="UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditSlot_2">Slot 3</label>
+							<select class="form-control" id="WeaponEditSlot_2" style="width: 50%; display: inline-block;float:right;" onchange="UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditSlot_3">Slot 4</label>
+							<select class="form-control" id="WeaponEditSlot_3" style="width: 50%; display: inline-block;float:right;" onchange="UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditSlot_4">Slot 5</label>
+							<select class="form-control" id="WeaponEditSlot_4" style="width: 50%; display: inline-block;float:right;" onchange="UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditSlot_5">Slot 6</label>
+							<select class="form-control" id="WeaponEditSlot_5" style="width: 50%; display: inline-block;float:right;" onchange="UpdateWeaponObj();"></select>
+						</div>
+						<div class="form-group">
+							<label for="WeaponEditSlot_6">Slot 7</label>
+							<select class="form-control" id="WeaponEditSlot_6" style="width: 50%; display: inline-block;float:right;" onchange="UpdateWeaponObj();"></select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 			</div>
