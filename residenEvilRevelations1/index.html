@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="bootstrap/bootstrap-theme.min.css">
+		
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="bootstrap/bootstrap.min.js"></script>
+		<script src="Parts.js"></script>
+		<script src="WeaponData.js"></script>
+		<script>
+			var SaveData = {
+				Offsets: {
+					Parts: 0x0000EC14,
+					Weapons: 0x0000BEE0
+				},
+				Parts: LoadParts(),
+				WeaponTags: ['Short Range','Long Range','Easy Grip','Speed Shot','Steady Hand','Speed Load','Sonic Assist','Light Weight','Sonic Assist+','Short Range+','Long Range+','Legendary'],
+				WeaponData: LoadWeaponData(),
+				WeaponObj: {}
+			}
+
+			function handleFileSelect() {               
+				if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+					alert('The File APIs are not fully supported in this browser.');
+					return;
+				}   
+
+				input = document.getElementById('fileinput');
+				if (!input) {
+					alert("Um, couldn't find the fileinput element.");
+				}
+				else if (!input.files) {
+					alert("This browser doesn't seem to support the `files` property of file inputs.");
+				}
+				else if (!input.files[0]) {
+					alert("Please select a file before clicking 'Load'");               
+				}
+				else {
+					file = input.files[0];
+					fr = new FileReader();
+					fr.onload = receivedText;
+					fr.readAsArrayBuffer(file);
+				}
+			}
+		  			
+			function receivedText() {
+				SaveData.saveGame = new Uint8Array(fr.result);
+				
+				for (let i = 0;i < 999;i++) {
+					var partOffset = SaveData.Offsets.Parts + (i * 14)
+					if (IsValidPart(partOffset)) {
+						var PartsID = FindPart(partOffset)
+						if (PartsID == -1) {
+							$('#PartsTable > tbody').append('<tr><td>' + i + '</td><td>[' + d2h(SaveData.saveGame[partOffset + 9]) + ', ' + d2h(SaveData.saveGame[partOffset + 10]) + ', ' + d2h(SaveData.saveGame[partOffset + 11]) + ', ' + d2h(SaveData.saveGame[partOffset + 12]) + ', ' + d2h(SaveData.saveGame[partOffset + 13]) + ']</td><td>Unknown</td></tr>');
+						} else {
+							$('#PartsTable > tbody').append('<tr><td>' + i + '</td><td>[' + d2h(SaveData.Parts[PartsID].Values[0]) + ', ' + d2h(SaveData.Parts[PartsID].Values[1]) + ', ' + d2h(SaveData.Parts[PartsID].Values[2]) + ', ' + d2h(SaveData.Parts[PartsID].Values[3]) + ', ' + d2h(SaveData.Parts[PartsID].Values[4]) + ']</td><td>' + SaveData.Parts[PartsID].Name + '</td></tr>');
+						}
+					}
+				}
+				
+				for (let i = 0; i < 999; i++) {
+					var weaponOffset =  SaveData.Offsets.Weapons + (i * 0x50)
+					if	(IsValidWeapon(weaponOffset)) {
+						CreateWeaponObj(weaponOffset)
+						var WeaponRow = ""
+						WeaponRow += '<tr>'
+						WeaponRow += '<td>' + i + '</td>'
+						WeaponRow += '<td>' + SaveData.WeaponObj.Class.Name + '</td>'
+						WeaponRow += '<td>' + SaveData.WeaponObj.Type.Name + '</td>'
+						WeaponRow += '<td>' + SaveData.WeaponObj.Tag.Name + '</td>'
+						WeaponRow += '<td>' + SaveData.WeaponObj.GSC.Name + '</td>'
+						WeaponRow += '<td>' + SaveData.WeaponObj.Damage + '</td>'
+						WeaponRow += '<td>' + SaveData.WeaponObj.Firespeed + '</td>'
+						WeaponRow += '<td>' + SaveData.WeaponObj.Capacity + '</td>'
+						WeaponRow += '<td>' + SaveData.WeaponObj.Firepower + '</td>'
+						WeaponRow += '<td>' + SaveData.WeaponObj.SlotCount + '</td>'
+						WeaponRow += '</tr>'
+						$('#WeaponTable > tbody').append(WeaponRow);
+					}
+				}
+			}
+			
+			function IsValidPart(partOffset) {
+				var isValid = true
+				var validPart = [ 0x80, 0x00, 0x00, 0x00, 0x80, 0x01, 0x00, 0x00, 0x00 ]
+				for(let i = 0;i < 9;i++) {
+					if (SaveData.saveGame[partOffset + i] != validPart[i]) {
+						isValid = false
+					}
+				}
+				return isValid;
+			}
+			
+			function FindPart(partOffset) {
+				for (let i = 0; i < SaveData.Parts.length;i++) {
+					var Part = SaveData.Parts[i]
+					var isValid = true
+					for(let x = 0; x < 5; x++) {
+						if(SaveData.saveGame[partOffset + x + 9] != Part.Values[x]) {
+							isValid = false
+						}
+					}
+					if (isValid) {
+						return i
+					}
+				}
+				return -1
+			}
+			
+			function IsValidWeapon(weaponOffset) {
+				var isValid = true
+				var validPart = [ 0x05, 0x80, 0x00, 0x00, 0x00, 0x80, 0x01 ]
+				for(let i = 0;i < 7;i++) {
+					if (SaveData.saveGame[weaponOffset + 0x04 + i] != validPart[i]) {
+						isValid = false
+					}
+				}
+				return isValid;
+			}
+			
+			function CreateWeaponObj(weaponOffset) {
+				SaveData.WeaponObj.Type = {Value: SaveData.saveGame[weaponOffset + 0x02]}
+				SaveData.WeaponObj.Class = {Value: SaveData.saveGame[weaponOffset + 0x03]}
+				SaveData.WeaponObj.Damage = SaveData.saveGame[weaponOffset + 0x10]
+				SaveData.WeaponObj.SlotCount = SaveData.saveGame[weaponOffset + 0x11]
+				SaveData.WeaponObj.Firespeed = SaveData.saveGame[weaponOffset + 0x13]
+				SaveData.WeaponObj.Capacity = SaveData.saveGame[weaponOffset + 0x14]
+				SaveData.WeaponObj.Firepower = SaveData.saveGame[weaponOffset + 0x15]
+				SaveData.WeaponObj.Tag = {Value:SaveData.saveGame[weaponOffset + 0x16], Name: SaveData.WeaponTags[SaveData.saveGame[weaponOffset + 0x16]]}
+				SaveData.WeaponObj.GSC = {Value: SaveData.saveGame[weaponOffset + 0x18]}
+				if(SaveData.WeaponObj.GSC.Value == 0x00) {
+					SaveData.WeaponObj.GSC.Name = 'Off'
+				} else {
+					SaveData.WeaponObj.GSC.Name = 'On'
+				}
+				
+				for (let i = 0; i < SaveData.WeaponData.length;i++) {
+					if (SaveData.WeaponData[i].Value == SaveData.WeaponObj.Class.Value) {
+						SaveData.WeaponObj.Class.Name = SaveData.WeaponData[i].Name
+						SaveData.WeaponObj.Class.ID = i
+						
+						for (let x = 0; x < SaveData.WeaponData[i].Types.length;x++) {
+							if (SaveData.WeaponData[i].Types[x].Value == SaveData.WeaponObj.Type.Value) {
+								SaveData.WeaponObj.Type.Name = SaveData.WeaponData[i].Types[x].Name
+								SaveData.WeaponObj.Type.ID = x
+							}
+						}
+					}
+				}
+				/*SaveData.WeaponObj.Slots = []
+				for(let i = 0; i < 7;i++) {
+					SaveData.WeaponObj.Slots[i] = [SaveData.saveGame[weaponOffset + 0x18 + (i * 4)]]
+				}*/
+			}
+			
+			function d2h(Number) {
+				var HexNr = Number.toString(16)
+				if (HexNr.length < 2) {
+					return '0x0' + HexNr
+				} else {
+					return '0x' + HexNr
+				}			
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-sm-12 col-md-6 col-md-offset-2">
+					<br>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Load Resident Evil Revelations 1 SaveFile</h3>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div>
+									<input type="file" id="fileinput" class='form-control-file' style='display: inline-block;'>
+									<br>
+									<br>
+									<input type="submit" class="btn btn-primary" value="Load" style="width:100px;margin:auto;" name="go" onclick='handleFileSelect();'>
+									<input type="submit" class="btn btn-primary" value="Save" style="width:100px;margin:auto;" name="go" onclick='DownloadFile();' disabled>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="width:90%;margin-left:auto;margin-right:auto;">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#WeaponEdit">Weapon Edit</a></li>
+				<li><a data-toggle="tab" href="#PartsData">Parts Data</a></li>
+			</ul>
+			<br>
+			<div class="tab-content">
+				<div id="WeaponEdit" class="tab-pane fade in active">
+					<div class="panel panel-primary" style="vertical-align: top;">
+						<div class="panel-heading">
+							<h3 class="panel-title">Weapon Edit</h3>
+						</div>
+						<div class="panel-body">
+							<table id="WeaponTable" class="table">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Class</th>
+										<th>Type</th>
+										<th>Tag</th>
+										<th>GSC</th>
+										<th>Damage</th>
+										<th>Firespeed</th>
+										<th>Capacity</th>
+										<th>Firepower</th>
+										<th>SlotCount</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div id="PartsData" class="tab-pane fade in">
+					<div class="panel panel-primary" style="vertical-align: top;">
+						<div class="panel-heading">
+							<h3 class="panel-title">Parts</h3>
+						</div>
+						<div class="panel-body">
+							<table id="PartsTable" class="table">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Values</th>
+										<th>Name</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	
+	</body>
+</html>
