@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="bootstrap/bootstrap-theme.min.css">
+		
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="bootstrap/bootstrap.min.js"></script>
+		<script>
+			var CurrentPath = "/"
+			function LoadDir(NewPath = CurrentPath) {
+				CurrentPath = NewPath
+				CurrentPath = CurrentPath.replace('//','/').replace('//','/')
+						
+				$.ajax({
+					url: "http://192.168.1.130:65432" + CurrentPath,
+					type: "GET",
+					dataType:"text/json",
+					timeout: 3000,
+					complete: function(xhr, textStatus) {
+						var obj = jQuery.parseJSON(xhr.responseText);
+						$('#sdmcTable > tbody').html('')
+						var Paths = CurrentPath.split('/')
+						Paths[Paths.length - 1] = ''
+						var newPaths = Paths.join('/')
+						if (newPaths[newPaths.length - 1] == '/') {
+							newPaths = newPaths.slice(0,-1)
+						}
+						$('#sdmcTable > tbody').append('<tr><td>..</td><td>Folder</td><td><input type="submit" class="btn btn-danger" value="Back" style="margin:auto;" name="go" onclick="LoadDir(\'' + newPaths + '\');"></td></tr>');
+						for(let i = 0;i < obj.length;i++) {
+							if (obj[i].Type == 4) { // folder
+								$('#sdmcTable > tbody').append('<tr><td>' + obj[i].Name + '</td><td>Folder</td><td><input type="submit" class="btn btn-success" value="Open" style="margin:auto;" name="go" onclick="LoadDir(\'' + CurrentPath + '/' + obj[i].Name + '\');"></td></tr>');
+							} else {
+								$('#sdmcTable > tbody').append('<tr><td>' + obj[i].Name + '</td><td>' + (obj[i].Type == 4 ? 'Folder' : 'File') + '</td><td><input type="submit" class="btn btn-primary" value="Download" style="margin:auto;" name="go" onclick="DownloadFile(\'' + CurrentPath + '/' + obj[i].Name + '\');"</td></tr>');
+							}
+							
+						}
+					} 
+				});
+			}
+			
+			function parseHexString(str) { 
+				var result = [];
+				while (str.length >= 2) { 
+					result.push(parseInt(str.substring(0, 2), 16));
+					str = str.substring(2, str.length);
+				}
+				return result;
+			}
+						
+
+			
+			function DownloadFile(Path) {
+				Path = Path.replace('//','/').replace('//','/')
+				$.ajax({
+					
+					url: "http://192.168.1.130:65432" + Path,
+					type: "GET",
+					dataType:"text/json",
+					timeout: 3000,
+					complete: function(xhr, textStatus) {
+						var obj = jQuery.parseJSON(xhr.responseText);
+						var nFile = parseHexString(obj[0].Value)
+						
+						var NameS = Path.split('/')
+						var Name = NameS[NameS.length - 1]
+						
+						var file = new Blob([new Uint8Array(nFile)], {type: 'application/octet-stream'});
+						var downloadUrl = URL.createObjectURL(file);
+						var a = document.createElement("a");
+						a.href = downloadUrl;
+						a.download = Name.replace('/','');
+						document.body.appendChild(a);
+						a.click();				
+
+					}
+				});
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-sm-12 col-md-6 col-md-offset-2">
+					<br>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Connect to the Nintendo Switch</h3>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div>
+									<input type="submit" class="btn btn-success" value="Connect" style="margin:auto;" name="go" onclick="LoadDir('/');">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="width:90%;margin-left:auto;margin-right:auto;" id="MainContainer">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Switch sdmc</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div id="sdmc">
+							<table id="sdmcTable" class="table">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Type</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
