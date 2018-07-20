@@ -13,7 +13,7 @@
 				CurrentPath = CurrentPath.replace('//','/').replace('//','/')
 						
 				$.ajax({
-					url: "http://192.168.1.130:65432" + CurrentPath,
+					url: "http://" + $('#IP').val() + ":65432" + CurrentPath,
 					type: "GET",
 					dataType:"text/json",
 					timeout: 3000,
@@ -26,12 +26,12 @@
 						if (newPaths[newPaths.length - 1] == '/') {
 							newPaths = newPaths.slice(0,-1)
 						}
-						$('#sdmcTable > tbody').append('<tr><td>..</td><td>Folder</td><td><input type="submit" class="btn btn-danger" value="Back" style="margin:auto;" name="go" onclick="LoadDir(\'' + newPaths + '\');"></td></tr>');
+						$('#sdmcTable > tbody').append('<tr><td>..</td><td>Folder</td><td><input type="submit" class="btn btn-danger" value="Back" style="margin:auto;width:100px;" name="go" onclick="LoadDir(\'' + newPaths + '\');"></td></tr>');
 						for(let i = 0;i < obj.length;i++) {
 							if (obj[i].Type == 4) { // folder
-								$('#sdmcTable > tbody').append('<tr><td>' + obj[i].Name + '</td><td>Folder</td><td><input type="submit" class="btn btn-success" value="Open" style="margin:auto;" name="go" onclick="LoadDir(\'' + CurrentPath + '/' + obj[i].Name + '\');"></td></tr>');
+								$('#sdmcTable > tbody').append('<tr><td>' + obj[i].Name + '</td><td>Folder</td><td><input type="submit" class="btn btn-success" value="Open" style="margin:auto;width:100px;" name="go" onclick="LoadDir(\'' + CurrentPath + '/' + obj[i].Name + '\');"></td></tr>');
 							} else {
-								$('#sdmcTable > tbody').append('<tr><td>' + obj[i].Name + '</td><td>' + (obj[i].Type == 4 ? 'Folder' : 'File') + '</td><td><input type="submit" class="btn btn-primary" value="Download" style="margin:auto;" name="go" onclick="DownloadFile(\'' + CurrentPath + '/' + obj[i].Name + '\');"</td></tr>');
+								$('#sdmcTable > tbody').append('<tr><td>' + obj[i].Name + '</td><td>' + (obj[i].Type == 4 ? 'Folder' : 'File') + '</td><td><input type="submit" class="btn btn-primary" value="Download" style="margin:auto;width:100px;" name="go" onclick="DownloadFile(\'' + CurrentPath + '/' + obj[i].Name + '\');"</td></tr>');
 							}
 							
 						}
@@ -54,7 +54,7 @@
 				Path = Path.replace('//','/').replace('//','/')
 				$.ajax({
 					
-					url: "http://192.168.1.130:65432" + Path,
+					url: "http://" + $('#IP').val() + ":65432" + Path,
 					type: "GET",
 					dataType:"text/json",
 					timeout: 3000,
@@ -92,6 +92,7 @@
 						<div class="panel-body">
 							<div class="row">
 								<div>
+									<input type="text" id="IP">
 									<input type="submit" class="btn btn-success" value="Connect" style="margin:auto;" name="go" onclick="LoadDir('/');">
 								</div>
 							</div>
@@ -113,8 +114,8 @@
 								<thead>
 									<tr>
 										<th>Name</th>
-										<th>Type</th>
-										<th>Actions</th>
+										<th style="width:150px;">Type</th>
+										<th style="width:150px;">Actions</th>
 									</tr>
 								</thead>
 								<tbody>
